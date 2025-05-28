@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path='/' element={<HomePage />} />
-            <Route path='/games' element={<div>Games</div>} />
+            <Route path='/games' element={<SearchPage />} />
             <Route path='/games/:id' element={<div>Detail Game</div>} />
             <Route path='/console/playstation' element={<div>Console:play</div>} />
             <Route path='/console/xbox' element={<div>Console:xbox</div>} />
