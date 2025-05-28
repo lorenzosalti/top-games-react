@@ -34,9 +34,9 @@ function HomePage() {
                             return createDate > date;
                         })
                             .map((game, index) =>
-                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="card" key={game.id}>
+                                        <div className="card">
                                             <img src={game.image} className="card-img-top" alt={game.title} />
                                             <div className="card-body">
                                                 <h5 className="card-title">{game.title}</h5>
@@ -71,9 +71,9 @@ function HomePage() {
                             return discountGames > discount;
                         })
                             .map((game, index) =>
-                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="card mb-5" key={game.id}>
+                                        <div className="card mb-5">
                                             <img src={game.image} className="card-img-top" alt={game.title} />
                                             <div className="card-body col-12">
                                                 <h5 className="card-title">{game.title}</h5>
