@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 
-
 function HomePage() {
 
 
@@ -15,7 +14,9 @@ function HomePage() {
                 setGames(res.data);
             })
             .catch(err => console.log(err));
+
     }
+
 
     useEffect(getGames, []);
 
@@ -37,7 +38,7 @@ function HomePage() {
                                 <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
                                     <div className="d-flex justify-content-center">
                                         <div className="card">
-                                            <img src={game.image} className="card-img-top" alt={game.title} />
+                                            <img src={game.imagePath} className="card-img-top" alt={game.title} />
                                             <div className="card-body col-12">
                                                 <h5 className="card-title">{game.title}</h5>
                                                 <p className="card-text">{game.description}</p>
@@ -74,7 +75,7 @@ function HomePage() {
                                 <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
                                     <div className="d-flex justify-content-center">
                                         <div className="card mb-5">
-                                            <img src={game.image} className="card-img-top" alt={game.title} />
+                                            <img src={game.imagePath} className="card-img-top w-50" alt={game.title} />
                                             <div className="card-body col-12">
                                                 <h5 className="card-title">{game.title}</h5>
                                                 <p className="card-text">{game.description}</p>
