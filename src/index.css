@@ -1,0 +1,7 @@
+.herospace {
+    background-image: url(../public/elden-ring.jpg);
+    height: 50.5vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: .5rem;
+}
