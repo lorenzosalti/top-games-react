@@ -38,7 +38,7 @@ function HomePage() {
                                     <div className="d-flex justify-content-center">
                                         <div className="card">
                                             <img src={game.image} className="card-img-top" alt={game.title} />
-                                            <div className="card-body">
+                                            <div className="card-body col-12">
                                                 <h5 className="card-title">{game.title}</h5>
                                                 <p className="card-text">{game.description}</p>
                                                 <a href="#" className="btn btn-primary">Dettaglio prodotto</a>

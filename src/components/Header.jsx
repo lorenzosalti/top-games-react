@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 export default function Header() {
     return (
         <header>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg bg-body-tertiary mb-5">
                 <div className="container-fluid">
                     <Link to={'/'} className='navbar-brand'>Top Games</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
