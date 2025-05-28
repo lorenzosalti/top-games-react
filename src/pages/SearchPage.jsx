@@ -10,16 +10,15 @@ function SearchPage() {
     function getGames() {
         axios.get(gamesUrl, { params: { search } })
             .then(res => {
-                setGames(res.data);
+                setGames(res.data)
+
             })
             .catch(err => console.error(err))
     }
 
     useEffect(getGames, []);
 
-
-
-
+    console.log(games)
 
     function searchGames(event) {
         event.preventDefault();
@@ -27,32 +26,39 @@ function SearchPage() {
 
     }
 
-    console.log(search)
 
+    return (
 
+        <>
+            <section className="container">
+                <h2 className="text-center">Best Games</h2>
 
+                <form onSubmit={searchGames} className="row g-1">
 
+                    <div className="col-auto">
+                        <input type="text" className="form-control" id="inputPassword2" placeholder="Search games"
+                            value={search} onChange={(e) => setSearch(e.target.value)}
+                        />
 
-    return <div>
-        <section className="container">
-            <h2 className="text-center">Best Games</h2>
+                    </div>
+                    <div className="col-auto">
+                        <button type="submit" className="btn btn-primary mb-3">Search games</button>
+                    </div>
+                </form>
 
-            <form onSubmit={searchGames} className="row g-1">
+                {games.map(game =>
+                    <div className="card" key={game.id}>
+                        <div className="card-body">
+                            <h5 className="card-title">{game.title}</h5>
+                            <p className="card-text">{game.description}.</p>
+                            <p className="card-text">{game.price}.</p>
+                        </div>
+                    </div>
+                )}
+            </section>
 
-                <div className="col-auto">
-                    <input type="text" className="form-control" id="inputPassword2" placeholder="Search games"
-                        value={search} onChange={(e) => setSearch(e.target.value)}
-                    />
-
-                </div>
-                <div className="col-auto">
-                    <button type="submit" className="btn btn-primary mb-3">Search games</button>
-                </div>
-            </form>
-        </section>
-
-    </div>
-
+        </>
+    )
 
 };
 
