@@ -49,6 +49,7 @@ function SearchPage() {
                 {games.map(game =>
                     <div className="card" key={game.id}>
                         <div className="card-body">
+                            <img src={game.imagePath} className="card-img-top w-50" alt={game.title} />
                             <h5 className="card-title">{game.title}</h5>
                             <p className="card-text">{game.description}.</p>
                             <p className="card-text">{game.price}.</p>
