@@ -5,6 +5,9 @@ function SearchPage() {
 
     const [games, setGames] = useState([]);
     const [search, setSearch] = useState('');
+
+    const [orderBy, setOrderBy] = useState()
+
     const gamesUrl = 'http://localhost:3000/games'
 
     function getGames() {
@@ -18,7 +21,7 @@ function SearchPage() {
 
     useEffect(getGames, []);
 
-    console.log(games)
+    console.log(orderBy)
 
     function searchGames(event) {
         event.preventDefault();
@@ -43,6 +46,19 @@ function SearchPage() {
                     </div>
                     <div className="col-auto">
                         <button type="submit" className="btn btn-primary mb-3">Search games</button>
+                    </div>
+                </form>
+
+                <form>
+                    <div>
+                        <input type="radio" className="btn-check" name="options-base" id="radio-title" autoComplete="off" value="title" onChange={(e) => setOrderBy(e.target.value)} />
+                        <label className="btn" htmlFor="radio-title">Nome</label>
+
+                        <input type="radio" className="btn-check" name="options-base" id="radio-price" autoComplete="off" value="price" onChange={(e) => setOrderBy(e.target.value)} />
+                        <label className="btn" htmlFor="radio-price">Prezzo</label>
+
+                        <input type="radio" className="btn-check" name="options-base" id="radio-date" autoComplete="off" value="created_at" onChange={(e) => setOrderBy(e.target.value)} />
+                        <label className="btn" htmlFor="radio-date">Uscita</label>
                     </div>
                 </form>
 
