@@ -19,7 +19,6 @@ function App() {
   const gamesUrl = 'http://localhost:3000/games';
   const navigate = useNavigate();
   const location = useLocation();
-
   function getGames() {
 
     axios.get(gamesUrl, { params: { search, orderBy, orderByDirection } })
@@ -31,20 +30,27 @@ function App() {
   }
 
   useEffect(() => {
-    getGames();
+    const params = new URLSearchParams();
+
+    if (search) params.set('search', search);
+    if (orderBy) params.set('orderBy', orderBy);
+    if (orderByDirection) params.set('orderByDirection', orderByDirection);
+
+    if (location.pathname === '/games') {
+      navigate(`/games?${params.toString()}`, { replace: true });
+    }
     if (location.pathname === '/') {
       setSearch('');
     }
+    getGames();
   }, [orderBy, orderByDirection, location.pathname]);
 
 
   function searchGames(event) {
     event.preventDefault();
     getGames();
-    navigate('/games');
-
+    navigate(`/games`);
   }
-
 
 
 

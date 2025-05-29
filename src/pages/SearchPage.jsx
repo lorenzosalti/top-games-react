@@ -4,7 +4,7 @@ import GlobalContext from '../contexts/globalContext';
 import { useContext } from 'react';
 
 function SearchPage() {
-    const { games, setOrderBy, setOrderByDirection } = useContext(GlobalContext)
+    const { games, setOrderBy, setOrderByDirection } = useContext(GlobalContext);
 
 
 
@@ -37,7 +37,7 @@ function SearchPage() {
                     </form>
                 </div>
 
-                <div class="row row-gap-3 column-gap-2 d-flex justify-content-center">
+                <div className="row row-gap-3 column-gap-2 d-flex justify-content-center">
                     {games.map(game =>
                         <div className="card bg-dark col-4 w-25 text-white" key={game.id}>
                             <div className="card-body">
@@ -45,7 +45,7 @@ function SearchPage() {
                                 <h5 className="card-title fw-bold pt-2">{game.title}</h5>
                                 <p className="card-text">{game.description}</p>
                                 <p className="card-text fw-bold">{game.price} €</p>
-                                <button type="button" class="btn btn-warning fw-bold">Product details</button>
+                                <button type="button" className="btn btn-warning fw-bold">Product details</button>
                             </div>
                         </div>
                     )}
@@ -54,7 +54,7 @@ function SearchPage() {
             </section >
 
         </>
-    )
+    );
 
 };
 
