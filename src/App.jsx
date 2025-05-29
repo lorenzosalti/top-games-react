@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import SearchPage from './pages/SearchPage'
+import SearchPage from './pages/SearchPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import GlobalContext from './contexts/globalContext';
 import SearchLayout from './layouts/SearchLayout';
@@ -13,28 +13,35 @@ function App() {
 
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
-  const [orderBy, setOrderBy] = useState('')
+  const [orderBy, setOrderBy] = useState('');
 
-  const [orderByDirection, setOrderByDirection] = useState('')
-  const gamesUrl = 'http://localhost:3000/games'
+  const [orderByDirection, setOrderByDirection] = useState('');
+  const gamesUrl = 'http://localhost:3000/games';
   const navigate = useNavigate();
+  const location = useLocation();
+
   function getGames() {
+
     axios.get(gamesUrl, { params: { search, orderBy, orderByDirection } })
       .then(res => {
-        setGames(res.data)
+        setGames(res.data);
 
       })
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
   }
 
-  useEffect(getGames, [orderBy, orderByDirection]);
+  useEffect(() => {
+    getGames();
+    if (location.pathname === '/') {
+      setSearch('');
+    }
+  }, [orderBy, orderByDirection, location.pathname]);
 
 
   function searchGames(event) {
     event.preventDefault();
     getGames();
-    navigate('/games')
-    // setSearch('')
+    navigate('/games');
 
   }
 
