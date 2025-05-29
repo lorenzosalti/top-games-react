@@ -53,7 +53,7 @@ function App() {
     if (search) params.set('search', search);
     if (orderBy) params.set('orderBy', orderBy);
     if (orderByDirection) params.set('orderByDirection', orderByDirection);
-
+    getGames();
     navigate(`/games?${params.toString()}`);
   }
 
