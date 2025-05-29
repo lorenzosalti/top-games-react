@@ -13,9 +13,9 @@ function App() {
 
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
-  const [orderBy, setOrderBy] = useState('');
+  const [orderBy, setOrderBy] = useState('title');
 
-  const [orderByDirection, setOrderByDirection] = useState('');
+  const [orderByDirection, setOrderByDirection] = useState('ASC');
   const gamesUrl = 'http://localhost:3000/games';
   const navigate = useNavigate();
   const location = useLocation();

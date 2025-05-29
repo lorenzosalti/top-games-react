@@ -18,7 +18,7 @@ function SearchPage() {
                 <div className="d-flex justify-content-center m-4">
                     <div className="text-white fw-bold pe-2 pt-1">Filtra per:</div>
                     <form>
-                        <input type="radio" className="btn-check " name="options-base" id="radio-title" autoComplete="off" value="title" onChange={(e) => setOrderBy(e.target.value)} />
+                        <input type="radio" className="btn-check " name="options-base" id="radio-title" autoComplete="off" value="title" onChange={(e) => setOrderBy(e.target.value)} defaultChecked />
                         <label className="btn text-black bg-warning me-2" htmlFor="radio-title">Nome</label>
 
                         <input type="radio" className="btn-check" name="options-base" id="radio-price" autoComplete="off" value="price" onChange={(e) => setOrderBy(e.target.value)} />
@@ -29,7 +29,7 @@ function SearchPage() {
                     </form>
 
                     <form>
-                        <input type="radio" className="btn-check" name="options-base" id="radio-asc" autoComplete="off" value="ASC" onChange={(e) => setOrderByDirection(e.target.value)} />
+                        <input type="radio" className="btn-check" name="options-base" id="radio-asc" autoComplete="off" value="ASC" onChange={(e) => setOrderByDirection(e.target.value)} defaultChecked />
                         <label className="btn text-black bg-warning me-2" htmlFor="radio-asc">Ordine crescente</label>
 
                         <input type="radio" className="btn-check" name="options-base" id="radio-desc" autoComplete="off" value="DESC" onChange={(e) => setOrderByDirection(e.target.value)} />
