@@ -37,7 +37,7 @@ function App() {
     if (orderByDirection) params.set('orderByDirection', orderByDirection);
 
     if (location.pathname === '/games') {
-      navigate(`/games?${params.toString()}`, { replace: true });
+      navigate(`/games?${params.toString()}`);
     }
     if (location.pathname === '/') {
       setSearch('');
@@ -48,8 +48,13 @@ function App() {
 
   function searchGames(event) {
     event.preventDefault();
-    getGames();
-    navigate(`/games`);
+    const params = new URLSearchParams();
+
+    if (search) params.set('search', search);
+    if (orderBy) params.set('orderBy', orderBy);
+    if (orderByDirection) params.set('orderByDirection', orderByDirection);
+
+    navigate(`/games?${params.toString()}`);
   }
 
 
