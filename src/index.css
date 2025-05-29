@@ -17,3 +17,7 @@ img {
     min-width: 100%;
     object-fit: contain;
 }
+
+.card-text-description {
+    font-size: 10px;
+}
