@@ -27,8 +27,15 @@ export default function Header() {
                                 <NavLink to={'/console/switch'} className='nav-link'>Switch</NavLink>
                             </li>
                         </ul>
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <NavLink className='nav-link'>Carrello</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className='nav-link'>Wishlist</NavLink>
+                            </li>
+                        </ul>
                     </div>
-                    <NavLink>Carrello</NavLink>
                 </div>
             </nav>
         </header>
