@@ -31,6 +31,7 @@ function App() {
     event.preventDefault();
     getGames();
     navigate('/games')
+    setSearch('')
 
   }
 
