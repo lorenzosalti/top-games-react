@@ -13,7 +13,7 @@ function SearchPage() {
 
         <>
             <section className="container">
-                <h2 className="text-center text-white">Game Catalogue</h2>
+                <h2 className="text-center text-white">Catalogo Giochi</h2>
                 <Search />
                 <div className="d-flex justify-content-center m-4">
                     <div className="text-white fw-bold pe-2 pt-1">Filtra per:</div>
@@ -46,7 +46,7 @@ function SearchPage() {
                                 <p className="card-text"><strong>Console:</strong> {game.platform}</p>
                                 <p className="card-text">{game.description}</p>
                                 <p className="card-text fw-bold">{game.price} €</p>
-                                <button type="button" className="btn btn-warning fw-bold">Product details</button>
+                                <button type="button" className="btn btn-warning fw-bold">Dettaglio Prodotto</button>
                             </div>
                         </div>
                     )}
