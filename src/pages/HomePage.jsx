@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import Search from '../components/Search';
 
 function HomePage() {
 
@@ -22,6 +23,7 @@ function HomePage() {
 
     return (
         <div className="container">
+            <Search />
             <div className='container shadow herospace mb-4 text-center fs-5 p-4'><h2 className='herospace-heading text-warning'>Hero Space</h2></div>
             <div className="container mt-5">
                 <h2 className="text-center mb-4">Carosello ultimi arrivi</h2>
@@ -36,9 +38,9 @@ function HomePage() {
                             .map((game, index) =>
                                 <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="card">
+                                        <div className="card col-3">
                                             <img src={game.imagePath} className="card-img-top" alt={game.title} />
-                                            <div className="card-body col-12">
+                                            <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                 <h5 className="card-title">{game.title}</h5>
                                                 <p className="card-text">{game.description}</p>
                                                 <a href="#" className="btn btn-primary">Dettaglio prodotto</a>
@@ -73,7 +75,7 @@ function HomePage() {
                             .map((game, index) =>
                                 <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="card mb-5">
+                                        <div className="card col-3 mb-5">
                                             <img src={game.imagePath} className="card-img-top w-50" alt={game.title} />
                                             <div className="card-body col-12">
                                                 <h5 className="card-title">{game.title}</h5>
