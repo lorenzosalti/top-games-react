@@ -4,6 +4,7 @@ import { useContext } from 'react';
 
 function Search() {
     const { searchGames, search, setSearch } = useContext(GlobalContext)
+
     return (
         <form onSubmit={searchGames} className="row g-1">
 
@@ -14,7 +15,7 @@ function Search() {
 
             </div>
             <div className="col-auto">
-                <Link to={'/games'} type="submit" className="btn btn-primary mb-3">Search games</Link>
+                <button type="submit" className="btn btn-primary mb-3">Search Games</button>
             </div>
         </form>
     )

@@ -10,7 +10,6 @@ function HomePage() {
     function getGames() {
         axios.get(`http://127.0.0.1:3000/games`)
             .then(res => {
-                console.log(res.data);
                 setGames(res.data);
             })
             .catch(err => console.log(err));
