@@ -33,30 +33,31 @@ function SearchPage() {
             <section className="container">
                 <h2 className="text-center">Best Games</h2>
 
-                <form onSubmit={searchGames} className="row g-1">
+                <form onSubmit={searchGames} className="row g-1 justify-content-center ">
 
-                    <div className="col-auto">
-                        <input type="text" className="form-control" id="inputPassword2" placeholder="Search games"
+                    <div className="col-auto p-4">
+                        <input type="text" className="form-control" id="inputPassword2" placeholder="Search your games"
                             value={search} onChange={(e) => setSearch(e.target.value)}
                         />
 
                     </div>
-                    <div className="col-auto">
-                        <button type="submit" className="btn btn-primary mb-3">Search games</button>
-                    </div>
                 </form>
 
-                {games.map(game =>
-                    <div className="card" key={game.id}>
-                        <div className="card-body">
-                            <img src={game.imagePath} className="card-img-top w-50" alt={game.title} />
-                            <h5 className="card-title">{game.title}</h5>
-                            <p className="card-text">{game.description}.</p>
-                            <p className="card-text">{game.price}.</p>
+                <div class="row row-gap-3 column-gap-2 d-flex justify-content-center">
+                    {games.map(game =>
+                        <div className="card color-card col-4 w-25 " key={game.id}>
+                            <div className="card-body">
+                                <img src={game.imagePath} className="card-img-top " alt={game.title} />
+                                <h5 className="card-title fw-bold pt-2">{game.title}</h5>
+                                <p className="card-text">{game.description}</p>
+                                <p className="card-text fw-bold">{game.price} €</p>
+                                <button type="button" class="btn btn-primary">Product details</button>
+                            </div>
                         </div>
-                    </div>
-                )}
-            </section>
+                    )}
+                </div>
+
+            </section >
 
         </>
     )
