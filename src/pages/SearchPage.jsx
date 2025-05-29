@@ -4,7 +4,7 @@ import GlobalContext from '../contexts/globalContext';
 import { useContext } from 'react';
 
 function SearchPage() {
-    const { games } = useContext(GlobalContext)
+    const { games, setOrderBy, setOrderByDirection } = useContext(GlobalContext)
 
 
 

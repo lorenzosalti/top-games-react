@@ -13,10 +13,13 @@ function App() {
 
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
+  const [orderBy, setOrderBy] = useState('')
+
+  const [orderByDirection, setOrderByDirection] = useState('')
   const gamesUrl = 'http://localhost:3000/games'
   const navigate = useNavigate();
   function getGames() {
-    axios.get(gamesUrl, { params: { search } })
+    axios.get(gamesUrl, { params: { search, orderBy, orderByDirection } })
       .then(res => {
         setGames(res.data)
 
@@ -24,21 +27,26 @@ function App() {
       .catch(err => console.error(err))
   }
 
-  useEffect(getGames, []);
+  useEffect(getGames, [orderBy, orderByDirection]);
 
 
   function searchGames(event) {
     event.preventDefault();
     getGames();
     navigate('/games')
-    setSearch('')
+    // setSearch('')
 
   }
 
 
+
+
+
+
+
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, setOrderBy, setOrderByDirection }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />
