@@ -19,21 +19,21 @@ function SearchPage() {
                     <div className="text-white fw-bold pe-2 pt-1">Filtra per:</div>
                     <form>
                         <input type="radio" className="btn-check " name="options-base" id="radio-title" autoComplete="off" value="title" onChange={(e) => setOrderBy(e.target.value)} defaultChecked />
-                        <label className="btn text-black bg-warning me-2" htmlFor="radio-title">Nome</label>
+                        <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-title">Nome</label>
 
                         <input type="radio" className="btn-check" name="options-base" id="radio-price" autoComplete="off" value="price" onChange={(e) => setOrderBy(e.target.value)} />
-                        <label className="btn text-black bg-warning me-2" htmlFor="radio-price">Prezzo</label>
+                        <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-price">Prezzo</label>
 
                         <input type="radio" className="btn-check" name="options-base" id="radio-date" autoComplete="off" value="created_at" onChange={(e) => setOrderBy(e.target.value)} />
-                        <label className="btn text-black bg-warning me-2" htmlFor="radio-date">Data di uscita</label>
+                        <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-date">Data di uscita</label>
                     </form>
 
                     <form>
                         <input type="radio" className="btn-check" name="options-base" id="radio-asc" autoComplete="off" value="ASC" onChange={(e) => setOrderByDirection(e.target.value)} defaultChecked />
-                        <label className="btn text-black bg-warning me-2" htmlFor="radio-asc">Ordine crescente</label>
+                        <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-asc">Ordine crescente</label>
 
                         <input type="radio" className="btn-check" name="options-base" id="radio-desc" autoComplete="off" value="DESC" onChange={(e) => setOrderByDirection(e.target.value)} />
-                        <label className="btn text-black bg-warning me-2" htmlFor="radio-desc">Ordine decrescente</label>
+                        <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-desc">Ordine decrescente</label>
                     </form>
                 </div>
 
