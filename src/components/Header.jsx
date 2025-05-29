@@ -1,6 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
+import Search from './Search';
+
 
 export default function Header() {
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg bg-body-tertiary mb-5">
