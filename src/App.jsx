@@ -10,6 +10,7 @@ import PlayStation from './pages/PlayStationPage';
 import Xbox from './pages/XboxPage';
 import Pc from './pages/PcPage';
 import Switch from './pages/SwitchPage';
+import Checkout from './pages/CheckOutPage';
 
 
 function App() {
@@ -101,7 +102,11 @@ function App() {
             <Route path='/console/xbox' element={<Xbox />} />
             <Route path='/console/pc' element={<Pc />} />
             <Route path='/console/switch' element={<Switch />} />
-            {/* <Route path='/order' element={<div>Orders</div>} /> */}
+
+
+            {/* riabilitata per poter vedere il checkout a schermo */}
+            <Route path='/order' element={<Checkout />} />
+
             <Route path='/order/:id' element={<div>Detail Order</div>} />
             <Route path='/mailing-list' element={<div>Mailing-list</div>} />
             <Route path='*' element={<div>Error Page dont exist</div>} />
