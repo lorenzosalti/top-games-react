@@ -6,7 +6,10 @@ import SearchPage from './pages/SearchPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import GlobalContext from './contexts/globalContext';
 import SearchLayout from './layouts/SearchLayout';
-import PlayStation from './pages/PlayStation';
+import PlayStation from './pages/PlayStationPage';
+import Xbox from './pages/XboxPage';
+import Pc from './pages/PcPage';
+import Switch from './pages/SwitchPage';
 
 
 function App() {
@@ -95,9 +98,9 @@ function App() {
           <Route element={<DefaultLayout />}>
             <Route path='/games/:id' element={<div>Detail Game</div>} />
             <Route path='/console/playstation' element={<PlayStation />} />
-            <Route path='/console/xbox' element={<div>Console:xbox</div>} />
-            <Route path='/console/pc' element={<div>Console:pc</div>} />
-            <Route path='/console/switch' element={<div>Console:switch</div>} />
+            <Route path='/console/xbox' element={<Xbox />} />
+            <Route path='/console/pc' element={<Pc />} />
+            <Route path='/console/switch' element={<Switch />} />
             {/* <Route path='/order' element={<div>Orders</div>} /> */}
             <Route path='/order/:id' element={<div>Detail Order</div>} />
             <Route path='/mailing-list' element={<div>Mailing-list</div>} />
