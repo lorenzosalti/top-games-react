@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import GlobalContext from './contexts/globalContext';
 import SearchLayout from './layouts/SearchLayout';
+import DetailPage from './pages/DetailPage';
 import PlayStation from './pages/PlayStationPage';
 import Xbox from './pages/XboxPage';
 import Pc from './pages/PcPage';
@@ -14,7 +15,6 @@ import Checkout from './pages/CheckOutPage';
 
 
 function App() {
-
 
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
@@ -84,10 +84,6 @@ function App() {
   }
 
 
-
-
-
-
   return (
     <>
       <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection }}>
@@ -97,7 +93,7 @@ function App() {
             <Route path='/games' element={<SearchPage />} />
           </Route>
           <Route element={<DefaultLayout />}>
-            <Route path='/games/:id' element={<div>Detail Game</div>} />
+            <Route path='/games/:id' element={<DetailPage />} />
             <Route path='/console/playstation' element={<PlayStation />} />
             <Route path='/console/xbox' element={<Xbox />} />
             <Route path='/console/pc' element={<Pc />} />
