@@ -8,7 +8,12 @@ export default function WelcomePopup() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        setShow(true);
+        const hasVisited = localStorage.getItem("hasVisited");
+        if (!hasVisited) {
+            setShow(true);
+            localStorage.setItem("hasVisited", "true");
+
+        }
     }, []);
 
     const handleSubmit = async (e) => {
