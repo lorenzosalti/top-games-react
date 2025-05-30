@@ -19,6 +19,7 @@ function App() {
   const gamesUrl = 'http://localhost:3000/games';
   const navigate = useNavigate();
   const location = useLocation();
+
   function getGames() {
 
     axios.get(gamesUrl, { params: { search, orderBy, orderByDirection } })
@@ -29,6 +30,20 @@ function App() {
       .catch(err => console.error(err));
   }
 
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+
+    const urlSearch = params.get('search') || '';
+    const urlOrderBy = params.get('orderBy') || 'title';
+    const urlOrderByDirection = params.get('orderByDirection') || 'ASC';
+
+    setSearch(urlSearch);
+    setOrderBy(urlOrderBy);
+    setOrderByDirection(urlOrderByDirection);
+  }, []);
+
+
   useEffect(() => {
     const params = new URLSearchParams();
 
@@ -37,13 +52,19 @@ function App() {
     if (orderByDirection) params.set('orderByDirection', orderByDirection);
 
     if (location.pathname === '/games') {
-      navigate(`/games?${params.toString()}`);
+      navigate(`/games?${params.toString()}`, { replace: true }); // replace evita che si accumulino entry nella cronologia
     }
+
     if (location.pathname === '/') {
-      setSearch('');
+      setSearch(''); // replace evita che si accumulino entry nella cronologia
     }
-    getGames();
+
+    if (location.pathname === '/games') {
+      getGames();
+    }
+
   }, [orderBy, orderByDirection, location.pathname]);
+
 
 
   function searchGames(event) {
