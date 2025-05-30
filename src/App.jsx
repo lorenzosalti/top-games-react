@@ -6,10 +6,10 @@ import SearchPage from './pages/SearchPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import GlobalContext from './contexts/globalContext';
 import SearchLayout from './layouts/SearchLayout';
+import DetailPage from './pages/DetailPage';
 
 
 function App() {
-
 
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
@@ -79,10 +79,6 @@ function App() {
   }
 
 
-
-
-
-
   return (
     <>
       <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection }}>
@@ -92,7 +88,7 @@ function App() {
             <Route path='/games' element={<SearchPage />} />
           </Route>
           <Route element={<DefaultLayout />}>
-            <Route path='/games/:id' element={<div>Detail Game</div>} />
+            <Route path='/games/:id' element={<DetailPage />} />
             <Route path='/console/playstation' element={<div>Console:play</div>} />
             <Route path='/console/xbox' element={<div>Console:xbox</div>} />
             <Route path='/console/pc' element={<div>Console:pc</div>} />

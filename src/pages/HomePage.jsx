@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Search from '../components/Search';
+import { Link } from "react-router-dom";
 
 function HomePage() {
 
@@ -43,7 +44,7 @@ function HomePage() {
                                             <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                 <h5 className="card-title">{game.title}</h5>
                                                 <p className="card-text">{game.description}</p>
-                                                <a href="#" className="btn btn-primary">Dettaglio prodotto</a>
+                                                <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +81,7 @@ function HomePage() {
                                             <div className="card-body col-12">
                                                 <h5 className="card-title">{game.title}</h5>
                                                 <p className="card-text">{game.description}</p>
-                                                <a href="#" className="btn btn-primary">Dettaglio prodotto</a>
+                                                <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
                                             </div>
                                         </div>
                                     </div>
