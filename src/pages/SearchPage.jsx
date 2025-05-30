@@ -5,9 +5,9 @@ import { useContext } from 'react';
 import Search from '../components/Search';
 
 function SearchPage() {
-    const { games, setOrderBy, setOrderByDirection } = useContext(GlobalContext);
+    const { games, orderBy, setOrderBy, orderByDirection, setOrderByDirection } = useContext(GlobalContext);
 
-
+    console.log(orderBy)
 
     return (
 
@@ -18,21 +18,21 @@ function SearchPage() {
                 <div className="d-flex justify-content-center m-4">
                     <div className="text-white fw-bold pe-2 pt-1">Filtra per:</div>
                     <form>
-                        <input type="radio" className="btn-check " name="options-base" id="radio-title" autoComplete="off" value="title" onChange={(e) => setOrderBy(e.target.value)} defaultChecked />
+                        <input type="radio" className="btn-check " name="options-base" id="radio-title" autoComplete="off" value="title" onChange={(e) => setOrderBy(e.target.value)} checked={orderBy === "title"} />
                         <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-title">Nome</label>
 
-                        <input type="radio" className="btn-check" name="options-base" id="radio-price" autoComplete="off" value="price" onChange={(e) => setOrderBy(e.target.value)} />
+                        <input type="radio" className="btn-check" name="options-base" id="radio-price" autoComplete="off" value="price" onChange={(e) => setOrderBy(e.target.value)} checked={orderBy === "price"} />
                         <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-price">Prezzo</label>
 
-                        <input type="radio" className="btn-check" name="options-base" id="radio-date" autoComplete="off" value="created_at" onChange={(e) => setOrderBy(e.target.value)} />
+                        <input type="radio" className="btn-check" name="options-base" id="radio-date" autoComplete="off" value="created_at" onChange={(e) => setOrderBy(e.target.value)} checked={orderBy === "created_at"} />
                         <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-date">Data di uscita</label>
                     </form>
 
                     <form>
-                        <input type="radio" className="btn-check" name="options-base" id="radio-asc" autoComplete="off" value="ASC" onChange={(e) => setOrderByDirection(e.target.value)} defaultChecked />
+                        <input type="radio" className="btn-check" name="options-base" id="radio-asc" autoComplete="off" value="ASC" onChange={(e) => setOrderByDirection(e.target.value)} checked={orderByDirection === "ASC"} />
                         <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-asc">Ordine crescente</label>
 
-                        <input type="radio" className="btn-check" name="options-base" id="radio-desc" autoComplete="off" value="DESC" onChange={(e) => setOrderByDirection(e.target.value)} />
+                        <input type="radio" className="btn-check" name="options-base" id="radio-desc" autoComplete="off" value="DESC" onChange={(e) => setOrderByDirection(e.target.value)} checked={orderByDirection === "DESC"} />
                         <label className="btn text-black bg-warning border-3 me-2" htmlFor="radio-desc">Ordine decrescente</label>
                     </form>
                 </div>
