@@ -52,11 +52,11 @@ function App() {
     if (orderByDirection) params.set('orderByDirection', orderByDirection);
 
     if (location.pathname === '/games') {
-      navigate(`/games?${params.toString()}`, { replace: true }); // replace evita che si accumulino entry nella cronologia
+      navigate(`/games?${params.toString()}`, { replace: true });
     }
 
     if (location.pathname === '/') {
-      setSearch(''); // replace evita che si accumulino entry nella cronologia
+      setSearch('');
     }
 
     if (location.pathname === '/games') {
