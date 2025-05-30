@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Search from '../components/Search';
+import WelcomePopup from "../components/WelcomePopup";
 
 function HomePage() {
 
@@ -22,7 +23,9 @@ function HomePage() {
 
 
     return (
+
         <div className="container">
+            <WelcomePopup />
             <Search />
             <div className='container-fluid shadow herospace mb-4 text-center fs-5 p-4'><h2 className='herospace-heading text-warning'>Hero Space</h2></div>
             <div className="container mt-5">
