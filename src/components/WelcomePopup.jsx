@@ -11,7 +11,7 @@ export default function WelcomePopup() {
         const hasVisited = localStorage.getItem("hasVisited");
         if (!hasVisited) {
             setShow(true);
-            localStorage.setItem("hasVisited", "true");
+            sessionStorage.setItem("hasVisited", "true");
 
         }
     }, []);
