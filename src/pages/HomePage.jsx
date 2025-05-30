@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import Search from '../components/Search';
 
 function HomePage() {
@@ -24,7 +24,7 @@ function HomePage() {
     return (
         <div className="container">
             <Search />
-            <div className='container shadow herospace mb-4 text-center fs-5 p-4'><h2 className='herospace-heading text-warning'>Hero Space</h2></div>
+            <div className='container-fluid shadow herospace mb-4 text-center fs-5 p-4'><h2 className='herospace-heading text-warning'>Hero Space</h2></div>
             <div className="container mt-5">
                 <h2 className="text-center mb-4">Carosello ultimi arrivi</h2>
                 <div id="carouselExampleSingleCard" className="carousel slide" data-bs-ride="carousel">
@@ -101,7 +101,7 @@ function HomePage() {
 
 
 
-    )
+    );
 }
 
-export default HomePage
+export default HomePage;
