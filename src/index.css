@@ -6,7 +6,7 @@
 .herospace {
     background-image: url(../public/elden-ring.jpg);
     height: 50.5vh;
-    background-position: center;
+    background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: .5rem;
