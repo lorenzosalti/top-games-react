@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import GlobalContext from './contexts/globalContext';
 import SearchLayout from './layouts/SearchLayout';
+import PlayStation from './pages/PlayStation';
 
 
 function App() {
@@ -93,7 +94,7 @@ function App() {
           </Route>
           <Route element={<DefaultLayout />}>
             <Route path='/games/:id' element={<div>Detail Game</div>} />
-            <Route path='/console/playstation' element={<div>Console:play</div>} />
+            <Route path='/console/playstation' element={<PlayStation />} />
             <Route path='/console/xbox' element={<div>Console:xbox</div>} />
             <Route path='/console/pc' element={<div>Console:pc</div>} />
             <Route path='/console/switch' element={<div>Console:switch</div>} />
