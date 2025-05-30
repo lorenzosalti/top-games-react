@@ -10,7 +10,7 @@ function Search() {
         <form onSubmit={searchGames} className="row g-1 justify-content-center ">
 
             <div className="col-auto p-4">
-                <input type="text" className="form-control bg-warning" id="inputPassword2" placeholder="Cerca il gioco"
+                <input type="text" className="form-control bg-warning" id="inputPassword2" placeholder="Cerca il gioco..."
                     value={search} onChange={(e) => setSearch(e.target.value)}
                 />
 
