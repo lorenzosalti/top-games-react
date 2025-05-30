@@ -3,7 +3,12 @@ import Search from './Search';
 
 
 export default function Header() {
-    // localStorage.setItem('cart', []);
+    let cart = [];
+
+    localStorage.setItem('cart', cart);
+    localStorage.cart = JSON.stringify(cart.push({ id: 1, title: 'prova' }));
+    console.log(cart);
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg bg-body-tertiary mb-5 py-3">
@@ -31,8 +36,8 @@ export default function Header() {
                             <li className="nav-item">
                                 <NavLink className="btn btn-primary position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                     Carrello
-                                    {localStorage.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {localStorage.length}
+                                    {cart.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {cart.length}
                                         <span className="visually-hidden">Giochi nel carrello</span>
                                     </span> : ''}
 
@@ -51,19 +56,23 @@ export default function Header() {
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body">
-                    <div className="card mb-3" >
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src="..." className="img-fluid rounded-start" alt="..." />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Nome del gioco</h5>
-                                    <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
+                    {cart.length ? cart.map(game => (
+                        <div key={game.id} className="card mb-3" >
+                            <div className="row g-0">
+                                <div className="col-md-4">
+                                    <img src="..." className="img-fluid rounded-start" alt="..." />
+                                </div>
+                                <div className="col-md-8">
+                                    <div className="card-body">
+                                        <h5 className="card-title">{game.title}</h5>
+                                        <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    ))
+                        : <div>Nessun Gioco nel carrello</div>}
+
                 </div>
             </div>
         </header>
