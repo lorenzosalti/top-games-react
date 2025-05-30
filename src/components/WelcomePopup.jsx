@@ -8,7 +8,7 @@ export default function WelcomePopup() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const hasVisited = localStorage.getItem("hasVisited");
+        const hasVisited = sessionStorage.getItem("hasVisited");
         if (!hasVisited) {
             setShow(true);
             sessionStorage.setItem("hasVisited", "true");
