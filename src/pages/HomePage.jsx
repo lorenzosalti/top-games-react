@@ -22,15 +22,67 @@ function HomePage() {
     useEffect(getGames, []);
 
 
+
     return (
 
         <div className="container">
             <WelcomePopup />
             <Search />
-            <div className='container-fluid shadow herospace mb-4 text-center fs-5 p-4'><h2 className='herospace-heading text-warning'>Hero Space</h2></div>
+            <div className="home-container mb-5">
+                <h2 className="text-warning text-center mb-4">Hero Space</h2>
+
+                <div className="content-box w-100 carousel-container">
+                    <div
+                        id="carouselHeroSpace"
+                        className="carousel slide carousel-fade"
+                        data-bs-ride="carousel"
+                        data-bs-interval="5000"
+                    >
+                        <div className="carousel-inner rounded-4 overflow-hidden shadow">
+
+                            {
+                                ['PlayStation 5', 'Xbox Series X', 'PC', 'Nintendo Switch']
+                                    .map(platform => {
+                                        const game = games.find(g => g.platform === platform);
+                                        if (game) return game;
+                                        else return null;
+                                    })
+                                    .filter(game => game !== null)
+                                    .map((game, index) => (
+                                        <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
+                                            <a href={`/games/${game.slug}`}>
+                                                <img
+                                                    src={game.imagePath}
+                                                    className="d-block w-100 carousel-img card-img-top w-50"
+                                                    alt={game.title}
+                                                    style={{ height: '250px', objectFit: 'cover', width: '100px' }}
+                                                />
+                                                <div className="carousel-caption d-none d-md-block">
+                                                    <h3 className="text-light fw-bold">{game.title}</h3>
+                                                    <p className="text-light">{game.description}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    ))
+                            }
+
+                        </div>
+
+                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselHeroSpace" data-bs-slide="prev">
+                            <span className="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+                            <span className="visually-hidden">Previous</span>
+                        </button>
+                        <button className="carousel-control-next" type="button" data-bs-target="#carouselHeroSpace" data-bs-slide="next">
+                            <span className="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+                            <span className="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div className="container mt-5">
                 <h2 className="text-center mb-4">Carosello ultimi arrivi</h2>
                 <div id="carouselExampleSingleCard" className="carousel slide" data-bs-ride="carousel">
+
                     <div className="carousel-inner">
 
                         {games && games.filter(game => {

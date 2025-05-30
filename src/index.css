@@ -22,3 +22,11 @@ img {
 .card-text-description {
     font-size: 10px;
 }
+
+.carousel-img {
+    transition: transform 0.3s ease;
+}
+
+.carousel-img:hover {
+    transform: scale(1.01);
+}
