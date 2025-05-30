@@ -32,7 +32,7 @@ export default function Header() {
                                 <NavLink className='nav-link'>Carrello</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className='nav-link'>Wishlist</NavLink>
+                                <NavLink to={'/wishlist'} className='nav-link'>Wishlist</NavLink>
                             </li>
                         </ul>
                     </div>

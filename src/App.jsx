@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import GlobalContext from './contexts/globalContext';
 import SearchLayout from './layouts/SearchLayout';
+import WishListPage from './pages/WishListPage';
 
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
             <Route path='/console/xbox' element={<div>Console:xbox</div>} />
             <Route path='/console/pc' element={<div>Console:pc</div>} />
             <Route path='/console/switch' element={<div>Console:switch</div>} />
+            <Route path='/wishlist' element={<WishListPage />} />
             {/* <Route path='/order' element={<div>Orders</div>} /> */}
             <Route path='/order/:id' element={<div>Detail Order</div>} />
             <Route path='/mailing-list' element={<div>Mailing-list</div>} />
