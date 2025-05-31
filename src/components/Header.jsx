@@ -6,7 +6,7 @@ export default function Header() {
     let cart = [];
 
     localStorage.setItem('cart', cart);
-    localStorage.cart = JSON.stringify(cart.push({ id: 1, title: 'prova' }));
+    localStorage.cart = JSON.stringify(cart.push({ id: 1, title: 'prova', price: 12 }));
     console.log(cart);
 
     return (
@@ -55,12 +55,12 @@ export default function Header() {
                     <h5 className="offcanvas-title" id="offcanvasRightLabel">Giochi nel carrello</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div className="offcanvas-body">
+                <div className="offcanvas-body d-flex flex-column justify-content-between ">
                     {cart.length ? cart.map(game => (
                         <div key={game.id} className="card mb-3" >
                             <div className="row g-0">
                                 <div className="col-md-4">
-                                    <img src="..." className="img-fluid rounded-start" alt="..." />
+                                    <img src="..." className="img-fluid rounded-start" alt={game.title} />
                                 </div>
                                 <div className="col-md-8">
                                     <div className="card-body">
@@ -72,6 +72,10 @@ export default function Header() {
                         </div>
                     ))
                         : <div>Nessun Gioco nel carrello</div>}
+                    {cart.length ? <div className='align-self-end d-flex flex-column align-items-center'>
+                        <div className='mb-2'>Prezzo totale: 1$</div>
+                        <Link to={'/order'} class="btn btn-primary" role="button">Sgancia i soldi</Link>
+                    </div> : ''}
 
                 </div>
             </div>
