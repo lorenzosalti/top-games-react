@@ -15,6 +15,7 @@ function App() {
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
   const [orderBy, setOrderBy] = useState('title');
+  const [wishListGames, setWishListGames] = useState([]);
 
   const [orderByDirection, setOrderByDirection] = useState('ASC');
   const gamesUrl = 'http://localhost:3000/games';
@@ -86,7 +87,7 @@ function App() {
 
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, wishListGames, setWishListGames }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />

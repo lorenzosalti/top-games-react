@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "Cyberpunk 2077",
+    "description": "Un RPG futuristico ambientato in una megalopoli cyberpunk",
+    "price": "59.99",
+    "platform": "PC",
+    "slug": "cyberpunk-2077",
+    "image": "cyberpunk_2077.jpg",
+    "created_at": "2020-12-10T09:00:00.000Z",
+    "updated_at": "2025-05-31T05:17:39.000Z",
+    "discount": 20,
+    "discount_start": "2024-11-24T23:00:00.000Z",
+    "discount_finish": "2024-12-02T22:59:59.000Z",
+    "genres_list": "Action, RPG",
+    "imagePath": "http://127.0.0.1:3000/cover-games/cyberpunk_2077.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Age of Empires IV",
+    "description": "Strategia in tempo reale ambientata nel medioevo",
+    "price": "49.99",
+    "platform": "PC",
+    "slug": "age-of-empires-iv",
+    "image": "aoe4.jpg",
+    "created_at": "2021-10-28T13:30:00.000Z",
+    "updated_at": "2025-05-31T05:17:39.000Z",
+    "discount": 15,
+    "discount_start": "2024-06-14T22:00:00.000Z",
+    "discount_finish": "2024-07-15T21:59:59.000Z",
+    "genres_list": "Strategy",
+    "imagePath": "http://127.0.0.1:3000/cover-games/aoe4.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Half-Life: Alyx",
+    "description": "Avventura spaziale in realtà virtuale",
+    "price": "59.99",
+    "platform": "PC",
+    "slug": "half-life-alyx",
+    "image": "half_life_alyx.jpg",
+    "created_at": "2020-03-23T17:00:00.000Z",
+    "updated_at": "2025-05-31T05:17:39.000Z",
+    "discount": 0,
+    "discount_start": null,
+    "discount_finish": null,
+    "genres_list": "Adventure",
+    "imagePath": "http://127.0.0.1:3000/cover-games/half_life_alyx.jpg"
+  }
+]
