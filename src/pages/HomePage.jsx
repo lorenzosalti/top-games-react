@@ -81,31 +81,41 @@ function HomePage() {
                 </div>
             </div>
             <div className="container mt-5">
-                <h2 className="text-center mb-4">Carosello ultimi arrivi</h2>
+                <h2 className="text-center text-white fs-1 mb-4">Ultimi Arrivi:</h2>
                 <div id="carouselExampleSingleCard" className="carousel slide" data-bs-ride="carousel">
 
                     <div className="carousel-inner">
-
-                        {games && games.filter(game => {
-                            const date = new Date('2023-01-01');
-                            const createDate = new Date(game.created_at);
-                            return createDate > date;
-                        })
-                            .map((game, index) =>
-                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
+                        {games && games
+                            .filter(game => {
+                                const date = new Date('2023-01-01');
+                                const createDate = new Date(game.created_at);
+                                return createDate > date;
+                            })
+                            .reduce((acc, game, index, array) => {
+                                if (index % 3 === 0) {
+                                    acc.push(array.slice(index, index + 3));
+                                }
+                                return acc;
+                            }, [])
+                            .map((gameGroup, groupIndex) => (
+                                <div className={`carousel-item ${groupIndex === 0 ? 'active' : ''}`} key={groupIndex}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="card col-3">
-                                            <img src={game.imagePath} className="card-img-top" alt={game.title} />
-                                            <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                                                <h5 className="card-title">{game.title}</h5>
-                                                <p className="card-text">{game.description}</p>
-                                                <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
-                                            </div>
+                                        <div className="row w-50 justify-content-center">
+                                            {gameGroup.map((game, gameIndex) => (
+                                                <div className="col-12 col-md-4 mb-4" key={game.id}>
+                                                    <div className="card col-12 h-100 text-white p-3 bg-dark">
+                                                        <img src={game.imagePath} className="card-img-top" alt={game.title} />
+                                                        <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                                                            <h5 className="card-title text-center mb-3">{game.title}</h5>
+                                                            <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold mt-auto">Dettaglio Prodotto</Link> {/* mt-auto per posizionare il bottone in basso */}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
-
-                                </div>)}
-
+                                </div>
+                            ))}
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleSingleCard" data-bs-slide="prev">
                         <span className="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
@@ -119,29 +129,36 @@ function HomePage() {
             </div>
 
             <div className="container mt-5">
-                <h2 className="text-center mb-4">Carosello prodotti scontati</h2>
+                <h2 className="text-center text-white fs-1 mb-4">Prodotti in Promozione:</h2>
                 <div id="carouselExampleSingleCard2" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
-
-                        {games && games.filter(game => {
-                            const discount = 0;
-                            const discountGames = game.discount;
-                            return discountGames > discount;
-                        })
-                            .map((game, index) =>
-                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
+                        {games && games
+                            .filter(game => game.discount > 0)
+                            .reduce((acc, game, index, array) => {
+                                if (index % 3 === 0) {
+                                    acc.push(array.slice(index, index + 3));
+                                }
+                                return acc;
+                            }, [])
+                            .map((gameGroup, groupIndex) => (
+                                <div className={`carousel-item ${groupIndex === 0 ? 'active' : ''}`} key={groupIndex}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="card col-3 mb-5">
-                                            <img src={game.imagePath} className="card-img-top w-50" alt={game.title} />
-                                            <div className="card-body col-12">
-                                                <h5 className="card-title">{game.title}</h5>
-                                                <p className="card-text">{game.description}</p>
-                                                <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
-                                            </div>
+                                        <div className="row w-50 justify-content-center">
+                                            {gameGroup.map((game, gameIndex) => (
+                                                <div className="col-12 col-md-4 mb-4 d-flex" key={game.id}>
+                                                    <div className="card h-100 bg-dark text-white p-3">
+                                                        <img src={game.imagePath} className="card-img-top w-50 mx-auto pt-3" alt={game.title} />
+                                                        <div className="card-body d-flex flex-column justify-content-between align-items-center">
+                                                            <h5 className="card-title text-center mb-3">{game.title}</h5>
+                                                            <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold mt-auto mb-3">Dettaglio Prodotto</Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
-                                </div>)}
-
+                                </div>
+                            ))}
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleSingleCard2" data-bs-slide="prev">
                         <span className="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
