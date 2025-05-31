@@ -64,6 +64,9 @@ export default function Header() {
                                 <div className="col-md-8">
                                     <div className="card-body">
                                         <h5 className="card-title">{game.title}</h5>
+                                        <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
+                                        <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                                        <p className="card-text fw-bold">Prezzo: {game.price} €</p>
                                     </div>
                                 </div>
                             </div>
