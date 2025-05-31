@@ -54,7 +54,7 @@ function DetailPage() {
                         <p className="card-text"><strong>Console:</strong> {game.platform}</p>
                         <p className="card-text fw-bold">Prezzo: {game.price} €</p>
                         <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
-                            <button type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
+                            <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
                             <button type="button" className="btn btn-warning">Aggiungi alla wishlist</button>
                         </div>
                     </div>
