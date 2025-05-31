@@ -26,17 +26,25 @@ function DetailPage() {
 
     return (
 
-        <div className="container">
-            <div className="card bg-dark col-lg-3 col-md-4 mb-5 text-white w-100">
-                <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                    <figure className="mt-2 w-25"><img src={game.imagePath} className="card-img-top " alt={game.title} /></figure>
-                    <h5 className="card-title fw-bold pt-2">{game.title}</h5>
-                    <p className="card-text">{game.description}</p>
-                    <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
-                    <p className="card-text"><strong>Console:</strong> {game.platform}</p>
-                    <p className="card-text fw-bold">{game.price} €</p>
-                    <button type="button" className="btn btn-warning">Aggiungi al carrello</button>
+        <div className="container w-100 w-md-75 w-lg-50">
+            <div className="card mb-5 text-white card-detail-bg">
+                <div className="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-start">
 
+                    <figure className="m-3 me-md-4">
+                        <img src={game.imagePath} className="img-fluid rounded" alt={game.title} style={{ maxWidth: '250px' }} />
+                    </figure>
+
+                    <div className="d-flex flex-column p-3 text-center text-md-start">
+                        <h5 className="card-title fw-bold pt-2 fs-3 fs-md-1">{game.title}</h5>
+                        <p className="card-text ">{game.description}</p>
+                        <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
+                        <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                        <p className="card-text fw-bold">Prezzo: {game.price} €</p>
+                        <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                            <button type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
+                            <button type="button" className="btn btn-warning">Aggiungi alla wishlist</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
