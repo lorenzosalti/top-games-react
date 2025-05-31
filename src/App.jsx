@@ -16,6 +16,9 @@ import Checkout from './pages/CheckOutPage';
 
 function App() {
 
+  let cart = [];
+  const [cartStorage, setCartStorage] = useState(cart);
+
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
   const [orderBy, setOrderBy] = useState('title');
@@ -86,7 +89,7 @@ function App() {
 
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />

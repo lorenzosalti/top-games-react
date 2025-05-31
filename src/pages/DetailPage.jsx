@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import GlobalContext from '../contexts/globalContext';
 
 function DetailPage() {
+
+    const { cartStorage, setCartStorage } = useContext(GlobalContext);
 
     const { id } = useParams();
 
@@ -14,11 +17,21 @@ function DetailPage() {
 
         axios.get(`${gamesUrl}/${id}`)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data);
                 setGame(res.data);
             })
             .catch(err => console.error(err));
     }
+    function addGameCart() {
+        const updateCart = [...cartStorage, game];
+        setCartStorage(updateCart);
+
+        let string = JSON.stringify(updateCart);
+        localStorage.setItem('cart', string);
+        let arrayCart = localStorage.getItem('cart');
+        console.log(JSON.parse(arrayCart));
+    }
+
 
     useEffect(
         getData,
@@ -35,12 +48,12 @@ function DetailPage() {
                     <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
                     <p className="card-text"><strong>Console:</strong> {game.platform}</p>
                     <p className="card-text fw-bold">{game.price} €</p>
-                    <button type="button" className="btn btn-warning">Aggiungi al carrello</button>
+                    <button type="button" className="btn btn-warning" onClick={addGameCart}>Aggiungi al carrello</button>
 
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default DetailPage;

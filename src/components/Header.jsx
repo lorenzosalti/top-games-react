@@ -1,13 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
 import Search from './Search';
+import { useContext, useEffect } from 'react';
+import GlobalContext from '../contexts/globalContext';
 
 
 export default function Header() {
-    let cart = [];
 
-    localStorage.setItem('cart', cart);
-    localStorage.cart = JSON.stringify(cart.push({ id: 1, title: 'prova', price: 12 }));
-    console.log(cart);
+    const { cartStorage } = useContext(GlobalContext);
 
     return (
         <header>
@@ -36,8 +35,8 @@ export default function Header() {
                             <li className="nav-item">
                                 <NavLink className="btn btn-primary position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                     Carrello
-                                    {cart.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {cart.length}
+                                    {cartStorage.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {cartStorage.length}
                                         <span className="visually-hidden">Giochi nel carrello</span>
                                     </span> : ''}
 
@@ -56,25 +55,24 @@ export default function Header() {
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body d-flex flex-column justify-content-between ">
-                    {cart.length ? cart.map(game => (
-                        <div key={game.id} className="card mb-3" >
+                    {cartStorage.length ? cartStorage.map((game, index) => (
+                        <div key={index} className="card mb-3" >
                             <div className="row g-0">
                                 <div className="col-md-4">
-                                    <img src="..." className="img-fluid rounded-start" alt={game.title} />
+                                    <img src={game.imagePath} className="img-fluid rounded-start" alt={game.title} />
                                 </div>
                                 <div className="col-md-8">
                                     <div className="card-body">
                                         <h5 className="card-title">{game.title}</h5>
-                                        <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ))
                         : <div>Nessun Gioco nel carrello</div>}
-                    {cart.length ? <div className='align-self-end d-flex flex-column align-items-center'>
+                    {cartStorage.length ? <div className='align-self-end d-flex flex-column align-items-center'>
                         <div className='mb-2'>Prezzo totale: 1$</div>
-                        <Link to={'/order'} class="btn btn-primary" role="button">Sgancia i soldi</Link>
+                        <Link to={'/order'} className="btn btn-primary" role="button">Sgancia i soldi</Link>
                     </div> : ''}
 
                 </div>
