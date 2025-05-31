@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 function PlayStation() {
@@ -31,7 +32,7 @@ function PlayStation() {
                         <h5 className="card-text">{game.platform}</h5>
                         <p className="card-text fw-bold">{game.description}</p>
                         <p className="card-text">{game.price}€</p>
-                        <button type="button" className="btn btn-warning fw-bold">Dettaglio Prodotto</button>
+                        <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
                     </div>
                 </div>
             )}

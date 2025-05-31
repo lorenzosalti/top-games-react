@@ -3,13 +3,11 @@
 }
 
 
-.herospace {
-    background-image: url(../public/elden-ring.jpg);
-    height: 50.5vh;
-    background-position: top;
+.card-detail-bg {
+    background-image: url(../public/sfondo-card-details4.jpg);
+    background-position: center top;
     background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: .5rem;
+    object-fit: contain;
 }
 
 
