@@ -71,7 +71,11 @@ export default function Header() {
                     ))
                         : <div>Nessun Gioco nel carrello</div>}
                     {cartStorage.length ? <div className='align-self-end d-flex flex-column align-items-center'>
-                        <div className='mb-2'>Prezzo totale: 1$</div>
+                        <div className='mb-2'>Prezzo totale: {cartStorage.map(game => {
+                            let totalPrice = 0;
+
+                            return totalPrice = `${totalPrice + parseFloat(game.price)} €`;
+                        })}</div>
                         <Link to={'/order'} className="btn btn-primary" role="button">Sgancia i soldi</Link>
                     </div> : ''}
 
