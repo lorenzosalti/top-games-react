@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 
 
@@ -11,64 +11,56 @@ const inizionalData = {
 }
 
 function Checkout() {
-
-    const [validated, setValidated] = useState(false)
-    const [formData, setFormData] = useState(inizionalData)
-
+    const [validated, setValidated] = useState(false);
+    const [formData, setFormData] = useState(inizionalData);
+    const [fieldErrors, setFieldErrors] = useState({});
+    const formRef = useRef(null);
 
     function handleFormData(e) {
         const value =
-            e.target.type === "checkbox" ?
-                e.target.checked : e.target.value;
+            e.target.type === "checkbox" ? e.target.checked : e.target.value;
         setFormData((formData) => ({
             ...formData,
             [e.target.name]: value,
         }));
-
     }
 
-
-
-
     function handleSubmit(e) {
+        e.preventDefault();
+        const form = formRef.current;
 
-        e.preventDefault()
-        console.log(formData)
-
-
-        const errors = []
+        const errors = {};
 
         if (formData.cardNumber.length !== 16 || isNaN(formData.cardNumber)) {
-            errors.push('Devi inserire almeno 16 cifre nel campo Numero Carta')
+            errors.cardNumber = "Devi inserire 16 cifre nel campo Numero Carta.";
         }
 
         if (formData.cardCvv.length !== 3 || isNaN(formData.cardCvv)) {
-            errors.push('Devi inserire almeno 3 cifre Nel campo CVV')
+            errors.cardCvv = "Devi inserire 3 cifre nel campo CVV.";
         }
 
-
-        //.test() è una funzione degli oggetti REgExp in JS e ha il compito di verificare se la stringa rispetta un certo pattern
         const expiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
         if (!expiryPattern.test(formData.cardExpiryDate)) {
-            errors.push('Inserisci una data valida nel formato MM/AA.');
+            errors.cardExpiryDate = "Inserisci una data valida nel formato MM/AA.";
         }
 
-        if (errors.length > 0) {
-            alert(errors)
-            setValidated(false)
+        setFieldErrors(errors);
+
+        if (Object.keys(errors).length > 0) {
+            setValidated(false);
         } else {
-            setValidated(true)
-            console.log(formData)
-            alert('pagamaneto confermato')
-
+            form.classList.add("was-validated");
+            setValidated(true);
+            console.log(formData);
         }
-
     }
+
+
 
 
     return (
         <>
-            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white" style={{ maxWidth: "600px" }} onSubmit={handleSubmit}>
+            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} onSubmit={handleSubmit} ref={formRef} noValidate>
                 <h2 className="mb-4 text-center">Checkout</h2>
 
                 <div className="mb-3">
@@ -84,46 +76,81 @@ function Checkout() {
                 <div className="row">
                     <div className="col-md-8 mb-3">
                         <label htmlFor="cardNumber" className="form-label">Numero carta</label>
-                        <input type="text" id="cardNumber" name="cardNumber" className="form-control" value={formData.cardNumber} onChange={handleFormData} required />
+                        <input type="text" id="cardNumber" name="cardNumber" className={`form-control ${fieldErrors.cardNumber ? "is-invalid" : ""}`} value={formData.cardNumber} onChange={handleFormData} required />
+                        {fieldErrors.cardNumber && (
+                            <div className="invalid-feedback">{fieldErrors.cardNumber}</div>
+                        )}
                     </div>
 
                     <div className="col-md-4 mb-3">
                         <label htmlFor="cardCvv" className="form-label">CVV</label>
-                        <input type="text" id="cardCvv" name="cardCvv" className="form-control" value={formData.cardCvv} onChange={handleFormData} required />
+                        <input type="text" id="cardCvv" name="cardCvv" className={`form-control ${fieldErrors.cardCvv ? "is-invalid" : ""}`} value={formData.cardCvv} onChange={handleFormData} required />
+                        {fieldErrors.cardCvv && (
+                            <div className="invalid-feedback">{fieldErrors.cardCvv}</div>
+                        )}
                     </div>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="cardExpiryDate" className="form-label">Data di scadenza</label>
-                    <input type="text" id="cardExpiryDate" name="cardExpiryDate" className="form-control" placeholder="MM/AA" value={formData.cardExpiryDate} onChange={handleFormData} required />
+                    <input type="text" id="cardExpiryDate" name="cardExpiryDate" className={`form-control ${fieldErrors.cardExpiryDate ? "is-invalid" : ""}`} placeholder="MM/AA" value={formData.cardExpiryDate} onChange={handleFormData} required />
+                    {fieldErrors.cardExpiryDate && (
+                        <div className="invalid-feedback">{fieldErrors.cardExpiryDate}</div>
+                    )}
                 </div>
 
-                <button type="submit" className="btn btn-primary w-100 mt-4">
-                    Conferma e caccia li sordi
+                <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Conferma
                 </button>
             </form>
 
 
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button>
+
 
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
+                    {validated ? (
+                        <div className="modal-content border border-success">
+
+                            <div className="modal-header bg-success text-white">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                    ✅ Pagamento Riuscito!
+                                </h1>
+                                <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div className="modal-body">
+                                <p>Grazie per il tuo acquisto! Il tuo viaggio ti aspetta 🎉</p>
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-success" data-bs-dismiss="modal">Grazie!!</button>
+                            </div>
 
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                    ) : (
+                        <div className="modal-content border border-danger">
+
+                            <div className="modal-header bg-danger text-white">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                    ❌ Pagamento non riuscito
+                                </h1>
+                                <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div className="modal-body">
+                                <p>Controlla i dati inseriti e riprova. Non mollare! 💪</p>
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Chiudi e riprova</button>
+                            </div>
+
                         </div>
-                    </div>
+                    )}
+
+
                 </div>
             </div>
         </>
