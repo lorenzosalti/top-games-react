@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-
-
+import { useContext } from "react";
+import GlobalContext from '../contexts/globalContext'
 
 const inizionalData = {
     name: '',
@@ -11,6 +11,10 @@ const inizionalData = {
 }
 
 function Checkout() {
+
+    const { cartStorage, setCartStorage } = useContext(GlobalContext);
+    const total = cartStorage.reduce((acc, order) => acc + Number(order.price), 0)
+
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState(inizionalData);
     const [fieldErrors, setFieldErrors] = useState({});
@@ -52,6 +56,8 @@ function Checkout() {
             form.classList.add("was-validated");
             setValidated(true);
             console.log(formData);
+            setFormData(inizionalData)
+            setCartStorage([])
         }
     }
 
@@ -60,6 +66,30 @@ function Checkout() {
 
     return (
         <>
+            <div className="container mt-5 p-4 border rounded shadow bg-light" style={{ maxWidth: "600px" }}>
+                <h4 className="mb-3">🛒 Riepilogo Carrello</h4>
+                {cartStorage.length ? (
+                    <>
+                        <ul className="list-group mb-3">
+                            {cartStorage.map((game, index) => (
+                                <li key={index} className="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 className="my-0">{game.title}</h6>
+                                        <small className="text-muted">{game.platform}</small>
+                                    </div>
+                                    <span className="text-muted">€ {Number(game.price).toFixed(2)}</span>
+                                </li>
+                            ))}
+                            <li className="list-group-item d-flex justify-content-between">
+                                <strong>Totale: {total.toFixed(2)}€ </strong>
+                            </li>
+                        </ul>
+                    </>
+                ) : (
+                    <p>Il carrello è vuoto.</p>
+                )}
+            </div>
+
             <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} onSubmit={handleSubmit} ref={formRef} noValidate>
                 <h2 className="mb-4 text-center">Checkout</h2>
 
