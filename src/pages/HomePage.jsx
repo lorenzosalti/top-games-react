@@ -30,7 +30,6 @@ function HomePage() {
             <WelcomePopup />
             <Search />
             <div className="home-container mb-5">
-                <h2 className="text-warning text-center mb-4">Hero Space</h2>
 
                 <div className="content-box w-100 carousel-container">
                     <div
@@ -100,14 +99,14 @@ function HomePage() {
                             .map((gameGroup, groupIndex) => (
                                 <div className={`carousel-item ${groupIndex === 0 ? 'active' : ''}`} key={groupIndex}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="row w-50 justify-content-center">
+                                        <div className="row w-50 justify-content-center col-sm-1 col-md-3">
                                             {gameGroup.map((game, gameIndex) => (
                                                 <div className="col-12 col-md-4 mb-4" key={game.id}>
                                                     <div className="card col-12 h-100 text-white p-3 bg-dark">
                                                         <img src={game.imagePath} className="card-img-top" alt={game.title} />
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
-                                                            <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold mt-auto">Dettaglio Prodotto</Link> {/* mt-auto per posizionare il bottone in basso */}
+                                                            <Link to={`/games/${game.id}`} className="btn btn-warning mt-auto">Dettaglio Prodotto</Link> {/* mt-auto per posizionare il bottone in basso */}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -150,7 +149,7 @@ function HomePage() {
                                                         <img src={game.imagePath} className="card-img-top w-50 mx-auto pt-3" alt={game.title} />
                                                         <div className="card-body d-flex flex-column justify-content-between align-items-center">
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
-                                                            <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold mt-auto mb-3">Dettaglio Prodotto</Link>
+                                                            <Link to={`/games/${game.id}`} className="btn btn-warning mt-auto">Dettaglio Prodotto</Link>
                                                         </div>
                                                     </div>
                                                 </div>
