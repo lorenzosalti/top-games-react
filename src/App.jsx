@@ -104,7 +104,7 @@ function App() {
 
 
             {/* riabilitata per poter vedere il checkout a schermo */}
-            <Route path='/order' element={<Checkout />} />
+            <Route path='/checkout' element={<Checkout />} />
 
             <Route path='/order/:id' element={<div>Detail Order</div>} />
             <Route path='/mailing-list' element={<div>Mailing-list</div>} />

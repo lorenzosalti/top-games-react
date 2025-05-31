@@ -8,6 +8,9 @@ export default function Header() {
 
     const { cartStorage } = useContext(GlobalContext);
     const totalPrice = cartStorage.reduce((acc, game) => acc + Number(game.price), 0)
+
+
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg bg-dark mb-5 py-3">
@@ -75,7 +78,7 @@ export default function Header() {
                         : <div>Nessun Gioco nel carrello</div>}
                     {cartStorage.length ? <div className='align-self-end d-flex flex-column align-items-center'>
                         <div className='mb-2'>Prezzo totale: {totalPrice.toFixed(2)}€</div>
-                        <Link to={'/order'} className="btn btn-primary" role="button">Sgancia i soldi</Link>
+                        <Link to={'/checkout'} className="btn btn-primary" role="button">Sgancia i soldi</Link>
                     </div> : ''}
 
                 </div>
