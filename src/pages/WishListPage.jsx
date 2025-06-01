@@ -1,39 +1,42 @@
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useState, useContext, useMemo } from "react"
 import axios from "axios"
 import GlobalContext from '../contexts/globalContext';
-
-// test games
-import testGames from '../../testGames.json'
+import WishlistButton from "../components/WishListButton";
 
 
 function WishListPage() {
-  console.log(testGames)
+
   const { wishListGames, setWishListGames } = useContext(GlobalContext);
 
+  // necessaria perchè il games in contesto globale potrebbe essere filtrato, ma è sempre necessario fare un confronto tra TUTTI i giochi
+  const [games, setGames] = useState([]);
 
+  const gamesUrl = 'http://localhost:3000/games';
+
+  // al montaggio del componente fa un fetch degli ID salvati in localStorage
   useEffect(() => {
-    // test con prodotti in locale
-    setWishListGames(testGames);
-
-
-    // const storedGames = localStorage.getItem("wishListGames");
-
-    // if (storedGames) {
-    //   setWishListGames(JSON.parse(storedGames));
-    // }
+    const storedIds = localStorage.getItem("wishListGames")
+    if (storedIds) {
+      setWishListGames(JSON.parse(storedIds))
+    }
   }, []);
 
-
+  // chiamata per recuperare TUTTI i giochi
   useEffect(() => {
-    localStorage.setItem("wishListGames", JSON.stringify(wishListGames));
-  }, [wishListGames]);
+    axios.get(gamesUrl)
+      .then(res => {
+        setGames(res.data)
+      })
+      .catch(err => console.error(err));
+  }, [])
 
-  function toggleWishlist(id) {
-    setWishListGames((prev) =>
-      prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]);
-  };
+  // verifica della presenza di giochi nella wishlist, viene ricalcolato sempre e solo quando [games, wishListGames] sono modificati
+  // useMemo serve a sostituire il lavoro di useEffect + useState
+  const gamesInWishlist = useMemo(() => {
+    if (!games.length || !wishListGames.length) return [];
+    return games.filter(game => wishListGames.includes(Number(game.id)));
+  }, [games, wishListGames]);
 
-  function isInWishlist(id) { return wishListGames.includes(id) }
 
   return (
     <>
@@ -41,7 +44,7 @@ function WishListPage() {
 
 
       <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
-        {wishListGames.map(game =>
+        {gamesInWishlist.map(game =>
           <div className="card bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
               <figure className="mt-2"><img src={game.imagePath} className="card-img-top " alt={game.title} /></figure>
@@ -50,10 +53,7 @@ function WishListPage() {
               <p className="card-text fw-bold">{game.price} €</p>
               <button type="button" className="btn btn-warning fw-bold">Dettaglio Prodotto</button>
 
-              <label>
-                <input type="checkbox" className="btn-check" checked={isInWishlist(game.id)} onChange={() => toggleWishlist(game.id)} />
-                Wishlist
-              </label>
+              <WishlistButton gameId={game.id} />
             </div>
           </div>
         )}
