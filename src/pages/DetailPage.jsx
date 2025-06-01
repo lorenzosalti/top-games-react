@@ -28,8 +28,8 @@ function DetailPage() {
 
         let string = JSON.stringify(updateCart);
         localStorage.setItem('cart', string);
-        let arrayCart = localStorage.getItem('cart');
-        console.log(JSON.parse(arrayCart));
+        // let arrayCart = localStorage.getItem('cart');
+        // console.log(JSON.parse(arrayCart));
     }
 
 

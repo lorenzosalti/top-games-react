@@ -6,7 +6,7 @@ import GlobalContext from '../contexts/globalContext';
 
 export default function Header() {
 
-    const { cartStorage } = useContext(GlobalContext);
+    const { cartStorage, removeFromCart } = useContext(GlobalContext);
     const totalPrice = cartStorage.reduce((acc, game) => acc + Number(game.price), 0);
     const navigate = useNavigate();
 
@@ -16,6 +16,12 @@ export default function Header() {
         }, 100);
     };
 
+
+    function deleteGameCart(game) {
+        removeFromCart(game);
+        console.log(game);
+
+    }
 
     return (
         <header>
@@ -89,7 +95,7 @@ export default function Header() {
                                             defaultValue="1"
                                             style={{ width: '60px' }}
                                         />
-                                        <button className="btn btn-danger btn-sm">
+                                        <button className="btn btn-danger btn-sm" onClick={() => deleteGameCart(game)}>
                                             Elimina
                                         </button>
                                     </div>

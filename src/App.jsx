@@ -38,6 +38,10 @@ function App() {
       .catch(err => console.error(err));
   }
 
+  const removeFromCart = (gameToRemove) => {
+    setCartStorage(prev => prev.filter(game => game.id !== gameToRemove.id));
+  };
+
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -89,7 +93,7 @@ function App() {
 
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />
