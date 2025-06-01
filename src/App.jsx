@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import GlobalContext from './contexts/globalContext';
 import SearchLayout from './layouts/SearchLayout';
+import WishListPage from './pages/WishListPage';
 import DetailPage from './pages/DetailPage';
 import PlayStation from './pages/PlayStationPage';
 import Xbox from './pages/XboxPage';
@@ -22,6 +23,7 @@ function App() {
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
   const [orderBy, setOrderBy] = useState('title');
+
 
   const [orderByDirection, setOrderByDirection] = useState('ASC');
   const gamesUrl = 'http://localhost:3000/games';
@@ -90,10 +92,33 @@ function App() {
     navigate(`/games?${params.toString()}`);
   }
 
+  // FUNZIONI E VARIABILI DEDICATE ALLA WISHLIST
+  const [wishListGames, setWishListGames] = useState([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('wishListGames');
+    if (stored) setWishListGames(JSON.parse(stored));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("wishListGames", JSON.stringify(wishListGames));
+  }, [wishListGames]);
+
+  function toggleWishlist(id) {
+    setWishListGames((prev) =>
+      prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]);
+  }
+
+  function isInWishlist(id) {
+    return wishListGames.includes(id)
+  }
+
+
+
 
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart, wishListGames, setWishListGames, toggleWishlist, isInWishlist }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />
@@ -105,6 +130,7 @@ function App() {
             <Route path='/console/xbox' element={<Xbox />} />
             <Route path='/console/pc' element={<Pc />} />
             <Route path='/console/switch' element={<Switch />} />
+            <Route path='/wishlist' element={<WishListPage />} />
 
 
             {/* riabilitata per poter vedere il checkout a schermo */}
