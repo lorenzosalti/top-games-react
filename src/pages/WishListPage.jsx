@@ -2,6 +2,7 @@ import { useEffect, useState, useContext, useMemo } from "react"
 import axios from "axios"
 import GlobalContext from '../contexts/globalContext';
 import WishlistButton from "../components/WishListButton";
+import { Link } from "react-router-dom";
 
 
 function WishListPage() {
