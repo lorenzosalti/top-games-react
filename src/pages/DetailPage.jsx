@@ -37,6 +37,19 @@ function DetailPage() {
         getData,
         [id]);
 
+    // discount
+
+    function hasDiscount(discount_start, discount_finish) {
+        const now = new Date();
+        if (discount_start && discount_finish) {
+            const start = new Date(discount_start);
+            const end = new Date(discount_finish);
+            return now >= start && now <= end;
+        }
+        return false;
+    }
+
+
     return (
 
         <div className="container w-100 w-md-75 w-lg-50">
@@ -52,10 +65,23 @@ function DetailPage() {
                         <p className="card-text ">{game.description}</p>
                         <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
                         <p className="card-text"><strong>Console:</strong> {game.platform}</p>
-                        <p className="card-text fw-bold">Prezzo: {game.price} €</p>
-                        <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
-                            <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
-                            <button type="button" className="btn btn-warning">Aggiungi alla wishlist</button>
+                        <div>
+                            {game.discount > 0 ? (
+                                <>
+                                    <p className="card-text mb-1 pb-3">
+                                        <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
+                                        <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
+                                        <span className="card-text mb-2 position-absolute bg-warning text-dark fw-bold p-1 ms-3">
+                                            - {game.discount}%
+                                        </span>
+                                    </p>
+                                </>
+                            ) : (<div>{game.price} €</div>)}
+
+                            <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                                <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
+                                <button type="button" className="btn btn-warning">Aggiungi alla wishlist</button>
+                            </div>
                         </div>
                     </div>
                 </div>

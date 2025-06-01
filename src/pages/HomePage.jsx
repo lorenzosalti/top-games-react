@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import Search from '../components/Search';
 import { Link } from "react-router-dom";
 import WelcomePopup from "../components/WelcomePopup";
+import GlobalContext from "../contexts/globalContext";
+import { useContext } from "react";
 
 function HomePage() {
-
-
 
     const [games, setGames] = useState([]);
 
@@ -22,6 +22,19 @@ function HomePage() {
 
     useEffect(getGames, []);
 
+    function hasDiscount(discount_start, discount_finish) {
+        const now = new Date();
+        if (discount_start && discount_finish) {
+            const start = new Date(discount_start);
+            const end = new Date(discount_finish);
+            return now >= start && now <= end;
+        }
+        return false;
+    }
+
+    const discountedGames = games.filter(game =>
+        hasDiscount(game.discount_start, game.discount_finish)
+    );
 
 
     return (
@@ -99,14 +112,17 @@ function HomePage() {
                             .map((gameGroup, groupIndex) => (
                                 <div className={`carousel-item ${groupIndex === 0 ? 'active' : ''}`} key={groupIndex}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="row w-50 justify-content-center col-sm-1 col-md-3">
+                                        <div className="row w-75 justify-content-center">
                                             {gameGroup.map((game, gameIndex) => (
                                                 <div className="col-12 col-md-4 mb-4" key={game.id}>
-                                                    <div className="card col-12 h-100 text-white p-3 bg-dark">
-                                                        <img src={game.imagePath} className="card-img-top" alt={game.title} />
+                                                    <div className="card h-100 text-white p-3 bg-dark">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                                                            <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} />
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
-                                                            <Link to={`/games/${game.id}`} className="btn btn-warning mt-auto">Dettaglio Prodotto</Link> {/* mt-auto per posizionare il bottone in basso */}
+                                                            <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
+                                                                <p className="card-text">{game.price} €</p>
+                                                                <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -142,14 +158,23 @@ function HomePage() {
                             .map((gameGroup, groupIndex) => (
                                 <div className={`carousel-item ${groupIndex === 0 ? 'active' : ''}`} key={groupIndex}>
                                     <div className="d-flex justify-content-center">
-                                        <div className="row w-50 justify-content-center">
+                                        <div className="row w-75 justify-content-center">
                                             {gameGroup.map((game, gameIndex) => (
-                                                <div className="col-12 col-md-4 mb-4 d-flex" key={game.id}>
-                                                    <div className="card h-100 bg-dark text-white p-3">
-                                                        <img src={game.imagePath} className="card-img-top w-50 mx-auto pt-3" alt={game.title} />
-                                                        <div className="card-body d-flex flex-column justify-content-between align-items-center">
+                                                <div className="col-md-4 mb-4" key={game.id}>
+                                                    <div className="card col-12 h-100 text-white p-3 bg-dark position-relative">
+                                                        <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                                                            <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} />
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
-                                                            <Link to={`/games/${game.id}`} className="btn btn-warning mt-auto">Dettaglio Prodotto</Link>
+                                                            <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
+                                                                <p className="card-text mb-1 pb-3">
+                                                                    <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
+                                                                    <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
+                                                                </p>
+                                                                <p className="card-text mb-2 position-absolute discount bg-warning text-dark fw-bold p-2">
+                                                                    - {game.discount}%
+                                                                </p>
+                                                                <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

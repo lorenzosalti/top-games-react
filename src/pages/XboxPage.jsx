@@ -26,10 +26,23 @@ function Xbox() {
                         <figure className="mt-2">
                             <img src={game.imagePath} className="card-img-top " alt={game.title} />
                         </figure>
-                        <h3 className="card-title fw-bold pt-2">{game.title}</h3>
-                        <p className="card-text"><strong>Console:</strong> {game.platform}</p>
-                        <p className="card-text"><strong>Prezzo</strong> {game.price} €</p>
-                        <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
+                        <h5 className="card-title fw-bold pt-2">{game.title}</h5>
+                        <div className='mt-auto d-flex flex-column justify-content-center align-items-center'>
+                            <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                            {game.discount > 0 ? (
+                                <>
+                                    <p className="card-text mb-1 pb-3">
+                                        <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
+                                        <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
+                                        <span className="card-text mb-2 position-absolute bg-warning discount text-dark fw-bold p-2 ms-3">
+                                            - {game.discount}%
+                                        </span>
+                                    </p>
+                                </>
+                            ) : (<div className='mb-3'>{game.price} €</div>)}
+                            <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
+
+                        </div>
                     </div>
                 </div>
             )}
