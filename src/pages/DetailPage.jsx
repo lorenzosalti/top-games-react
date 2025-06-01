@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import GlobalContext from '../contexts/globalContext';
+import WishListButton from '../components/WishListButton'
 
 function DetailPage() {
 
@@ -55,7 +56,7 @@ function DetailPage() {
                         <p className="card-text fw-bold">Prezzo: {game.price} €</p>
                         <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
                             <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
-                            <button type="button" className="btn btn-warning">Aggiungi alla wishlist</button>
+                            <WishListButton gameId={game.id} />
                         </div>
                     </div>
                 </div>
