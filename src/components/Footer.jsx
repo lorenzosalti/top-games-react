@@ -41,7 +41,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="footer-bottom">
+            <div className="footer-bottom bg-dark">
                 <div className="footer-bottom-container">
                     <button className="signup-button">SIGN-UP NOW!</button>
 

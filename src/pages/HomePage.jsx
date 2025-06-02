@@ -43,14 +43,14 @@ function HomePage() {
             <Search />
             <div className="home-container mt-3 mb-5 d-flex justify-content-center">
 
-                <div className="content-box w-75 bg-black carousel-container">
+                <div className="content-box rounded-4 w-75 bg-dark carousel-container">
                     <div
                         id="carouselHeroSpace"
                         className="carousel slide carousel-fade"
                         data-bs-ride="carousel"
                         data-bs-interval="5000"
                     >
-                        <div className="carousel-inner rounded-4 overflow-hidden shadow">
+                        <div className="carousel-inner rounded-4 overflow-hidden shadow h-75">
                             <div className="carousel-item active">
                                 <img
                                     src="src/assets/spedizione-gratuita.jpg" className="d-block w-100 h-100" alt="spedizione-gratuita" />
@@ -61,7 +61,7 @@ function HomePage() {
                                 <figure>
                                     <Link to={'http://localhost:5173/games/1'}>
                                         <img
-                                            src="src/assets/cyberpunk-carosello.jpg" className="d-block w-100 h-100" alt="cyberpunk" />
+                                            src="src/assets/cyberpunk2077-carosello.png" className="d-block w-100 h-100" alt="cyberpunk" />
                                     </Link>
                                 </figure>
                             </div>
@@ -70,7 +70,7 @@ function HomePage() {
                                 <figure>
                                     <Link to={'http://localhost:5173/games/4'}>
                                         <img
-                                            src="src/assets/forzah-carosello.jpg" className="d-block w-100 h-100" alt="forza-horizon-5" />
+                                            src="src/assets/forzah-carosello.png" className="d-block w-100 h-100" alt="forza-horizon-5" />
                                     </Link>
                                 </figure>
                             </div>
@@ -79,7 +79,7 @@ function HomePage() {
                                 <figure>
                                     <Link to={'http://localhost:5173/games/5'}>
                                         <img
-                                            src="src/assets/ghost-carosello.jpg" className="d-block w-100 h-100" alt="ghost-of-tsushima" />
+                                            src="src/assets/ghost-carosello5.png" className="d-block w-100 h-25" alt="ghost-of-tsushima" />
                                     </Link>
                                 </figure>
                             </div>
@@ -88,7 +88,7 @@ function HomePage() {
                                 <figure>
                                     <Link to={'http://localhost:5173/games/9'}>
                                         <img
-                                            src="src/assets/mario-odyssey-carosello.jpg" className="d-block w-100 h-100" alt="super-mario-odyssey" />
+                                            src="src/assets/supermario-carosello.png" className="d-block w-100 h-100" alt="super-mario-odyssey" />
                                     </Link>
                                 </figure>
                             </div>
