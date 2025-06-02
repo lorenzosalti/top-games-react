@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useContext } from "react";
 import GlobalContext from '../contexts/globalContext';
+import axios from "axios";
 
 const inizionalData = {
     Intestatario: '',
@@ -82,9 +83,29 @@ function Checkout() {
             form.classList.add("was-validated");
             setValidated(true);
             console.log(formData);
-            setFormData(inizionalData);
-            setCartStorage([]);
         }
+
+        const orderPay = {
+            total_price: totalPrice,
+            date: new Date().toISOString().split('T')[0],
+            address_billing: formData.address_billing,
+            city_billing: formData.city_billing,
+            postal_code_billing: formData.postal_code_billing,
+            country_billing: formData.country_billing,
+            region_billing: formData.region_billing
+        }
+        console.log(orderPay.date)
+
+        axios.post('http://127.0.0.1:3000/order/', orderPay)
+            .then((res) => {
+                console.log('Complimenti Dati inviati', res.data);
+                setFormData(inizionalData);
+                setCartStorage([]);
+            })
+            .catch((err) => {
+                console.error('Rilevato errore', err)
+            })
+
     }
 
     function userSubmit(e) {
@@ -104,8 +125,31 @@ function Checkout() {
         } else {
             form.classList.add("was-validated");
             setValidated(true);
-            setUserData(customersData)
+
         }
+
+
+        const orderUser = {
+            name: userData.name,
+            surname: userData.surname,
+            email: userData.email,
+            phone: userData.phone,
+            address_shipping: userData.address_shipping,
+            city_shipping: userData.city_shipping,
+            postal_code_shipping: userData.postal_code_shipping,
+            country_shipping: userData.country_shipping,
+            region_shipping: userData.region_shipping
+        }
+
+
+        axios.post('http://127.0.0.1:3000/order/customer', orderUser)
+            .then((res) => {
+                console.log('Complimenti Dati inviati', res.data);
+                setUserData(customersData)
+            })
+            .catch((err) => {
+                console.error('Rilevato errore', err)
+            })
     }
 
 
