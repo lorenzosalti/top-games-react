@@ -32,7 +32,7 @@ const socialUrl = [
 export default function Footer() {
     return (
         <footer>
-            <div className='container-fluid bg-dark text-light py-4'>
+            <div className='container-fluid bg-dark text-light py-4 mt-5'>
                 <div className="footer-link-container">
                     <div>
                         <LinkFooter title="" links={GamesUrl} />
