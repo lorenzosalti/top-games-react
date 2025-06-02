@@ -41,9 +41,9 @@ function HomePage() {
         <div className="container">
             <WelcomePopup />
             <Search />
-            <div className="home-container mt-3 mb-5">
+            <div className="home-container mt-3 mb-5 d-flex justify-content-center">
 
-                <div className="content-box w-100 carousel-container">
+                <div className="content-box w-75 bg-black carousel-container">
                     <div
                         id="carouselHeroSpace"
                         className="carousel slide carousel-fade"
@@ -51,29 +51,47 @@ function HomePage() {
                         data-bs-interval="5000"
                     >
                         <div className="carousel-inner rounded-4 overflow-hidden shadow">
+                            <div className="carousel-item active">
+                                <img
+                                    src="src/assets/spedizione-gratuita.jpg" className="d-block w-100 h-100" alt="spedizione-gratuita" />
+                                <div className="carousel-overlay"></div>
+                            </div>
 
-                            {
-                                ['PlayStation 5', 'Xbox Series X', 'PC', 'Nintendo Switch']
-                                    .map(platform => {
-                                        const game = games.find(game => game.platform === platform);
-                                        if (game) return game;
-                                        else return null;
-                                    })
-                                    .filter(game => game !== null)
-                                    .map((game, index) => (
-                                        <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
-                                            <Link to={`/games/${game.id}`}>
-                                                <img src={game.imagePath} className="d-block w-100 h-100" alt={game.title} />
-                                                <div className="carousel-overlay"></div>
-                                                <div className="carousel-caption d-none d-md-block">
-                                                    <h3 className="text-light fw-bold">{game.title}</h3>
-                                                    <p className="text-light">{game.description}</p>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    ))
-                            }
+                            <div className="carousel-item">
+                                <figure>
+                                    <Link to={'http://localhost:5173/games/1'}>
+                                        <img
+                                            src="src/assets/cyberpunk-carosello.jpg" className="d-block w-100 h-100" alt="cyberpunk" />
+                                    </Link>
+                                </figure>
+                            </div>
 
+                            <div className="carousel-item">
+                                <figure>
+                                    <Link to={'http://localhost:5173/games/4'}>
+                                        <img
+                                            src="src/assets/forzah-carosello.jpg" className="d-block w-100 h-100" alt="forza-horizon-5" />
+                                    </Link>
+                                </figure>
+                            </div>
+
+                            <div className="carousel-item">
+                                <figure>
+                                    <Link to={'http://localhost:5173/games/5'}>
+                                        <img
+                                            src="src/assets/ghost-carosello.jpg" className="d-block w-100 h-100" alt="ghost-of-tsushima" />
+                                    </Link>
+                                </figure>
+                            </div>
+
+                            <div className="carousel-item">
+                                <figure>
+                                    <Link to={'http://localhost:5173/games/9'}>
+                                        <img
+                                            src="src/assets/mario-odyssey-carosello.jpg" className="d-block w-100 h-100" alt="super-mario-odyssey" />
+                                    </Link>
+                                </figure>
+                            </div>
                         </div>
 
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselHeroSpace" data-bs-slide="prev">
@@ -86,7 +104,7 @@ function HomePage() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div >
             <div className="container mt-5">
                 <h2 className="text-center text-white fs-1 mb-5">Ultimi Arrivi:</h2>
                 <div id="carouselExampleSingleCard" className="carousel slide" data-bs-ride="carousel">
@@ -197,7 +215,7 @@ function HomePage() {
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
 
 
 
