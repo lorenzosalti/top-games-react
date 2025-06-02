@@ -52,7 +52,7 @@ function WishListPage() {
               <h5 className="card-title fw-bold pt-2">{game.title}</h5>
               <p className="card-text"><strong>Console:</strong> {game.platform}</p>
               <p className="card-text fw-bold">{game.price} €</p>
-              <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
+              <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
 
               <WishlistButton gameId={game.id} />
             </div>

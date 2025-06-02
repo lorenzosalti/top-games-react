@@ -13,7 +13,7 @@ function WishlistButton({ gameId }) {
         checked={checked}
         onChange={() => toggleWishlist(gameId)}
       />
-      <span className={`btn btn-sm ${checked ? "btn-secondary" : "btn-outline-secondary"}`}>
+      <span className={`btn btn-warning btn-sm ${checked ? "btn-secondary bg-danger" : "btn-outline-secondary text-black"}`}>
         {checked ? "Rimuovi dalla Wishlist" : "Aggiungi alla Wishlist"}
       </span>
     </label>

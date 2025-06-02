@@ -169,7 +169,7 @@ function HomePage() {
                                                                     <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
                                                                     <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
                                                                 </p>
-                                                                <p className="card-text mb-2 position-absolute discount bg-warning text-dark fw-bold p-2">
+                                                                <p className="card-text mb-2 rounded position-absolute discount bg-warning text-dark fw-bold p-2">
                                                                     - {game.discount}%
                                                                 </p>
                                                                 <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
