@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import GlobalContext from '../contexts/globalContext';
-import WishListButton from '../components/WishListButton'
+import WishListButton from '../components/WishListButton';
 
 function DetailPage() {
 
@@ -24,13 +24,23 @@ function DetailPage() {
             .catch(err => console.error(err));
     }
     function addGameCart() {
-        const updateCart = [...cartStorage, game];
-        setCartStorage(updateCart);
-
-        let string = JSON.stringify(updateCart);
-        localStorage.setItem('cart', string);
         // let arrayCart = localStorage.getItem('cart');
         // console.log(JSON.parse(arrayCart));
+        const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
+
+        let updatedCart;
+
+        if (existingGameIndex !== -1) {
+            updatedCart = [...cartStorage];
+            updatedCart[existingGameIndex].quantity += 1;
+
+        } else {
+            updatedCart = [...cartStorage, { ...game, quantity: 1 }];
+        }
+
+        setCartStorage(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        console.log(cartStorage);
     }
 
 
@@ -81,7 +91,7 @@ function DetailPage() {
 
                             <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
                                 <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
-                                <button type="button" className="btn btn-warning">Aggiungi alla wishlist</button>
+                                <WishListButton gameId={game.id} />
                             </div>
                         </div>
                     </div>
