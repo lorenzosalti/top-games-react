@@ -38,6 +38,11 @@ function Checkout() {
     const formRef = useRef(null);
     const userFormRef = useRef(null);
 
+    const [orderUser, setOrderUser] = useState({})
+    const [orderId, setOrderId] = useState(null)
+
+
+
     function handleFormData(e) {
         const value =
             e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -61,6 +66,8 @@ function Checkout() {
         const form = formRef.current;
 
         const errors = {};
+
+
 
         if (formData.cardNumber.length !== 16 || isNaN(formData.cardNumber)) {
             errors.cardNumber = "Devi inserire 16 cifre nel campo Numero Carta.";
@@ -96,61 +103,105 @@ function Checkout() {
         }
         console.log(orderPay.date)
 
+        // axios.post('http://127.0.0.1:3000/order/', orderPay)
+        //     .then((res) => {
+        //         console.log('Complimenti Dati inviati', res.data);
+        //         setFormData(inizionalData);
+        //         setCartStorage([]);
+        //         setOrderId(res.data.insertId)
+        //         console.log(orderId)
+        //     })
+        //     .catch((err) => {
+        //         console.error('Rilevato errore', err)
+        //     })
+
+        // setOrderUser(prev => prev + orderId)
+
+        // axios.post('http://127.0.0.1:3000/order/customer', orderUser)
+        //     .then((res) => {
+        //         console.log('Complimenti Dati inviati', res.data);
+        //         setUserData(customersData)
+        //     })
+        //     .catch((err) => {
+        //         console.error('Rilevato errore', err)
+        //     })
+
         axios.post('http://127.0.0.1:3000/order/', orderPay)
             .then((res) => {
-                console.log('Complimenti Dati inviati', res.data);
+                const newOrderId = res.data.insertId;
+                setOrderId(newOrderId);
+
+                const orderUserData = {
+                    order_id: newOrderId,
+                    name: userData.name,
+                    surname: userData.surname,
+                    email: userData.email,
+                    phone: userData.phone,
+                    address_shipping: userData.address_shipping,
+                    city_shipping: userData.city_shipping,
+                    postal_code_shipping: userData.postal_code_shipping,
+                    country_shipping: userData.country_shipping,
+                    region_shipping: userData.region_shipping
+                };
+
+                return axios.post('http://127.0.0.1:3000/order/customer', orderUserData);
+            })
+            .then((res) => {
+                console.log('Dati cliente inviati', res.data);
                 setFormData(inizionalData);
+                setUserData(customersData);
                 setCartStorage([]);
             })
             .catch((err) => {
-                console.error('Rilevato errore', err)
-            })
+                console.error('Errore durante il processo ordine + cliente:', err);
+            });
 
     }
 
-    function userSubmit(e) {
-        e.preventDefault();
-        const form = userFormRef.current;
+    // function userValidation() {
+    //     
+    //     const form = userFormRef.current;
 
-        const errors = {}
+    //     const errors = {}
 
-        if (!userData.email.includes('@')) {
-            errors.email = 'email non valida';
-        }
+    //     if (!userData.email.includes('@')) {
+    //         errors.email = 'email non valida';
+    //     }
 
-        setFieldErrors(errors)
+    //     setFieldErrors(errors)
 
-        if (Object.keys(errors).length > 0) {
-            setValidated(false);
-        } else {
-            form.classList.add("was-validated");
-            setValidated(true);
-
-        }
-
-
-        const orderUser = {
-            name: userData.name,
-            surname: userData.surname,
-            email: userData.email,
-            phone: userData.phone,
-            address_shipping: userData.address_shipping,
-            city_shipping: userData.city_shipping,
-            postal_code_shipping: userData.postal_code_shipping,
-            country_shipping: userData.country_shipping,
-            region_shipping: userData.region_shipping
-        }
+    //     if (Object.keys(errors).length > 0) {
+    //         setValidated(false);
+    //     } else {
+    //         form.classList.add("was-validated");
+    //         setValidated(true);
+    //         handleNext()
+    //     }
 
 
-        axios.post('http://127.0.0.1:3000/order/customer', orderUser)
-            .then((res) => {
-                console.log('Complimenti Dati inviati', res.data);
-                setUserData(customersData)
-            })
-            .catch((err) => {
-                console.error('Rilevato errore', err)
-            })
-    }
+    //     // setOrderUser({
+    //     //     name: userData.name,
+    //     //     surname: userData.surname,
+    //     //     email: userData.email,
+    //     //     phone: userData.phone,
+    //     //     address_shipping: userData.address_shipping,
+    //     //     city_shipping: userData.city_shipping,
+    //     //     postal_code_shipping: userData.postal_code_shipping,
+    //     //     country_shipping: userData.country_shipping,
+    //     //     region_shipping: userData.region_shipping
+    //     // })
+
+    //     // console.log(orderId)
+
+    //     // axios.post('http://127.0.0.1:3000/order/customer', orderUser)
+    //     //     .then((res) => {
+    //     //         console.log('Complimenti Dati inviati', res.data);
+    //     //         setUserData(customersData)
+    //     //     })
+    //     //     .catch((err) => {
+    //     //         console.error('Rilevato errore', err)
+    //     //     })
+    // }
 
 
 
@@ -255,7 +306,7 @@ function Checkout() {
             </form>
 
 
-            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} onSubmit={userSubmit} ref={userFormRef} noValidate>
+            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} onSubmit={handleSubmit} ref={userFormRef} noValidate>
                 <h2 className="mb-4 text-center">Dati Cliente</h2>
 
                 <div className="mb-3">
