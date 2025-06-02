@@ -40,7 +40,7 @@ function Switch() {
                                     </p>
                                 </>
                             ) : (<div className='mb-3'>{game.price} €</div>)}
-                            <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
+                            <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
                         </div>
                     </div>
                 </div>
