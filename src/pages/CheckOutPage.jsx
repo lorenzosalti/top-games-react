@@ -56,6 +56,57 @@ function Checkout() {
         }));
     }
 
+    // function handleSubmit(e) {
+    //     e.preventDefault();
+    //     const form = formRef.current;
+
+    //     const errors = {};
+
+    //     if (formData.cardNumber.length !== 16 || isNaN(formData.cardNumber)) {
+    //         errors.cardNumber = "Devi inserire 16 cifre nel campo Numero Carta.";
+    //     }
+
+    //     if (formData.cardCvv.length !== 3 || isNaN(formData.cardCvv)) {
+    //         errors.cardCvv = "Devi inserire 3 cifre nel campo CVV.";
+    //     }
+
+    //     const expiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    //     if (!expiryPattern.test(formData.cardExpiryDate)) {
+    //         errors.cardExpiryDate = "Inserisci una data valida nel formato MM/AA.";
+    //     }
+
+    //     setFieldErrors(errors);
+
+    //     if (Object.keys(errors).length > 0) {
+    //         setValidated(false);
+    //     } else {
+    //         form.classList.add("was-validated");
+    //         setValidated(true);
+    //         console.log(formData);
+    //     }
+
+    //     const orderPay = {
+    //         total_price: totalPrice,
+    //         date: new Date().toISOString().split('T')[0],
+    //         address_billing: formData.address_billing,
+    //         city_billing: formData.city_billing,
+    //         postal_code_billing: formData.postal_code_billing,
+    //         country_billing: formData.country_billing,
+    //         region_billing: formData.region_billing
+    //     }
+    //     console.log(orderPay.date)
+
+    //     axios.post('http://127.0.0.1:3000/order/', orderPay)
+    //         .then((res) => {
+    //             console.log('Complimenti Dati inviati', res.data);
+    //             setFormData(inizionalData);
+    //             setCartStorage([]);
+    //         })
+    //         .catch((err) => {
+    //             console.error('Rilevato errore', err)
+    //         })
+
+    // }
     function handleSubmit(e) {
         e.preventDefault();
         const form = formRef.current;
@@ -75,15 +126,19 @@ function Checkout() {
             errors.cardExpiryDate = "Inserisci una data valida nel formato MM/AA.";
         }
 
+        if (!userData.email.includes('@')) {
+            errors.email = 'Email non valida';
+        }
+
         setFieldErrors(errors);
 
         if (Object.keys(errors).length > 0) {
             setValidated(false);
-        } else {
-            form.classList.add("was-validated");
-            setValidated(true);
-            console.log(formData);
+            return;
         }
+
+        form.classList.add("was-validated");
+        setValidated(true);
 
         const orderPay = {
             total_price: totalPrice,
@@ -93,64 +148,83 @@ function Checkout() {
             postal_code_billing: formData.postal_code_billing,
             country_billing: formData.country_billing,
             region_billing: formData.region_billing
-        }
-        console.log(orderPay.date)
+        };
 
         axios.post('http://127.0.0.1:3000/order/', orderPay)
             .then((res) => {
-                console.log('Complimenti Dati inviati', res.data);
+                const createdOrderId = res.data.id_order;
+
+                const orderUser = {
+                    id_order: createdOrderId,
+                    name: userData.name,
+                    surname: userData.surname,
+                    email: userData.email,
+                    phone: userData.phone,
+                    address_shipping: userData.address_shipping,
+                    city_shipping: userData.city_shipping,
+                    postal_code_shipping: userData.postal_code_shipping,
+                    country_shipping: userData.country_shipping,
+                    region_shipping: userData.region_shipping
+                };
+
+                return axios.post('http://127.0.0.1:3000/order/customer', orderUser);
+            })
+            .then((res) => {
+                console.log('Cliente inserito:', res.data);
                 setFormData(inizionalData);
+                setUserData(customersData);
                 setCartStorage([]);
             })
             .catch((err) => {
-                console.error('Rilevato errore', err)
-            })
-
+                console.error('Errore nell’invio dei dati:', err);
+                setValidated(false);
+            });
     }
 
-    function userSubmit(e) {
-        e.preventDefault();
-        const form = userFormRef.current;
 
-        const errors = {}
+    // function userSubmit(e) {
+    //     e.preventDefault();
+    //     const form = userFormRef.current;
 
-        if (!userData.email.includes('@')) {
-            errors.email = 'email non valida';
-        }
+    //     const errors = {}
 
-        setFieldErrors(errors)
+    //     if (!userData.email.includes('@')) {
+    //         errors.email = 'email non valida';
+    //     }
 
-        if (Object.keys(errors).length > 0) {
-            setValidated(false);
-        } else {
-            form.classList.add("was-validated");
-            setValidated(true);
+    //     setFieldErrors(errors)
 
-        }
+    //     if (Object.keys(errors).length > 0) {
+    //         setValidated(false);
+    //     } else {
+    //         form.classList.add("was-validated");
+    //         setValidated(true);
 
-
-        const orderUser = {
-            name: userData.name,
-            surname: userData.surname,
-            email: userData.email,
-            phone: userData.phone,
-            address_shipping: userData.address_shipping,
-            city_shipping: userData.city_shipping,
-            postal_code_shipping: userData.postal_code_shipping,
-            country_shipping: userData.country_shipping,
-            region_shipping: userData.region_shipping
-        }
+    //     }
 
 
-        axios.post('http://127.0.0.1:3000/order/customer', orderUser)
-            .then((res) => {
-                console.log('Complimenti Dati inviati', res.data);
-                setUserData(customersData)
-            })
-            .catch((err) => {
-                console.error('Rilevato errore', err)
-            })
-    }
+    //     const orderUser = {
+    //         name: userData.name,
+    //         surname: userData.surname,
+    //         email: userData.email,
+    //         phone: userData.phone,
+    //         address_shipping: userData.address_shipping,
+    //         city_shipping: userData.city_shipping,
+    //         postal_code_shipping: userData.postal_code_shipping,
+    //         country_shipping: userData.country_shipping,
+    //         region_shipping: userData.region_shipping
+    //     }
+
+
+    //     axios.post('http://127.0.0.1:3000/order/customer', orderUser)
+    //         .then((res) => {
+    //             console.log('Complimenti Dati inviati', res.data);
+    //             setUserData(customersData)
+    //         })
+    //         .catch((err) => {
+    //             console.error('Rilevato errore', err)
+    //         })
+    // }
 
 
 
@@ -255,7 +329,7 @@ function Checkout() {
             </form>
 
 
-            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} onSubmit={userSubmit} ref={userFormRef} noValidate>
+            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} ref={userFormRef} noValidate>
                 <h2 className="mb-4 text-center">Dati Cliente</h2>
 
                 <div className="mb-3">
@@ -307,9 +381,9 @@ function Checkout() {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                {/* <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Conferma
-                </button>
+                </button> */}
             </form>
 
 
