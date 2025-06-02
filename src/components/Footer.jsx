@@ -31,7 +31,7 @@ const socialUrl = [
 
 export default function Footer() {
     return (
-        <footer>
+        <footer className='footer shadow'>
             <div className='container-fluid bg-dark text-light py-4 mt-5'>
                 <div className="footer-link-container">
                     <div>

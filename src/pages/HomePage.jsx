@@ -43,7 +43,7 @@ function HomePage() {
             <Search />
             <div className="home-container mt-3 mb-5 d-flex justify-content-center">
 
-                <div className="content-box rounded-4 w-75 bg-dark carousel-container">
+                <div className="content-box rounded-4 w-75 bg-dark carousel-container carousel shadow">
                     <div
                         id="carouselHeroSpace"
                         className="carousel slide carousel-fade"
@@ -52,16 +52,14 @@ function HomePage() {
                     >
                         <div className="carousel-inner rounded-4 overflow-hidden shadow h-75">
                             <div className="carousel-item active">
-                                <img
-                                    src="src/assets/spedizione-gratuita.jpg" className="d-block w-100 h-100" alt="spedizione-gratuita" />
+                                <img src="src/assets/spedizione-gratuita.jpg" className="d-block w-100 h-100" alt="spedizione-gratuita" />
                                 <div className="carousel-overlay"></div>
                             </div>
 
                             <div className="carousel-item">
                                 <figure>
                                     <Link to={'http://localhost:5173/games/1'}>
-                                        <img
-                                            src="src/assets/cyberpunk2077-carosello.png" className="d-block w-100 h-100" alt="cyberpunk" />
+                                        <img src="src/assets/cyberpunk2077-carosello.png" className="d-block w-100 h-100" alt="cyberpunk" />
                                     </Link>
                                 </figure>
                             </div>
@@ -69,8 +67,7 @@ function HomePage() {
                             <div className="carousel-item">
                                 <figure>
                                     <Link to={'http://localhost:5173/games/4'}>
-                                        <img
-                                            src="src/assets/forzah-carosello.png" className="d-block w-100 h-100" alt="forza-horizon-5" />
+                                        <img src="src/assets/forzah-carosello.png" className="d-block w-100 h-100" alt="forza-horizon-5" />
                                     </Link>
                                 </figure>
                             </div>
@@ -78,8 +75,7 @@ function HomePage() {
                             <div className="carousel-item">
                                 <figure>
                                     <Link to={'http://localhost:5173/games/5'}>
-                                        <img
-                                            src="src/assets/ghost-carosello5.png" className="d-block w-100 h-25" alt="ghost-of-tsushima" />
+                                        <img src="src/assets/ghost-carosello5.png" className="d-block w-100 h-25" alt="ghost-of-tsushima" />
                                     </Link>
                                 </figure>
                             </div>
@@ -87,8 +83,7 @@ function HomePage() {
                             <div className="carousel-item">
                                 <figure>
                                     <Link to={'http://localhost:5173/games/9'}>
-                                        <img
-                                            src="src/assets/supermario-carosello.png" className="d-block w-100 h-100" alt="super-mario-odyssey" />
+                                        <img src="src/assets/supermario-carosello.png" className="d-block w-100 h-100" alt="super-mario-odyssey" />
                                     </Link>
                                 </figure>
                             </div>
@@ -128,7 +123,7 @@ function HomePage() {
                                         <div className="row w-75 justify-content-center">
                                             {gameGroup.map((game, gameIndex) => (
                                                 <div className="col-md-4 mb-4" key={game.id}>
-                                                    <div className="card col-12 h-100 text-white p-3 bg-dark position-relative">
+                                                    <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} />
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
@@ -181,7 +176,7 @@ function HomePage() {
                                         <div className="row w-75 justify-content-center">
                                             {gameGroup.map((game, gameIndex) => (
                                                 <div className="col-md-4 mb-4" key={game.id}>
-                                                    <div className="card col-12 h-100 text-white p-3 bg-dark position-relative">
+                                                    <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} />
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
