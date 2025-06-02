@@ -69,13 +69,13 @@ function SearchPage() {
                                             <p className="card-text mb-1 pb-3">
                                                 <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
                                                 <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
-                                                <span className="card-text mb-2 position-absolute bg-warning discount text-dark fw-bold p-2 ms-3">
+                                                <span className="card-text mb-2 rounded position-absolute bg-warning discount text-dark fw-bold p-2 ms-3">
                                                     - {game.discount}%
                                                 </span>
                                             </p>
                                         </>
                                     ) : (<div className='mb-3'>{game.price} €</div>)}
-                                    <Link to={`/games/${game.id}`} className="btn btn-warning fw-bold">Dettaglio Prodotto</Link>
+                                    <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
 
                                 </div>
                             </div>
