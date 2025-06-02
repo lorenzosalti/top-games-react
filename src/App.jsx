@@ -110,15 +110,26 @@ function App() {
   }
 
   function isInWishlist(id) {
-    return wishListGames.includes(id)
+    return wishListGames.includes(id);
   }
 
+  function updateQuantity(gameToUpdate, quantity) {
+    const safeQuantity = Math.max(1, Number(quantity));
+    setCartStorage(prev =>
+      prev.map(game => game.id === gameToUpdate.id ? { ...game, quantity: safeQuantity } : game)
+    );
+  }
 
+  const totalPrice = cartStorage.reduce((acc, game) => {
+    let price = game.discount ? game.price - (game.price * game.discount / 100).toFixed(2) : game.price;
+
+    return acc + Number(price * game.quantity);
+  }, 0);
 
 
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart, wishListGames, setWishListGames, toggleWishlist, isInWishlist }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart, wishListGames, setWishListGames, toggleWishlist, isInWishlist, updateQuantity, totalPrice }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />

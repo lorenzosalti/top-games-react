@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useContext } from "react";
-import GlobalContext from '../contexts/globalContext'
+import GlobalContext from '../contexts/globalContext';
 
 const inizionalData = {
     name: '',
@@ -8,12 +8,11 @@ const inizionalData = {
     cardNumber: '',
     cardCvv: '',
     cardExpiryDate: ''
-}
+};
 
 function Checkout() {
 
-    const { cartStorage, setCartStorage } = useContext(GlobalContext);
-    const total = cartStorage.reduce((acc, order) => acc + Number(order.price), 0)
+    const { cartStorage, setCartStorage, totalPrice } = useContext(GlobalContext);
 
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState(inizionalData);
@@ -56,8 +55,8 @@ function Checkout() {
             form.classList.add("was-validated");
             setValidated(true);
             console.log(formData);
-            setFormData(inizionalData)
-            setCartStorage([])
+            setFormData(inizionalData);
+            setCartStorage([]);
         }
     }
 
@@ -74,14 +73,19 @@ function Checkout() {
                             {cartStorage.map((game, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between lh-sm">
                                     <div>
-                                        <h6 className="my-0">{game.title}</h6>
+                                        <h6 className="my-0">
+                                            {game.title}
+                                            {game.quantity && (
+                                                <span className="ms-2 px-2 py-1 bg-warning text-dark rounded">x {game.quantity}</span>
+                                            )}
+                                        </h6>
                                         <small className="text-muted">{game.platform}</small>
                                     </div>
-                                    <span className="text-muted">€ {Number(game.price).toFixed(2)}</span>
+                                    <span className="text-muted">€ {game.discount ? (game.price - (game.price * game.discount / 100).toFixed(2)) * game.quantity : game.price * game.quantity}</span>
                                 </li>
                             ))}
                             <li className="list-group-item d-flex justify-content-between">
-                                <strong>Totale: {total.toFixed(2)}€ </strong>
+                                <strong>Totale: {totalPrice.toFixed(2)}€ </strong>
                             </li>
                         </ul>
                     </>
@@ -184,9 +188,9 @@ function Checkout() {
                 </div>
             </div>
         </>
-    )
+    );
 
 }
 
 
-export default Checkout
+export default Checkout;

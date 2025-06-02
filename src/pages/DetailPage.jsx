@@ -40,7 +40,6 @@ function DetailPage() {
 
         setCartStorage(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        console.log(cartStorage);
     }
 
 
@@ -82,7 +81,7 @@ function DetailPage() {
                                     <p className="card-text mb-1 pb-3">
                                         <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
                                         <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
-                                        <span className="card-text mb-2 position-absolute bg-warning text-dark fw-bold p-1 ms-3">
+                                        <span className="card-text mb-2 rounded position-absolute bg-warning text-dark fw-bold p-1 ms-3">
                                             - {game.discount}%
                                         </span>
                                     </p>
