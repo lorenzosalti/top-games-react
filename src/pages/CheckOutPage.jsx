@@ -144,7 +144,7 @@ function Checkout() {
                                         <h6 className="my-0">
                                             {game.title}
                                             {game.quantity && (
-                                                <span className="ms-2 px-2 py-1 bg-warning text-dark rounded text-white">x {game.quantity}</span>
+                                                <span className="ms-2 px-2 py-1 bg-warning text-dark rounded text-black">x {game.quantity}</span>
                                             )}
                                         </h6>
                                         <small className="text-white">{game.platform}</small>
@@ -153,7 +153,7 @@ function Checkout() {
                                 </li>
                             ))}
                             <li className="list-group-item d-flex justify-content-between bg-dark text-white">
-                                <strong>Totale: {totalPrice.toFixed(2)}€ </strong>
+                                <strong>Totale: {totalPrice.toFixed(2)} € </strong>
                             </li>
                         </ul>
                     </>
