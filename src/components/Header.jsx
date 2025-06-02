@@ -6,8 +6,7 @@ import GlobalContext from '../contexts/globalContext';
 
 export default function Header() {
 
-    const { cartStorage, removeFromCart } = useContext(GlobalContext);
-    const totalPrice = cartStorage.reduce((acc, game) => acc + Number(game.price), 0);
+    const { cartStorage, removeFromCart, updateQuantity, totalPrice } = useContext(GlobalContext);
     const navigate = useNavigate();
 
     const handleCheckout = () => {
@@ -19,8 +18,6 @@ export default function Header() {
 
     function deleteGameCart(game) {
         removeFromCart(game);
-        console.log(game);
-
     }
 
     return (
@@ -81,7 +78,7 @@ export default function Header() {
                                         <h5 className="card-title">{game.title}</h5>
                                         <p className="card-text mb-1"><strong>Genere:<br /></strong> {game.genres_list}</p>
                                         <p className="card-text mb-2"><strong>Console:<br /></strong> {game.platform}</p>
-                                        <p className="card-text fw-bold">Prezzo: {game.price} €</p>
+                                        <p className="card-text fw-bold">Prezzo: {game.discount ? game.price - (game.price * game.discount / 100).toFixed(2) : game.price} €</p>
                                     </div>
                                 </div>
                                 <div className="col-md-2 text-end pe-4">
@@ -92,7 +89,8 @@ export default function Header() {
                                             className="form-control mb-2"
                                             id={`quantityInput${index}`}
                                             min="1"
-                                            defaultValue="1"
+                                            value={game.quantity || 1}
+                                            onChange={(e) => updateQuantity(game, e.target.value)}
                                             style={{ width: '60px' }}
                                         />
                                         <button className="btn btn-danger btn-sm" onClick={() => deleteGameCart(game)}>
@@ -107,7 +105,7 @@ export default function Header() {
                 </div>
                 {cartStorage.length ? <div className='d-flex flex-column align-items-end mb-4 me-4'>
                     <div className='mb-2'>Prezzo totale: {totalPrice.toFixed(2)}€</div>
-                    <button className="btn btn-primary" onClick={handleCheckout} data-bs-dismiss="offcanvas">Sgancia i soldi</button>
+                    <button className="btn btn-primary" onClick={handleCheckout} data-bs-dismiss="offcanvas">Procedi al Pagamento</button>
                 </div> : ''}
             </div>
         </header>

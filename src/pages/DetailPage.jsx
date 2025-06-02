@@ -40,7 +40,6 @@ function DetailPage() {
 
         setCartStorage(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        console.log(cartStorage);
     }
 
 
