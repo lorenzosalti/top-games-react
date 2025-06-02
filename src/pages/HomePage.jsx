@@ -63,12 +63,8 @@ function HomePage() {
                                     .map((game, index) => (
                                         <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
                                             <Link to={`/games/${game.id}`}>
-                                                <img
-                                                    src={game.imagePath}
-                                                    className="d-block w-100 carousel-img card-img-top w-50"
-                                                    alt={game.title}
-                                                    style={{ height: '250px', objectFit: 'cover', width: '100px' }}
-                                                />
+                                                <img src={game.imagePath} className="d-block w-100 h-100" alt={game.title} />
+                                                <div className="carousel-overlay"></div>
                                                 <div className="carousel-caption d-none d-md-block">
                                                     <h3 className="text-light fw-bold">{game.title}</h3>
                                                     <p className="text-light">{game.description}</p>
