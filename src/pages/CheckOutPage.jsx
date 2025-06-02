@@ -3,12 +3,28 @@ import { useContext } from "react";
 import GlobalContext from '../contexts/globalContext';
 
 const inizionalData = {
-    name: '',
-    address: '',
+    Intestatario: '',
+    address_billing: '',
+    city_billing: '',
+    postal_code_billing: '',
+    country_billing: '',
+    region_billing: '',
     cardNumber: '',
     cardCvv: '',
     cardExpiryDate: ''
 };
+
+const customersData = {
+    name: '',
+    surname: '',
+    email: '',
+    phone: '',
+    address_shipping: '',
+    city_shipping: '',
+    postal_code_shipping: '',
+    country_shipping: '',
+    region_shipping: ''
+}
 
 function Checkout() {
 
@@ -16,14 +32,25 @@ function Checkout() {
 
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState(inizionalData);
+    const [userData, setUserData] = useState(customersData);
     const [fieldErrors, setFieldErrors] = useState({});
     const formRef = useRef(null);
+    const userFormRef = useRef(null);
 
     function handleFormData(e) {
         const value =
             e.target.type === "checkbox" ? e.target.checked : e.target.value;
         setFormData((formData) => ({
             ...formData,
+            [e.target.name]: value,
+        }));
+    }
+
+    function handleUserData(e) {
+        const value =
+            e.target.type === "checkbox" ? e.target.checked : e.target.value;
+        setUserData((userData) => ({
+            ...userData,
             [e.target.name]: value,
         }));
     }
@@ -57,6 +84,27 @@ function Checkout() {
             console.log(formData);
             setFormData(inizionalData);
             setCartStorage([]);
+        }
+    }
+
+    function userSubmit(e) {
+        e.preventDefault();
+        const form = userFormRef.current;
+
+        const errors = {}
+
+        if (!userData.email.includes('@')) {
+            errors.email = 'email non valida';
+        }
+
+        setFieldErrors(errors)
+
+        if (Object.keys(errors).length > 0) {
+            setValidated(false);
+        } else {
+            form.classList.add("was-validated");
+            setValidated(true);
+            setUserData(customersData)
         }
     }
 
@@ -98,13 +146,37 @@ function Checkout() {
                 <h2 className="mb-4 text-center">Checkout</h2>
 
                 <div className="mb-3">
-                    <label htmlFor="name" className="form-label">nome completo</label>
-                    <input type="text" id="name" name="name" className="form-control" value={formData.name} onChange={handleFormData} required />
+                    <label htmlFor="Intestatario" className="form-label">Intestatario</label>
+                    <input type="text" id="Intestatario" name="Intestatario" className="form-control" value={formData.Intestatario} onChange={handleFormData} required />
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="address" className="form-label">indirizzo di spedizione</label>
-                    <input type="text" id="address" name="address" className="form-control" value={formData.address} onChange={handleFormData} required />
+                    <label htmlFor="address_billing" className="form-label">Indirizzo di fatturazione</label>
+                    <input type="text" id="address_billing" name="address_billing" className="form-control" value={formData.address_billing} onChange={handleFormData} required />
+                </div>
+
+                <div className="row">
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="city_billing" className="form-label">Città</label>
+                        <input type="text" id="city_billing" name="city_billing" className="form-control" value={formData.city_billing} onChange={handleFormData} required />
+                    </div>
+
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="postal_code_billing" className="form-label">CAP</label>
+                        <input type="text" id="postal_code_billing" name="postal_code_billing" className="form-control" value={formData.postal_code_billing} onChange={handleFormData} required />
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="country_billing" className="form-label">Nazione</label>
+                        <input type="text" id="country_billing" name="country_billing" className="form-control" value={formData.country_billing} onChange={handleFormData} required />
+                    </div>
+
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="region_billing" className="form-label">Regione</label>
+                        <input type="text" id="region_billing" name="region_billing" className="form-control" value={formData.region_billing} onChange={handleFormData} required />
+                    </div>
                 </div>
 
                 <div className="row">
@@ -139,6 +211,62 @@ function Checkout() {
             </form>
 
 
+            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} onSubmit={userSubmit} ref={userFormRef} noValidate>
+                <h2 className="mb-4 text-center">Dati Cliente</h2>
+
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Nome</label>
+                    <input type="text" id="name" name="name" className="form-control" value={userData.name} onChange={handleUserData} required />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="surname" className="form-label">Cognome</label>
+                    <input type="text" id="surname" name="surname" className="form-control" value={userData.surname} onChange={handleUserData} required />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input type="email" id="email" name="email" className="form-control" value={userData.email} onChange={handleUserData} required />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="phone" className="form-label">Telefono</label>
+                    <input type="text" id="phone" name="phone" className="form-control" value={userData.phone} onChange={handleUserData} required />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="address_shipping" className="form-label">Indirizzo di spedizione</label>
+                    <input type="text" id="address_shipping" name="address_shipping" className="form-control" value={userData.address_shipping} onChange={handleUserData} required />
+                </div>
+
+                <div className="row">
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="city_shipping" className="form-label">Città</label>
+                        <input type="text" id="city_shipping" name="city_shipping" className="form-control" value={userData.city_shipping} onChange={handleUserData} required />
+                    </div>
+
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="postal_code_shipping" className="form-label">CAP</label>
+                        <input type="text" id="postal_code_shipping" name="postal_code_shipping" className="form-control" value={userData.postal_code_shipping} onChange={handleUserData} required />
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="country_shipping" className="form-label">Nazione</label>
+                        <input type="text" id="country_shipping" name="country_shipping" className="form-control" value={userData.country_shipping} onChange={handleUserData} required />
+                    </div>
+
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="region_shipping" className="form-label">Regione</label>
+                        <input type="text" id="region_shipping" name="region_shipping" className="form-control" value={userData.region_shipping} onChange={handleUserData} required />
+                    </div>
+                </div>
+
+                <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Conferma
+                </button>
+            </form>
 
 
 
