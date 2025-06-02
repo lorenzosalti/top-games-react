@@ -56,57 +56,6 @@ function Checkout() {
         }));
     }
 
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     const form = formRef.current;
-
-    //     const errors = {};
-
-    //     if (formData.cardNumber.length !== 16 || isNaN(formData.cardNumber)) {
-    //         errors.cardNumber = "Devi inserire 16 cifre nel campo Numero Carta.";
-    //     }
-
-    //     if (formData.cardCvv.length !== 3 || isNaN(formData.cardCvv)) {
-    //         errors.cardCvv = "Devi inserire 3 cifre nel campo CVV.";
-    //     }
-
-    //     const expiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
-    //     if (!expiryPattern.test(formData.cardExpiryDate)) {
-    //         errors.cardExpiryDate = "Inserisci una data valida nel formato MM/AA.";
-    //     }
-
-    //     setFieldErrors(errors);
-
-    //     if (Object.keys(errors).length > 0) {
-    //         setValidated(false);
-    //     } else {
-    //         form.classList.add("was-validated");
-    //         setValidated(true);
-    //         console.log(formData);
-    //     }
-
-    //     const orderPay = {
-    //         total_price: totalPrice,
-    //         date: new Date().toISOString().split('T')[0],
-    //         address_billing: formData.address_billing,
-    //         city_billing: formData.city_billing,
-    //         postal_code_billing: formData.postal_code_billing,
-    //         country_billing: formData.country_billing,
-    //         region_billing: formData.region_billing
-    //     }
-    //     console.log(orderPay.date)
-
-    //     axios.post('http://127.0.0.1:3000/order/', orderPay)
-    //         .then((res) => {
-    //             console.log('Complimenti Dati inviati', res.data);
-    //             setFormData(inizionalData);
-    //             setCartStorage([]);
-    //         })
-    //         .catch((err) => {
-    //             console.error('Rilevato errore', err)
-    //         })
-
-    // }
     function handleSubmit(e) {
         e.preventDefault();
         const form = formRef.current;
@@ -182,62 +131,15 @@ function Checkout() {
     }
 
 
-    // function userSubmit(e) {
-    //     e.preventDefault();
-    //     const form = userFormRef.current;
-
-    //     const errors = {}
-
-    //     if (!userData.email.includes('@')) {
-    //         errors.email = 'email non valida';
-    //     }
-
-    //     setFieldErrors(errors)
-
-    //     if (Object.keys(errors).length > 0) {
-    //         setValidated(false);
-    //     } else {
-    //         form.classList.add("was-validated");
-    //         setValidated(true);
-
-    //     }
-
-
-    //     const orderUser = {
-    //         name: userData.name,
-    //         surname: userData.surname,
-    //         email: userData.email,
-    //         phone: userData.phone,
-    //         address_shipping: userData.address_shipping,
-    //         city_shipping: userData.city_shipping,
-    //         postal_code_shipping: userData.postal_code_shipping,
-    //         country_shipping: userData.country_shipping,
-    //         region_shipping: userData.region_shipping
-    //     }
-
-
-    //     axios.post('http://127.0.0.1:3000/order/customer', orderUser)
-    //         .then((res) => {
-    //             console.log('Complimenti Dati inviati', res.data);
-    //             setUserData(customersData)
-    //         })
-    //         .catch((err) => {
-    //             console.error('Rilevato errore', err)
-    //         })
-    // }
-
-
-
-
     return (
         <>
-            <div className="container mt-5 p-4 border rounded shadow bg-light bg-dark text-white" style={{ maxWidth: "600px" }}>
+            <div className="container mt-5 p-4 border rounded shadow bg-light" style={{ maxWidth: "600px" }}>
                 <h4 className="mb-3">🛒 Riepilogo Carrello</h4>
                 {cartStorage.length ? (
                     <>
                         <ul className="list-group mb-3">
                             {cartStorage.map((game, index) => (
-                                <li key={index} className="list-group-item d-flex justify-content-between lh-sm bg-dark text-white">
+                                <li key={index} className="list-group-item d-flex justify-content-between lh-sm">
                                     <div>
                                         <h6 className="my-0">
                                             {game.title}
@@ -245,18 +147,18 @@ function Checkout() {
                                                 <span className="ms-2 px-2 py-1 bg-warning text-dark rounded">x {game.quantity}</span>
                                             )}
                                         </h6>
-                                        <small className="text-white">{game.platform}</small>
+                                        <small className="text-muted">{game.platform}</small>
                                     </div>
-                                    <span className="text-white">€ {game.discount ? (game.price - (game.price * game.discount / 100).toFixed(2)) * game.quantity : game.price * game.quantity}</span>
+                                    <span className="text-muted">€ {game.discount ? (game.price - (game.price * game.discount / 100).toFixed(2)) * game.quantity : game.price * game.quantity}</span>
                                 </li>
                             ))}
-                            <li className="list-group-item d-flex justify-content-between bg-dark text-white">
+                            <li className="list-group-item d-flex justify-content-between">
                                 <strong>Totale: {totalPrice.toFixed(2)}€ </strong>
                             </li>
                         </ul>
                     </>
                 ) : (
-                    <p className="text-white">Il carrello è vuoto.</p>
+                    <p>Il carrello è vuoto.</p>
                 )}
             </div>
 
@@ -311,72 +213,10 @@ function Checkout() {
                         <input type="text" id="region_shipping" name="region_shipping" className="form-control" value={userData.region_shipping} onChange={handleUserData} required />
                     </div>
                 </div>
-
-                {/* <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Conferma
-                </button> */}
             </form>
 
 
-            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} ref={userFormRef} noValidate>
-                <h2 className="mb-4 text-center">Dati Cliente</h2>
-
-                <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Nome</label>
-                    <input type="text" id="name" name="name" className="form-control" value={userData.name} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="surname" className="form-label">Cognome</label>
-                    <input type="text" id="surname" name="surname" className="form-control" value={userData.surname} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" id="email" name="email" className="form-control" value={userData.email} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="phone" className="form-label">Telefono</label>
-                    <input type="text" id="phone" name="phone" className="form-control" value={userData.phone} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="address_shipping" className="form-label">Indirizzo di spedizione</label>
-                    <input type="text" id="address_shipping" name="address_shipping" className="form-control" value={userData.address_shipping} onChange={handleUserData} required />
-                </div>
-
-                <div className="row">
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="city_shipping" className="form-label">Città</label>
-                        <input type="text" id="city_shipping" name="city_shipping" className="form-control" value={userData.city_shipping} onChange={handleUserData} required />
-                    </div>
-
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="postal_code_shipping" className="form-label">CAP</label>
-                        <input type="text" id="postal_code_shipping" name="postal_code_shipping" className="form-control" value={userData.postal_code_shipping} onChange={handleUserData} required />
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="country_shipping" className="form-label">Nazione</label>
-                        <input type="text" id="country_shipping" name="country_shipping" className="form-control" value={userData.country_shipping} onChange={handleUserData} required />
-                    </div>
-
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="region_shipping" className="form-label">Regione</label>
-                        <input type="text" id="region_shipping" name="region_shipping" className="form-control" value={userData.region_shipping} onChange={handleUserData} required />
-                    </div>
-                </div>
-
-                {/* <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Conferma
-                </button> */}
-            </form>
-
-
-            <form className="container mt-5 mb-5 p-4 border rounded shadow needs-validation bg-dark text-white" style={{ maxWidth: "600px" }} onSubmit={handleSubmit} ref={formRef} noValidate>
+            <form className="container mt-5 mb-5 p-4 border rounded shadow bg-white needs-validation" style={{ maxWidth: "600px" }} onSubmit={handleSubmit} ref={formRef} noValidate>
                 <h2 className="mb-4 text-center">Checkout</h2>
 
                 <div className="mb-3">
@@ -439,70 +279,10 @@ function Checkout() {
                     )}
                 </div>
 
-                <button type="submit" className="btn btn-warning text-black" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Conferma
                 </button>
             </form>
-
-
-            <form className="container mt-5 mb-5 p-4 border rounded shadow needs-validation bg-dark text-white" style={{ maxWidth: "600px" }} onSubmit={userSubmit} ref={userFormRef} noValidate>
-                <h2 className="mb-4 text-center">Dati Cliente</h2>
-
-                <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Nome</label>
-                    <input type="text" id="name" name="name" className="form-control" value={userData.name} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="surname" className="form-label">Cognome</label>
-                    <input type="text" id="surname" name="surname" className="form-control" value={userData.surname} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" id="email" name="email" className="form-control" value={userData.email} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="phone" className="form-label">Telefono</label>
-                    <input type="text" id="phone" name="phone" className="form-control" value={userData.phone} onChange={handleUserData} required />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="address_shipping" className="form-label">Indirizzo di spedizione</label>
-                    <input type="text" id="address_shipping" name="address_shipping" className="form-control" value={userData.address_shipping} onChange={handleUserData} required />
-                </div>
-
-                <div className="row">
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="city_shipping" className="form-label">Città</label>
-                        <input type="text" id="city_shipping" name="city_shipping" className="form-control" value={userData.city_shipping} onChange={handleUserData} required />
-                    </div>
-
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="postal_code_shipping" className="form-label">CAP</label>
-                        <input type="text" id="postal_code_shipping" name="postal_code_shipping" className="form-control" value={userData.postal_code_shipping} onChange={handleUserData} required />
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="country_shipping" className="form-label">Nazione</label>
-                        <input type="text" id="country_shipping" name="country_shipping" className="form-control" value={userData.country_shipping} onChange={handleUserData} required />
-                    </div>
-
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="region_shipping" className="form-label">Regione</label>
-                        <input type="text" id="region_shipping" name="region_shipping" className="form-control" value={userData.region_shipping} onChange={handleUserData} required />
-                    </div>
-                </div>
-
-                <button type="submit" className="btn btn-warning text-black" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Conferma
-                </button>
-            </form>
-
-
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
