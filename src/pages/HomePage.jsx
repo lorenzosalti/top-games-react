@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import Search from '../components/Search';
 import { Link } from "react-router-dom";
 import WelcomePopup from "../components/WelcomePopup";
-import GlobalContext from "../contexts/globalContext";
-import { useContext } from "react";
+
 
 function HomePage() {
 
