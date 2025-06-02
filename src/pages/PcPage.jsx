@@ -21,6 +21,9 @@ function Pc() {
     return (
         <section className="container">
             <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
+                <div className="d-flex justify-content-center text-white mb-3">
+                    <h2>PC</h2>
+                </div>
                 {games.map(game => <Card data={game} key={game.id} />)}
             </div>
 

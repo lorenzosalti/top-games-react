@@ -49,7 +49,7 @@ function WishListPage() {
 
         <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
           {gamesInWishlist.map(game =>
-            <div className="card bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
+            <div className="card shadow bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
               <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <figure className="mt-2"><img src={game.imagePath} className="card-img-top " alt={game.title} /></figure>
                 <h5 className="card-title fw-bold pt-2">{game.title}</h5>

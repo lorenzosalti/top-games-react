@@ -6,7 +6,7 @@ function Card({ data }) {
 
     return (
 
-        <div className="card bg-dark col-lg-3 col-md-4 text-white">
+        <div className="card bg-dark col-lg-3 col-md-4 text-white shadow">
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <figure className="mt-2">
                     <img src={imagePath} className="card-img-top " alt={title} />
