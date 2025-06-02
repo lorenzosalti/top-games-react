@@ -41,23 +41,37 @@ function WishListPage() {
 
   return (
     <>
-      <h2>WishList</h2>
+      <div className="container">
+        <div className="d-flex justify-content-center text-white mb-3">
+          <h2>La tua wishList</h2>
+        </div>
 
 
-      <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
-        {gamesInWishlist.map(game =>
-          <div className="card bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
-            <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <figure className="mt-2"><img src={game.imagePath} className="card-img-top " alt={game.title} /></figure>
-              <h5 className="card-title fw-bold pt-2">{game.title}</h5>
-              <p className="card-text"><strong>Console:</strong> {game.platform}</p>
-              <p className="card-text fw-bold">{game.price} €</p>
-              <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
+        <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
+          {gamesInWishlist.map(game =>
+            <div className="card bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
+              <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                <figure className="mt-2"><img src={game.imagePath} className="card-img-top " alt={game.title} /></figure>
+                <h5 className="card-title fw-bold pt-2">{game.title}</h5>
+                <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                {game.discount > 0 ? (
+                  <>
+                    <p className="card-text mb-1 pb-3">
+                      <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
+                      <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
+                      <span className="card-text mb-2 rounded position-absolute bg-warning discount text-dark fw-bold p-2 ms-3">
+                        - {game.discount}%
+                      </span>
+                    </p>
+                  </>
+                ) : (<div className='mb-3'>{game.price} €</div>)}
+                <Link to={`/games/${game.id}`} className="btn btn-warning mb-2">Dettaglio Prodotto</Link>
 
-              <WishlistButton gameId={game.id} />
+                <WishlistButton gameId={game.id} />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   )
