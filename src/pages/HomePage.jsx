@@ -55,14 +55,14 @@ function HomePage() {
                             {
                                 ['PlayStation 5', 'Xbox Series X', 'PC', 'Nintendo Switch']
                                     .map(platform => {
-                                        const game = games.find(g => g.platform === platform);
+                                        const game = games.find(game => game.platform === platform);
                                         if (game) return game;
                                         else return null;
                                     })
                                     .filter(game => game !== null)
                                     .map((game, index) => (
                                         <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={game.id}>
-                                            <a href={`/games/${game.slug}`}>
+                                            <Link to={`/games/${game.id}`}>
                                                 <img
                                                     src={game.imagePath}
                                                     className="d-block w-100 carousel-img card-img-top w-50"
@@ -73,7 +73,7 @@ function HomePage() {
                                                     <h3 className="text-light fw-bold">{game.title}</h3>
                                                     <p className="text-light">{game.description}</p>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </div>
                                     ))
                             }
