@@ -117,7 +117,7 @@ function HomePage() {
                                                 <div className="col-md-4 mb-4" key={game.id}>
                                                     <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                                                            <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} />
+                                                            <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
                                                             <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
                                                                 <p className="card-text"><strong>Console:</strong> {game.platform}</p>
@@ -128,7 +128,6 @@ function HomePage() {
                                                                         <span className="card-text mb-2 rounded position-absolute discount bg-warning text-dark fw-bold p-2"> - {game.discount}%</span>
                                                                     </p>
                                                                     : <span className="m-2">{game.price} €</span>}
-                                                                <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -170,7 +169,7 @@ function HomePage() {
                                                 <div className="col-md-4 mb-4" key={game.id}>
                                                     <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                                                            <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} />
+                                                            <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
                                                             <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
                                                                 <p className="card-text"><strong>Console:</strong> {game.platform}</p>
@@ -181,7 +180,6 @@ function HomePage() {
                                                                 <span className="card-text mb-2 rounded position-absolute discount bg-warning text-dark fw-bold p-2">
                                                                     - {game.discount}%
                                                                 </span>
-                                                                <Link to={`/games/${game.id}`} className="btn btn-warning">Dettaglio Prodotto</Link>
                                                             </div>
                                                         </div>
                                                     </div>

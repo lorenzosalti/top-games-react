@@ -19,7 +19,7 @@ function SearchPage() {
                 <h2 className="text-center text-white">Catalogo Giochi</h2>
                 <Search />
                 <div className="d-flex justify-content-around">
-                    <div className="text-white fw-bold text-align-center pt-1">Filtra per:</div> <div className="text-white fw-bold pe-2 pt-1">Ordina per:</div>
+                    <div className="text-white fw-bold text-align-center pt-1">Ordina per:</div> <div className="text-white fw-bold pe-2 pt-1">Ordina per:</div>
                 </div>
                 <div className="d-flex justify-content-around">
 
