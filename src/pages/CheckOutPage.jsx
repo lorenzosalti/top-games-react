@@ -38,9 +38,17 @@ function Checkout() {
     const formRef = useRef(null);
     const userFormRef = useRef(null);
 
+    const [discountList, setDiscountList] = useState([])
+    const [discountData, setDiscountData] = useState('')
+    const [netDiscount, setNetDiscount] = useState('')
+    const [totalPrice, setTotalPrice] = useState(0)
+
     const shippingPrice = (grossPrice >= 100 ? 0 : 4.99);
 
-    const totalPrice = shippingPrice + grossPrice;
+    useEffect(() => {
+        const newTotal = grossPrice + shippingPrice - netDiscount;
+        setTotalPrice(newTotal);
+    }, [grossPrice, shippingPrice, netDiscount]);
 
     function handleFormData(e) {
         const value =
@@ -58,6 +66,11 @@ function Checkout() {
             ...userData,
             [e.target.name]: value,
         }));
+    }
+
+    function handleDiscountData(e) {
+        const value = e.target.value;
+        setDiscountData(value);
     }
 
     function handleSubmit(e) {
@@ -134,6 +147,27 @@ function Checkout() {
             });
     }
 
+    function handleDiscount(e) {
+        e.preventDefault();
+        axios.get('http://127.0.0.1:3000/order/discount')
+            .then(res => {
+                setDiscountList(res.data)
+                getNetPrice(res.data)
+            })
+            .catch((err) => {
+                console.error('Errore discount code:', err);
+            });
+    }
+
+    function getNetPrice(data) {
+        const discount = data.find(d => d.discount_code === discountData);
+        if (discount) {
+            setNetDiscount(parseFloat(grossPrice * discount.discount_value / 100));
+        } else {
+            setNetDiscount('');
+        }
+    }
+
 
     return (
         <>
@@ -156,6 +190,9 @@ function Checkout() {
                                     <span className="text-white"> € {game.discount ? ((game.price - (game.price * game.discount / 100)) * game.quantity).toFixed(2) : (game.price * game.quantity).toFixed(2)}</span>
                                 </li>
                             ))}
+                            {netDiscount && <li className="list-group-item d-flex justify-content-between bg-dark text-white">
+                                <strong>Codice Sconto: - {netDiscount.toFixed(2)} € </strong>
+                            </li>}
                             <li className="list-group-item d-flex justify-content-between bg-dark text-white">
                                 <strong>Spedizione: {shippingPrice.toFixed(2)} € </strong>
                             </li>
@@ -163,6 +200,14 @@ function Checkout() {
                                 <strong>Totale: {totalPrice.toFixed(2)} € </strong>
                             </li>
                         </ul>
+
+                        <div className="list-group-item d-flex justify-content-between bg-dark text-white">
+                            <label htmlFor="discount-input" className="form-label">Inserire codice sconto</label>
+                            <input type="text" className="form-control" id="discount-input" onChange={handleDiscountData} />
+                            <button type="button" className="btn btn-warning text-black" data-bs-toggle="modal" data-bs-target="#discountModal" onClick={handleDiscount}>
+                                Applica
+                            </button>
+                        </div>
                     </>
                 ) : (
                     <p className="text-white">Il carrello è vuoto.</p>
@@ -332,10 +377,46 @@ function Checkout() {
 
                         </div>
                     )}
+                </div>
+            </div>
 
+            <div className="modal fade" id="discountModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    {netDiscount ? (
+                        <div className="modal-content border border-success">
+
+                            <div className="modal-header bg-success text-white">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                    ✅ Codice sconto applicato!
+                                </h1>
+                                <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-success" data-bs-dismiss="modal">Grazie!!</button>
+                            </div>
+
+                        </div>
+                    ) : (
+                        <div className="modal-content border border-danger">
+
+                            <div className="modal-header bg-danger text-white">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                    ❌ Codice sconto non valido
+                                </h1>
+                                <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Chiudi e riprova</button>
+                            </div>
+
+                        </div>
+                    )}
 
                 </div>
             </div>
+
         </>
     );
 
