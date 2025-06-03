@@ -9,7 +9,6 @@ export default function Header() {
     const { cartStorage, removeFromCart, updateQuantity, totalPrice } = useContext(GlobalContext);
     const navigate = useNavigate();
     const totalGameCart = cartStorage.reduce((acc, game) => {
-
         return acc + game.quantity;
     }, 0);
 

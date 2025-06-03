@@ -120,6 +120,23 @@ function App() {
     );
   }
 
+  function reduceQuantityGameCart(gameToUpdate) {
+    setCartStorage(prev => {
+      const updatedCart = prev
+        .map(game => {
+          if (game.id === gameToUpdate.id) {
+            const newQuantity = game.quantity - 1;
+            return newQuantity > 0 ? { ...game, quantity: newQuantity } : null;
+          }
+          return game;
+        })
+        .filter(Boolean);
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+  }
+
   const totalPrice = cartStorage.reduce((acc, game) => {
     let price = game.discount ? game.price - (game.price * game.discount / 100) : game.price;
 
@@ -129,7 +146,7 @@ function App() {
 
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart, wishListGames, setWishListGames, toggleWishlist, isInWishlist, updateQuantity, totalPrice }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart, wishListGames, setWishListGames, toggleWishlist, isInWishlist, updateQuantity, totalPrice, reduceQuantityGameCart }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />
