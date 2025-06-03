@@ -56,15 +56,10 @@ function Checkout() {
         }));
     }
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
-
-        if (!cartStorage.length) {
-            alert('Il carrello è vuoto!');
-            return;
-        }
-
         const form = formRef.current;
+
         const errors = {};
 
         if (formData.cardNumber.length !== 16 || isNaN(formData.cardNumber)) {
@@ -104,38 +99,35 @@ function Checkout() {
             region_billing: formData.region_billing
         };
 
-        try {
-            const res = await axios.post('http://127.0.0.1:3000/order/', orderPay);
-            const createdOrderId = res.data.id_order;
+        axios.post('http://127.0.0.1:3000/order/', orderPay)
+            .then((res) => {
+                const createdOrderId = res.data.id_order;
 
-            const orderUser = {
-                id_order: createdOrderId,
-                name: userData.name,
-                surname: userData.surname,
-                email: userData.email,
-                phone: userData.phone,
-                address_shipping: userData.address_shipping,
-                city_shipping: userData.city_shipping,
-                postal_code_shipping: userData.postal_code_shipping,
-                country_shipping: userData.country_shipping,
-                region_shipping: userData.region_shipping
-            };
+                const orderUser = {
+                    id_order: createdOrderId,
+                    name: userData.name,
+                    surname: userData.surname,
+                    email: userData.email,
+                    phone: userData.phone,
+                    address_shipping: userData.address_shipping,
+                    city_shipping: userData.city_shipping,
+                    postal_code_shipping: userData.postal_code_shipping,
+                    country_shipping: userData.country_shipping,
+                    region_shipping: userData.region_shipping
+                };
 
-            await axios.post('http://127.0.0.1:3000/order/customer', orderUser);
-            await axios.post('http://127.0.0.1:3000/order/vendor', {
-                customer: userData,
-                order: orderPay,
-                games: cartStorage
+                return axios.post('http://127.0.0.1:3000/order/customer', orderUser);
+            })
+            .then((res) => {
+                console.log('Cliente inserito:', res.data);
+                setFormData(inizionalData);
+                setUserData(customersData);
+                setCartStorage([]);
+            })
+            .catch((err) => {
+                console.error('Errore nell’invio dei dati:', err);
+                setValidated(false);
             });
-
-            console.log('Ordine completato con successo');
-            setFormData(inizionalData);
-            setUserData(customersData);
-            setCartStorage([]);
-        } catch (err) {
-            console.error('Errore durante l’elaborazione dell’ordine:', err);
-            setValidated(false);
-        }
     }
 
 
