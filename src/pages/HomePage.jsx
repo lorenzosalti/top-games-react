@@ -6,7 +6,9 @@ import WelcomePopup from "../components/WelcomePopup";
 import GlobalContext from "../contexts/globalContext";
 import { useContext } from "react";
 import WishListButton from "../components/WishListButton";
-import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
 
 function HomePage() {
@@ -170,7 +172,7 @@ function HomePage() {
                                                                                     type="button"
                                                                                     className="btn btn-warning me-2"
                                                                                 >
-                                                                                    <strong>-1</strong>
+                                                                                    <FontAwesomeIcon icon={faMinus} />
                                                                                 </button>
 
                                                                                 <input
@@ -186,7 +188,7 @@ function HomePage() {
                                                                                     type="button"
                                                                                     className="btn btn-warning me-sm-3"
                                                                                 >
-                                                                                    <strong>+1</strong>
+                                                                                    <FontAwesomeIcon icon={faPlus} />
                                                                                 </button>
                                                                             </div>
                                                                         );

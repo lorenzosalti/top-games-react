@@ -3,6 +3,9 @@ import axios from "axios";
 import GlobalContext from '../contexts/globalContext';
 import WishlistButton from "../components/WishListButton";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
 
 function WishListPage() {
@@ -84,53 +87,54 @@ function WishListPage() {
                     </p>
                   </>
                 ) : (<div className='mb-3'>{game.price} €</div>)}
+                <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                  {(() => {
+                    const gameInCart = cartStorage.find(g => g.id === game.id);
+                    const quantity = gameInCart ? gameInCart.quantity : 0;
 
-                {(() => {
-                  const gameInCart = cartStorage.find(g => g.id === game.id);
-                  const quantity = gameInCart ? gameInCart.quantity : 0;
 
+                    if (quantity > 0) {
+                      return (
+                        <div className="d-flex align-items-center">
+                          <button
+                            onClick={() => reduceQuantityGameCart(game)}
+                            type="button"
+                            className="btn btn-warning me-2"
+                          >
+                            <FontAwesomeIcon icon={faMinus} />
+                          </button>
 
-                  if (quantity > 0) {
-                    return (
-                      <div className="d-flex align-items-center">
-                        <button
-                          onClick={() => reduceQuantityGameCart(game)}
-                          type="button"
-                          className="btn btn-warning me-2"
-                        >
-                          <strong>-1</strong>
-                        </button>
+                          <input
+                            type="text"
+                            readOnly
+                            value={quantity}
+                            className="form-control text-center me-2"
+                            style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                          />
 
-                        <input
-                          type="text"
-                          readOnly
-                          value={quantity}
-                          className="form-control text-center me-2"
-                          style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
-                        />
-
+                          <button
+                            onClick={() => addGameCart(game)}
+                            type="button"
+                            className="btn btn-warning me-sm-3"
+                          >
+                            <FontAwesomeIcon icon={faPlus} />
+                          </button>
+                        </div>
+                      );
+                    } else {
+                      return (
                         <button
                           onClick={() => addGameCart(game)}
                           type="button"
-                          className="btn btn-warning me-sm-3"
+                          className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
                         >
-                          <strong>+1</strong>
+                          Aggiungi al carrello
                         </button>
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <button
-                        onClick={() => addGameCart(game)}
-                        type="button"
-                        className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
-                      >
-                        Aggiungi al carrello
-                      </button>
-                    );
-                  }
-                })()}
-                <WishlistButton gameId={game.id} />
+                      );
+                    }
+                  })()}
+                  <WishlistButton gameId={game.id} />
+                </div>
               </div>
             </div>
           )}

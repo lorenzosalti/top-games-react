@@ -3,6 +3,10 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import GlobalContext from '../contexts/globalContext';
 import WishListButton from '../components/WishListButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+
 
 function DetailPage() {
 
@@ -100,7 +104,7 @@ function DetailPage() {
                                                     type="button"
                                                     className="btn btn-warning me-2"
                                                 >
-                                                    <strong>-1</strong>
+                                                    <FontAwesomeIcon icon={faMinus} />
                                                 </button>
 
                                                 <input
@@ -116,7 +120,7 @@ function DetailPage() {
                                                     type="button"
                                                     className="btn btn-warning me-sm-3"
                                                 >
-                                                    <strong>+1</strong>
+                                                    <FontAwesomeIcon icon={faPlus} />
                                                 </button>
                                             </div>
                                         );
