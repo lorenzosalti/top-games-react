@@ -81,7 +81,7 @@ function Checkout() {
                                         </h6>
                                         <small className="text-muted">{game.platform}</small>
                                     </div>
-                                    <span className="text-muted">€ {game.discount ? (game.price - (game.price * game.discount / 100).toFixed(2)) * game.quantity : game.price * game.quantity}</span>
+                                    <span className="text-muted">€ {game.discount ? ((game.price - (game.price * game.discount / 100)).toFixed(2)) * game.quantity : game.price * game.quantity}</span>
                                 </li>
                             ))}
                             <li className="list-group-item d-flex justify-content-between">

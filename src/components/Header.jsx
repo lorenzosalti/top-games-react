@@ -78,7 +78,7 @@ export default function Header() {
                                         <h5 className="card-title">{game.title}</h5>
                                         <p className="card-text mb-1"><strong>Genere:<br /></strong> {game.genres_list}</p>
                                         <p className="card-text mb-2"><strong>Console:<br /></strong> {game.platform}</p>
-                                        <p className="card-text fw-bold">Prezzo: {game.discount ? game.price - (game.price * game.discount / 100).toFixed(2) : game.price} €</p>
+                                        <p className="card-text fw-bold">Prezzo: {game.discount ? (game.price - (game.price * game.discount / 100)).toFixed(2) : game.price} €</p>
                                     </div>
                                 </div>
                                 <div className="col-md-2 text-end pe-4">
