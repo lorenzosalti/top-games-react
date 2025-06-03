@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext, useMemo } from "react"
-import axios from "axios"
+import { useEffect, useState, useContext, useMemo } from "react";
+import axios from "axios";
 import GlobalContext from '../contexts/globalContext';
 import WishlistButton from "../components/WishListButton";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function WishListPage() {
 
-  const { wishListGames, setWishListGames } = useContext(GlobalContext);
+  const { wishListGames, setWishListGames, cartStorage, reduceQuantityGameCart, setCartStorage } = useContext(GlobalContext);
 
   // necessaria perchè il games in contesto globale potrebbe essere filtrato, ma è sempre necessario fare un confronto tra TUTTI i giochi
   const [games, setGames] = useState([]);
@@ -16,9 +16,9 @@ function WishListPage() {
 
   // al montaggio del componente fa un fetch degli ID salvati in localStorage
   useEffect(() => {
-    const storedIds = localStorage.getItem("wishListGames")
+    const storedIds = localStorage.getItem("wishListGames");
     if (storedIds) {
-      setWishListGames(JSON.parse(storedIds))
+      setWishListGames(JSON.parse(storedIds));
     }
   }, []);
 
@@ -26,10 +26,10 @@ function WishListPage() {
   useEffect(() => {
     axios.get(gamesUrl)
       .then(res => {
-        setGames(res.data)
+        setGames(res.data);
       })
       .catch(err => console.error(err));
-  }, [])
+  }, []);
 
   // verifica della presenza di giochi nella wishlist, viene ricalcolato sempre e solo quando [games, wishListGames] sono modificati
   // useMemo serve a sostituire il lavoro di useEffect + useState
@@ -38,6 +38,25 @@ function WishListPage() {
     return games.filter(game => wishListGames.includes(Number(game.id)));
   }, [games, wishListGames]);
 
+
+  function addGameCart(game) {
+    // let arrayCart = localStorage.getItem('cart');
+    // console.log(JSON.parse(arrayCart));
+    const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
+
+    let updatedCart;
+
+    if (existingGameIndex !== -1) {
+      updatedCart = [...cartStorage];
+      updatedCart[existingGameIndex].quantity += 1;
+
+    } else {
+      updatedCart = [...cartStorage, { ...game, quantity: 1 }];
+    }
+
+    setCartStorage(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  }
 
   return (
     <>
@@ -66,6 +85,51 @@ function WishListPage() {
                   </>
                 ) : (<div className='mb-3'>{game.price} €</div>)}
 
+                {(() => {
+                  const gameInCart = cartStorage.find(g => g.id === game.id);
+                  const quantity = gameInCart ? gameInCart.quantity : 0;
+
+
+                  if (quantity > 0) {
+                    return (
+                      <div className="d-flex align-items-center">
+                        <button
+                          onClick={() => reduceQuantityGameCart(game)}
+                          type="button"
+                          className="btn btn-warning me-2"
+                        >
+                          <strong>-1</strong>
+                        </button>
+
+                        <input
+                          type="text"
+                          readOnly
+                          value={quantity}
+                          className="form-control text-center me-2"
+                          style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                        />
+
+                        <button
+                          onClick={() => addGameCart(game)}
+                          type="button"
+                          className="btn btn-warning me-sm-3"
+                        >
+                          <strong>+1</strong>
+                        </button>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <button
+                        onClick={() => addGameCart(game)}
+                        type="button"
+                        className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
+                      >
+                        Aggiungi al carrello
+                      </button>
+                    );
+                  }
+                })()}
                 <WishlistButton gameId={game.id} />
               </div>
             </div>
@@ -73,8 +137,8 @@ function WishListPage() {
         </div>
       </div>
     </>
-  )
+  );
 
 }
 
-export default WishListPage
+export default WishListPage;
