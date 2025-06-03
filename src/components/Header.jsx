@@ -6,7 +6,7 @@ import GlobalContext from '../contexts/globalContext';
 
 export default function Header() {
 
-    const { cartStorage, removeFromCart, updateQuantity, totalPrice } = useContext(GlobalContext);
+    const { cartStorage, removeFromCart, updateQuantity, grossPrice } = useContext(GlobalContext);
     const navigate = useNavigate();
     const totalGameCart = cartStorage.reduce((acc, game) => {
         return acc + game.quantity;
@@ -110,7 +110,7 @@ export default function Header() {
                         : <div className="text-white">Nessun gioco nel carrello</div>}
                 </div>
                 {cartStorage.length ? <div className='d-flex flex-column align-items-center mb-4 me-4 mt-4'>
-                    <div className='mb-2 text-white fw-bold'>Prezzo totale: {totalPrice.toFixed(2)} €</div>
+                    <div className='mb-2 text-white fw-bold'>Prezzo totale: {grossPrice.toFixed(2)} €</div>
                     <button className="btn btn-warning text-black" onClick={handleCheckout} data-bs-dismiss="offcanvas">Procedi al Pagamento</button>
                 </div> : ''}
             </div>

@@ -113,6 +113,7 @@ function App() {
     return wishListGames.includes(id);
   }
 
+  // FUNZIONI E VARIABILI DEDICATE AL CARRELLO E CHECKOUT
   function updateQuantity(gameToUpdate, quantity) {
     const safeQuantity = Math.max(1, Number(quantity));
     setCartStorage(prev =>
@@ -137,7 +138,7 @@ function App() {
     });
   }
 
-  const totalPrice = cartStorage.reduce((acc, game) => {
+  const grossPrice = cartStorage.reduce((acc, game) => {
     let price = game.discount ? game.price - (game.price * game.discount / 100) : game.price;
 
     return acc + Number((price * game.quantity).toFixed(2));
@@ -146,7 +147,7 @@ function App() {
 
   return (
     <>
-      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart, wishListGames, setWishListGames, toggleWishlist, isInWishlist, updateQuantity, totalPrice, reduceQuantityGameCart }}>
+      <GlobalContext.Provider value={{ searchGames, search, setSearch, games, orderBy, setOrderBy, orderByDirection, setOrderByDirection, cartStorage, setCartStorage, removeFromCart, wishListGames, setWishListGames, toggleWishlist, isInWishlist, updateQuantity, grossPrice, reduceQuantityGameCart }}>
         <Routes>
           <Route element={<SearchLayout />}>
             <Route path='/' element={<HomePage />} />

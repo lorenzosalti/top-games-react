@@ -29,7 +29,7 @@ const customersData = {
 
 function Checkout() {
 
-    const { cartStorage, setCartStorage, totalPrice } = useContext(GlobalContext);
+    const { cartStorage, setCartStorage, grossPrice } = useContext(GlobalContext);
 
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState(inizionalData);
@@ -37,6 +37,10 @@ function Checkout() {
     const [fieldErrors, setFieldErrors] = useState({});
     const formRef = useRef(null);
     const userFormRef = useRef(null);
+
+    const shippingPrice = (grossPrice >= 100 ? 0 : 4.99);
+
+    const totalPrice = shippingPrice + grossPrice;
 
     function handleFormData(e) {
         const value =
@@ -152,6 +156,9 @@ function Checkout() {
                                     <span className="text-white"> € {game.discount ? ((game.price - (game.price * game.discount / 100)) * game.quantity).toFixed(2) : (game.price * game.quantity).toFixed(2)}</span>
                                 </li>
                             ))}
+                            <li className="list-group-item d-flex justify-content-between bg-dark text-white">
+                                <strong>Spedizione: {shippingPrice.toFixed(2)} € </strong>
+                            </li>
                             <li className="list-group-item d-flex justify-content-between bg-dark text-white">
                                 <strong>Totale: {totalPrice.toFixed(2)} € </strong>
                             </li>
