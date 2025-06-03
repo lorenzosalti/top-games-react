@@ -22,25 +22,28 @@ export default function Header() {
 
     return (
         <header>
-            <nav className="navbar navbar-expand-lg bg-dark mb-5 py-3">
-                <div className="container-fluid">
-                    <Link to={'/'} className='navbar-brand text-white'>Top Games</Link>
+            <nav className="navbar navbar-expand-lg bg-dark mb-5 py-3 shadow">
+                <div className="container-fluid me-5 ms-5">
+                    <Link to={'/'} className='navbar-brand text-white'>
+                        <img src="../public/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" />
+
+                    </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse " id="navbarNavDropdown">
                         <ul className="navbar-nav mx-auto ">
                             <li className="nav-item">
-                                <NavLink to={'/console/playstation'} className='nav-link text-white'>Playstation</NavLink>
+                                <NavLink to={'/console/playstation'} className='nav-link text-white zoom-effect fs-5'>PlayStation 5</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/xbox'} className='nav-link text-white'>Xbox</NavLink>
+                                <NavLink to={'/console/xbox'} className='nav-link text-white zoom-effect fs-5'>Xbox Series X</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/pc'} className='nav-link text-white'>PC</NavLink>
+                                <NavLink to={'/console/pc'} className='nav-link text-white zoom-effect fs-5'>PC</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/switch'} className='nav-link text-white'>Switch</NavLink>
+                                <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'>Nintendo Switch</NavLink>
                             </li>
                         </ul>
                         <ul className="navbar-nav">
@@ -55,26 +58,26 @@ export default function Header() {
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/wishlist'} className='nav-link text-white'>Wishlist</NavLink>
+                                <NavLink to={'/wishlist'} className='nav-link text-white zoom-effect'>Wishlist</NavLink>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div className="offcanvas offcanvas-end bg-dark" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div className="offcanvas-header">
-                    <h5 className="offcanvas-title" id="offcanvasRightLabel">Giochi nel carrello</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <h5 className="offcanvas-title text-white" id="offcanvasRightLabel">Giochi nel carrello</h5>
+                    <button type="button" className="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body d-flex flex-column">
                     {cartStorage.length ? cartStorage.map((game, index) => (
-                        <div key={index} className="card mb-3" >
-                            <div className="row g-0 align-items-center">
+                        <div key={index} className="card mb-3 bg-dark" >
+                            <div className="row g-0 align-items-center bg-dark">
                                 <div className="col-md-4">
                                     <img src={game.imagePath} className="img-fluid rounded-start" alt={game.title} />
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="card-body">
+                                    <div className="card-body text-white">
                                         <h5 className="card-title">{game.title}</h5>
                                         <p className="card-text mb-1"><strong>Genere:<br /></strong> {game.genres_list}</p>
                                         <p className="card-text mb-2"><strong>Console:<br /></strong> {game.platform}</p>
@@ -93,7 +96,7 @@ export default function Header() {
                                             onChange={(e) => updateQuantity(game, e.target.value)}
                                             style={{ width: '60px' }}
                                         />
-                                        <button className="btn btn-danger btn-sm" onClick={() => deleteGameCart(game)}>
+                                        <button className="btn btn-warning text-black btn-sm" onClick={() => deleteGameCart(game)}>
                                             Elimina
                                         </button>
                                     </div>
@@ -101,11 +104,11 @@ export default function Header() {
                             </div>
                         </div>
                     ))
-                        : <div>Nessun Gioco nel carrello</div>}
+                        : <div className="text-white">Nessun gioco nel carrello</div>}
                 </div>
-                {cartStorage.length ? <div className='d-flex flex-column align-items-end mb-4 me-4'>
-                    <div className='mb-2'>Prezzo totale: {totalPrice.toFixed(2)}€</div>
-                    <button className="btn btn-primary" onClick={handleCheckout} data-bs-dismiss="offcanvas">Procedi al Pagamento</button>
+                {cartStorage.length ? <div className='d-flex flex-column align-items-center mb-4 me-4 mt-4'>
+                    <div className='mb-2 text-white fw-bold'>Prezzo totale: {totalPrice.toFixed(2)} €</div>
+                    <button className="btn btn-warning text-black" onClick={handleCheckout} data-bs-dismiss="offcanvas">Procedi al Pagamento</button>
                 </div> : ''}
             </div>
         </header>

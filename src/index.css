@@ -235,3 +235,35 @@ img {
 .footer-link-url:hover {
     color: #f9dc02;
 }
+
+.zoom-effect {
+    transition: transform 0.3s ease;
+}
+
+.zoom-effect:hover {
+    transform: scale(1.08);
+}
+
+.navbar.shadow {
+    box-shadow: 0 .5rem 1rem rgba(255, 193, 7, 0.2) !important
+}
+
+.card.shadow {
+    box-shadow: 0 .5rem 1rem rgba(255, 193, 7, 0.2) !important
+}
+
+.carousel.shadow {
+    box-shadow: 0 .5rem 1rem rgba(255, 193, 7, 0.2) !important
+}
+
+.footer.shadow {
+    box-shadow: 0 .5rem 1rem rgba(255, 193, 7, 0.2) !important
+}
+
+.card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.card-img-top:hover {
+    transform: scale(1.1);
+}
