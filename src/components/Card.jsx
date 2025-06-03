@@ -9,7 +9,7 @@ function Card({ data }) {
 
     const { id, title, imagePath, price, discount, platform } = data;
 
-    const { cartStorage, setCartStorage } = useContext(GlobalContext);
+    const { cartStorage, setCartStorage, reduceQuantityGameCart } = useContext(GlobalContext);
 
     const [game, setGame] = useState({});
 
