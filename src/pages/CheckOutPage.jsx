@@ -297,7 +297,7 @@ function Checkout() {
                             </div>
 
                             <div className="modal-body">
-                                <p>Grazie per il tuo acquisto! Il tuo viaggio ti aspetta 🎉</p>
+                                <p>Grazie per il tuo acquisto! Il tuo videogame preferito ti aspetta 🎉</p>
                             </div>
 
                             <div className="modal-footer">
