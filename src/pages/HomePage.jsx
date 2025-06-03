@@ -39,28 +39,14 @@ function HomePage() {
         hasDiscount(game.discount_start, game.discount_finish)
     );
 
-    const { id } = useParams();
+
 
     const { cartStorage, setCartStorage } = useContext(GlobalContext);
 
-    const [game, setGame] = useState({});
-
-    const gamesUrl = 'http://localhost:3000/games';
-
-    function getData() {
-
-        axios.get(`${gamesUrl}/${id}`)
-            .then(res => {
-                // console.log(res.data);
-                setGame(res.data);
-            })
-            .catch(err => console.error(err));
-    }
-    function addGameCart() {
+    function addGameCart(game) {
         // let arrayCart = localStorage.getItem('cart');
         // console.log(JSON.parse(arrayCart));
         const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
-        console.log(game)
 
         let updatedCart;
 
@@ -75,11 +61,6 @@ function HomePage() {
         setCartStorage(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
-
-    useEffect(
-        getData,
-        [id]);
-
 
 
     return (
@@ -176,8 +157,8 @@ function HomePage() {
                                                                     : <span className="m-2">{game.price} €</span>}
                                                             </div>
                                                             <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
-                                                                <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
-                                                                <WishListButton gameId={id} />
+                                                                <button onClick={() => addGameCart(game)} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
+                                                                <WishListButton gameId={game.id} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -232,7 +213,7 @@ function HomePage() {
                                                                 </span>
                                                                 <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
                                                                     <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
-                                                                    <WishListButton gameId={id} />
+                                                                    <WishListButton gameId={game.id} />
                                                                 </div>
                                                             </div>
                                                         </div>
