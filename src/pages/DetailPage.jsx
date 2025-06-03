@@ -66,7 +66,7 @@ function DetailPage() {
 
     return (
 
-        <div className="container w-100 w-md-75 w-lg-50">
+        <div className="container w-100 w-md-75 w-lg-50 mt-5">
             <div className="card shadow mb-5 text-white card-detail-bg">
                 <div className="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-start">
                     <figure className="m-3 me-md-4">

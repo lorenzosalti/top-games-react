@@ -271,7 +271,7 @@ function HomePage() {
                                                                                         type="button"
                                                                                         className="btn btn-warning me-2"
                                                                                     >
-                                                                                        <strong>-1</strong>
+                                                                                        <FontAwesomeIcon icon={faMinus} />
                                                                                     </button>
 
                                                                                     <input
@@ -287,7 +287,7 @@ function HomePage() {
                                                                                         type="button"
                                                                                         className="btn btn-warning me-sm-3"
                                                                                     >
-                                                                                        <strong>+1</strong>
+                                                                                        <FontAwesomeIcon icon={faPlus} />
                                                                                     </button>
                                                                                 </div>
                                                                             );
