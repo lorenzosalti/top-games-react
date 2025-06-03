@@ -121,9 +121,9 @@ function App() {
   }
 
   const totalPrice = cartStorage.reduce((acc, game) => {
-    let price = game.discount ? game.price - (game.price * game.discount / 100).toFixed(2) : game.price;
+    let price = game.discount ? game.price - (game.price * game.discount / 100) : game.price;
 
-    return acc + Number(price * game.quantity);
+    return acc + Number((price * game.quantity).toFixed(2));
   }, 0);
 
 
