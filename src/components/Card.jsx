@@ -70,7 +70,51 @@ function Card({ data }) {
                         </>
                     ) : (<div className='mb-3'>{price} €</div>)}
                     <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
-                        <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
+                        {(() => {
+                            const gameInCart = cartStorage.find(g => g.id === game.id);
+                            const quantity = gameInCart ? gameInCart.quantity : 0;
+
+
+                            if (quantity > 0) {
+                                return (
+                                    <div className="d-flex align-items-center">
+                                        <button
+                                            onClick={() => reduceQuantityGameCart(game)}
+                                            type="button"
+                                            className="btn btn-warning me-2"
+                                        >
+                                            <strong>-1</strong>
+                                        </button>
+
+                                        <input
+                                            type="text"
+                                            readOnly
+                                            value={quantity}
+                                            className="form-control text-center me-2"
+                                            style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                                        />
+
+                                        <button
+                                            onClick={() => addGameCart(game)}
+                                            type="button"
+                                            className="btn btn-warning me-sm-3"
+                                        >
+                                            <strong>+1</strong>
+                                        </button>
+                                    </div>
+                                );
+                            } else {
+                                return (
+                                    <button
+                                        onClick={() => addGameCart(game)}
+                                        type="button"
+                                        className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
+                                    >
+                                        Aggiungi al carrello
+                                    </button>
+                                );
+                            }
+                        })()}
                         <WishListButton gameId={id} />
                     </div>
 
@@ -78,7 +122,7 @@ function Card({ data }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 
