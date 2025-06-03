@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import Search from '../components/Search';
 import { Link } from "react-router-dom";
 import WelcomePopup from "../components/WelcomePopup";
+import GlobalContext from "../contexts/globalContext";
+import { useContext } from "react";
+import WishListButton from "../components/WishListButton";
+import { useParams } from "react-router-dom";
 
 
 function HomePage() {
@@ -34,6 +38,48 @@ function HomePage() {
     const discountedGames = games.filter(game =>
         hasDiscount(game.discount_start, game.discount_finish)
     );
+
+    const { id } = useParams();
+
+    const { cartStorage, setCartStorage } = useContext(GlobalContext);
+
+    const [game, setGame] = useState({});
+
+    const gamesUrl = 'http://localhost:3000/games';
+
+    function getData() {
+
+        axios.get(`${gamesUrl}/${id}`)
+            .then(res => {
+                // console.log(res.data);
+                setGame(res.data);
+            })
+            .catch(err => console.error(err));
+    }
+    function addGameCart() {
+        // let arrayCart = localStorage.getItem('cart');
+        // console.log(JSON.parse(arrayCart));
+        const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
+        console.log(game)
+
+        let updatedCart;
+
+        if (existingGameIndex !== -1) {
+            updatedCart = [...cartStorage];
+            updatedCart[existingGameIndex].quantity += 1;
+
+        } else {
+            updatedCart = [...cartStorage, { ...game, quantity: 1 }];
+        }
+
+        setCartStorage(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+
+    useEffect(
+        getData,
+        [id]);
+
 
 
     return (
@@ -129,6 +175,10 @@ function HomePage() {
                                                                     </p>
                                                                     : <span className="m-2">{game.price} €</span>}
                                                             </div>
+                                                            <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                                                                <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
+                                                                <WishListButton gameId={id} />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,6 +230,10 @@ function HomePage() {
                                                                 <span className="card-text mb-2 rounded position-absolute discount bg-warning text-dark fw-bold p-2">
                                                                     - {game.discount}%
                                                                 </span>
+                                                                <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                                                                    <button onClick={addGameCart} type="button" className="btn btn-warning me-sm-3 mb-2 mb-sm-0">Aggiungi al carrello</button>
+                                                                    <WishListButton gameId={id} />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

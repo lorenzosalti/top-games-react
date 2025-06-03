@@ -51,7 +51,7 @@ function WishListPage() {
           {gamesInWishlist.map(game =>
             <div className="card shadow bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
               <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                <figure className="mt-2"><img src={game.imagePath} className="card-img-top " alt={game.title} /></figure>
+                <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
                 <h5 className="card-title fw-bold pt-2">{game.title}</h5>
                 <p className="card-text"><strong>Console:</strong> {game.platform}</p>
                 {game.discount > 0 ? (
@@ -65,7 +65,6 @@ function WishListPage() {
                     </p>
                   </>
                 ) : (<div className='mb-3'>{game.price} €</div>)}
-                <Link to={`/games/${game.id}`} className="btn btn-warning mb-2">Dettaglio Prodotto</Link>
 
                 <WishlistButton gameId={game.id} />
               </div>
