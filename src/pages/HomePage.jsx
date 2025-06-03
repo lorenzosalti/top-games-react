@@ -57,35 +57,27 @@ function HomePage() {
                             </div>
 
                             <div className="carousel-item h-50">
-                                <figure>
-                                    <Link to={'http://localhost:5173/games/1'}>
-                                        <img src="src/assets/cyberpunk2077-carosello.png" className="d-block w-100 h-100" alt="cyberpunk" />
-                                    </Link>
-                                </figure>
+                                <Link to={'http://localhost:5173/games/1'}>
+                                    <img src="src/assets/cyberpunk2077-carosello.png" className="d-block w-100 h-100" alt="cyberpunk" />
+                                </Link>
                             </div>
 
                             <div className="carousel-item h-50">
-                                <figure>
-                                    <Link to={'http://localhost:5173/games/4'}>
-                                        <img src="src/assets/forzah-carosello.png" className="d-block w-100 h-100" alt="forza-horizon-5" />
-                                    </Link>
-                                </figure>
+                                <Link to={'http://localhost:5173/games/4'}>
+                                    <img src="src/assets/forzah-carosello.png" className="d-block w-100 h-100" alt="forza-horizon-5" />
+                                </Link>
                             </div>
 
                             <div className="carousel-item h-50">
-                                <figure>
-                                    <Link to={'http://localhost:5173/games/5'}>
-                                        <img src="src/assets/ghost-carosello5.png" className="d-block w-100 h-100" alt="ghost-of-tsushima" />
-                                    </Link>
-                                </figure>
+                                <Link to={'http://localhost:5173/games/5'}>
+                                    <img src="src/assets/ghost-carosello5.png" className="d-block w-100 h-100" alt="ghost-of-tsushima" />
+                                </Link>
                             </div>
 
                             <div className="carousel-item h-50">
-                                <figure>
-                                    <Link to={'http://localhost:5173/games/9'}>
-                                        <img src="src/assets/supermario-carosello.png" className="d-block w-100 h-100" alt="super-mario-odyssey" />
-                                    </Link>
-                                </figure>
+                                <Link to={'http://localhost:5173/games/9'}>
+                                    <img src="src/assets/supermario-carosello.png" className="d-block w-100 h-100" alt="super-mario-odyssey" />
+                                </Link>
                             </div>
                         </div>
 
