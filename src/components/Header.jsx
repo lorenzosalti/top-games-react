@@ -25,7 +25,7 @@ export default function Header() {
 
     return (
         <header>
-            <nav className="navbar navbar-expand-lg bg-dark mb-5 py-3 shadow">
+            <nav className="navbar fixed-top navbar-expand-lg bg-dark mb-5 py-3 shadow">
                 <div className="container-fluid me-5 ms-5">
                     <Link to={'/'} className='navbar-brand text-white'>
                         <img src="../public/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" />

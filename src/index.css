@@ -2,6 +2,9 @@
     background-color: rgb(54, 52, 52);
 }
 
+header {
+    padding-top: 100px;
+}
 
 .card-detail-bg {
     background-image: url(../public/sfondo-card-details4.jpg);
