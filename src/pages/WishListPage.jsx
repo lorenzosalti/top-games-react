@@ -17,14 +17,6 @@ function WishListPage() {
 
   const gamesUrl = 'http://localhost:3000/games';
 
-  // al montaggio del componente fa un fetch degli ID salvati in localStorage
-  useEffect(() => {
-    const storedIds = localStorage.getItem("wishListGames");
-    if (storedIds) {
-      setWishListGames(JSON.parse(storedIds));
-    }
-  }, []);
-
   // chiamata per recuperare TUTTI i giochi
   useEffect(() => {
     axios.get(gamesUrl)

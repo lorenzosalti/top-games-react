@@ -93,22 +93,25 @@ function App() {
   }
 
   // FUNZIONI E VARIABILI DEDICATE ALLA WISHLIST
-  const [wishListGames, setWishListGames] = useState([]);
 
-  useEffect(() => {
-    const stored = localStorage.getItem('wishListGames');
-    if (stored) setWishListGames(JSON.parse(stored));
-  }, []);
+  // inizializza la wishlist con quello che c'è salvato nel sessionStorage
+  const [wishListGames, setWishListGames] = useState(() => {
+    const stored = sessionStorage.getItem("wishListGames");
+    return stored ? JSON.parse(stored) : [];
+  });
 
+  // quando viene modificata la wishlist aggiorna il sessionStorage
   useEffect(() => {
-    localStorage.setItem("wishListGames", JSON.stringify(wishListGames));
+    sessionStorage.setItem("wishListGames", JSON.stringify(wishListGames));
   }, [wishListGames]);
 
+  // funzione chiamata dal pulsante per fare un toggle della presenza del gioco nella wishlist
   function toggleWishlist(id) {
     setWishListGames((prev) =>
       prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]);
   }
 
+  // funzione di controllo di presenza nella wishlist
   function isInWishlist(id) {
     return wishListGames.includes(id);
   }
