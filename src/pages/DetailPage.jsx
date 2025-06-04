@@ -12,21 +12,12 @@ function DetailPage() {
 
     const { cartStorage, setCartStorage, reduceQuantityGameCart } = useContext(GlobalContext);
 
-    const { id } = useParams();
+    const { slug } = useParams();
 
     const [game, setGame] = useState({});
 
     const gamesUrl = 'http://localhost:3000/games';
 
-    function getData() {
-
-        axios.get(`${gamesUrl}/${id}`)
-            .then(res => {
-                // console.log(res.data);
-                setGame(res.data);
-            })
-            .catch(err => console.error(err));
-    }
     function addGameCart() {
 
         const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
@@ -45,10 +36,19 @@ function DetailPage() {
     }
 
 
-    useEffect(
-        getData,
-        [id]);
+    useEffect(() => {
+        axios.get(gamesUrl)
+            .then(res => {
+                const found = res.data.find(g => g.slug === slug);
+                if (found) {
+                    setGame(found);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+            });
 
+    }, [slug]);
     // discount
 
     function hasDiscount(discount_start, discount_finish) {
@@ -60,9 +60,6 @@ function DetailPage() {
         }
         return false;
     }
-
-    let arrayCart = sessionStorage.getItem('cart');
-
 
     return (
 

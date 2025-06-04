@@ -83,26 +83,27 @@ function HomePage() {
                                 <div className="carousel-overlay"></div>
                             </div>
 
+                            {/* Immagini statiche con link dinamico */}
                             <div className="carousel-item h-50">
-                                <Link to={'http://localhost:5173/games/1'}>
+                                <Link to={`/games/cyberpunk-2077`}>
                                     <img src="src/assets/cyberpunk2077-carosello.png" className="d-block w-100 h-100" alt="cyberpunk" />
                                 </Link>
                             </div>
 
                             <div className="carousel-item h-50">
-                                <Link to={'http://localhost:5173/games/4'}>
+                                <Link to={`/games/forza-horizon-5`}>
                                     <img src="src/assets/forzah-carosello.png" className="d-block w-100 h-100" alt="forza-horizon-5" />
                                 </Link>
                             </div>
 
                             <div className="carousel-item h-50">
-                                <Link to={'http://localhost:5173/games/5'}>
+                                <Link to={`/games/ghost-of-tsushima`}>
                                     <img src="src/assets/ghost-carosello.png" className="d-block w-100 h-100" alt="ghost-of-tsushima" />
                                 </Link>
                             </div>
 
                             <div className="carousel-item h-50">
-                                <Link to={'http://localhost:5173/games/9'}>
+                                <Link to={`/games/super-mario-odyssey`}>
                                     <img src="src/assets/supermario-carosello.png" className="d-block w-100 h-100" alt="super-mario-odyssey" />
                                 </Link>
                             </div>
@@ -144,7 +145,7 @@ function HomePage() {
                                                 <div className="col-md-4 mb-4" key={game.id}>
                                                     <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                                                            <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
+                                                            <Link to={`/games/${game.slug}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
                                                             <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
                                                                 <p className="card-text"><strong>Console:</strong> {game.platform}</p>
@@ -244,7 +245,7 @@ function HomePage() {
                                                 <div className="col-md-4 mb-4" key={game.id}>
                                                     <div className="card shadow h-100 col-12 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                                                            <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
+                                                            <Link to={`/games/${game.slug}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
                                                             <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
                                                                 <p className="card-text"><strong>Console:</strong> {game.platform}</p>
