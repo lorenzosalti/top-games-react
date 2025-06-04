@@ -68,13 +68,13 @@ function DetailPage() {
 
         <div className="container w-100 w-md-75 w-lg-50 mt-5">
             <div className="card shadow mb-5 text-white card-detail-bg">
-                <div className="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-start">
+                <div className="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-start detail-container">
                     <figure className="m-3 me-md-4">
                         <img src={game.imagePath} className="img-fluid rounded card-img-top" alt={game.title} style={{ maxWidth: '250px' }} />
                     </figure>
-                    <div className="d-flex flex-column p-3 text-center text-md-start">
+                    <div className="d-flex flex-column p-3 text-center text-md-start text-detail-container">
                         <h5 className="card-title fw-bold pt-2 fs-3 fs-md-1">{game.title}</h5>
-                        <p className="card-text ">{game.description}</p>
+                        <p className="card-text">{game.description}</p>
                         <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
                         <p className="card-text"><strong>Console:</strong> {game.platform}</p>
                         <div>

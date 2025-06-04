@@ -24,7 +24,14 @@ header {
 }
 
 
+.text-detail-container {
+    max-width: 62%;
+}
 
+.detail-container {
+    max-width: 68%;
+    margin: 0 auto;
+}
 
 .card-detail-bg {
     background-image: url(../public/sfondo-card-details4.jpg);
