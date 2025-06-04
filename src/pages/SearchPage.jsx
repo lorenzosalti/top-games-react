@@ -25,18 +25,20 @@ function SearchPage() {
                 <h2 className="text-center text-white">Catalogo Giochi</h2>
                 <Search />
 
-                {/* Checkbox per filtro promo */}
-                <div className="form-check form-switch text-white my-3">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="discountSwitch"
-                        checked={showOnlyDiscounted}
-                        onChange={() => setShowOnlyDiscounted(prev => !prev)}
-                    />
-                    <label className="form-check-label" htmlFor="discountSwitch">
-                        Mostra solo giochi in promozione
+                <div className="d-flex justify-content-center align-items-center my-3">
+                    <label className="form-check-label text-white me-3" htmlFor="discountSwitch">
+                        Solo videogiochi in offerta:
                     </label>
+
+                    <div className="form-check form-switch">
+                        <input
+                            className="form-check-input bg-warning border-warning"
+                            type="checkbox"
+                            id="discountSwitch"
+                            checked={showOnlyDiscounted}
+                            onChange={() => setShowOnlyDiscounted(prev => !prev)}
+                        />
+                    </div>
                 </div>
 
                 <div className="d-flex justify-content-around">

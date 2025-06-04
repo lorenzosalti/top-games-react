@@ -9,6 +9,7 @@ import WishListButton from "../components/WishListButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 
 function HomePage() {
@@ -194,9 +195,9 @@ function HomePage() {
                                                                             <button
                                                                                 onClick={() => addGameCart(game)}
                                                                                 type="button"
-                                                                                className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
+                                                                                className="btn btn-warning fs-4 me-sm-3 mb-4 p-1 pe-3 ps-3 mb-sm-0"
                                                                             >
-                                                                                Aggiungi al carrello
+                                                                                <FontAwesomeIcon icon={faCartShopping} />
                                                                             </button>
                                                                         );
                                                                     }
@@ -293,9 +294,9 @@ function HomePage() {
                                                                                 <button
                                                                                     onClick={() => addGameCart(game)}
                                                                                     type="button"
-                                                                                    className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
+                                                                                    className="btn btn-warning fs-4 me-sm-3 mb-4 p-1 pe-3 ps-3 mb-sm-0"
                                                                                 >
-                                                                                    Aggiungi al carrello
+                                                                                    <FontAwesomeIcon icon={faCartShopping} />
                                                                                 </button>
                                                                             );
                                                                         }

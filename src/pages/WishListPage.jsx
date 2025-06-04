@@ -53,8 +53,8 @@ function WishListPage() {
   return (
     <>
       <div className="container">
-        <div className="d-flex justify-content-center text-white mb-3">
-          <h2>La tua wishList</h2>
+        <div className="d-flex justify-content-center text-white m-3">
+          <h2>La tua wishlist</h2>
         </div>
 
 
