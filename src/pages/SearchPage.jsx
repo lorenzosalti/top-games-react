@@ -26,7 +26,7 @@ function SearchPage() {
                 <Search />
 
                 <div className="d-flex justify-content-center align-items-center my-3">
-                    <label className="form-check-label text-white me-3" htmlFor="discountSwitch">
+                    <label className="form-check-label text-white me-3 fw-bold" htmlFor="discountSwitch">
                         Solo videogiochi in offerta:
                     </label>
 
