@@ -17,8 +17,10 @@ import Checkout from './pages/CheckOutPage';
 
 function App() {
 
-  let cart = [];
-  const [cartStorage, setCartStorage] = useState(cart);
+  const [cartStorage, setCartStorage] = useState(() => {
+    const storedCart = sessionStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
 
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState('');
@@ -105,6 +107,14 @@ function App() {
     sessionStorage.setItem("wishListGames", JSON.stringify(wishListGames));
   }, [wishListGames]);
 
+  useEffect(() => {
+    sessionStorage.setItem('cart', JSON.stringify(cartStorage));
+  }, [cartStorage]);
+
+  useEffect(() => {
+    sessionStorage.setItem('cart', JSON.stringify(cartStorage));
+  }, [cartStorage]);
+
   // funzione chiamata dal pulsante per fare un toggle della presenza del gioco nella wishlist
   function toggleWishlist(id) {
     setWishListGames((prev) =>
@@ -119,9 +129,7 @@ function App() {
   // FUNZIONI E VARIABILI DEDICATE AL CARRELLO E CHECKOUT
   function updateQuantity(gameToUpdate, quantity) {
     const safeQuantity = Math.max(1, Number(quantity));
-    setCartStorage(prev =>
-      prev.map(game => game.id === gameToUpdate.id ? { ...game, quantity: safeQuantity } : game)
-    );
+    setCartStorage(prev => prev.map(game => game.id === gameToUpdate.id ? { ...game, quantity: safeQuantity } : game));
   }
 
   function reduceQuantityGameCart(gameToUpdate) {
@@ -135,8 +143,6 @@ function App() {
           return game;
         })
         .filter(Boolean);
-
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
       return updatedCart;
     });
   }

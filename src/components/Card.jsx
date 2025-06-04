@@ -44,7 +44,6 @@ function Card({ data }) {
         }
 
         setCartStorage(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
 
     useEffect(

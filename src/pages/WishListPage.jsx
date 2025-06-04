@@ -35,8 +35,6 @@ function WishListPage() {
 
 
   function addGameCart(game) {
-    // let arrayCart = localStorage.getItem('cart');
-    // console.log(JSON.parse(arrayCart));
     const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
 
     let updatedCart;
@@ -50,7 +48,6 @@ function WishListPage() {
     }
 
     setCartStorage(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
 
   return (
