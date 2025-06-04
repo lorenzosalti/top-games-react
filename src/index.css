@@ -1,10 +1,21 @@
+/* Corretto */
 #root {
     background-image: url(../public/bg-image-7.jpg);
-    background-attachment: fixed;
-    background-image: cover;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+
+main {
+    flex: 1;
+}
+
+
 
 header {
     padding-top: 100px;
