@@ -1,17 +1,17 @@
 // Creazione di LinkFooter con props e collegamento a Footer.jsx
 const LinkFooter = (props) => {
     return (
-        <>
-            <ul className="footer-url col-4 py-4">
+        <div className="link-footer  text-md-start">
+            <ul className="list-unstyled text-center">
                 {props.links.map((link, index) => (
-                    <li key={index} className="footer-link">
-                        <a href={link.url} target="_blank" rel="noopener noreferrer" className="footer-link-url fs-4">
+                    <li key={index} className="mb-2">
+                        <a href={link.url} className="text-light text-decoration-none">
                             {link.name}
                         </a>
                     </li>
                 ))}
             </ul>
-        </>
+        </div>
     );
 };
 

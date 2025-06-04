@@ -27,28 +27,39 @@ const socialUrl = [
 
 export default function Footer() {
     return (
-        <footer className='footer shadow bg-dark text-light'>
-            <div className='footer-container row'>
+        <footer className='footer shadow bg-dark text-light py-4'>
+            <div className='container'>
+                <div className='row text-center text-md-start align-items-center'>
 
-                <LinkFooter title="" links={GamesUrl} />
-
-                <div className="footer-logo col-4">
-                    <img src="../public/logo-tg-footer.png" alt="Top Games!" />
-                </div>
-
-                <div className="social-container bg-dark col-4">
-                    <span className="follow-us  fs-4">FOLLOW US</span>
-                    <div className="social-icone">
-                        {/* Collegamento di socialUrl */}
-                        {socialUrl.map((social, index) => (
-                            <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label={social.name}>
-                                <FontAwesomeIcon icon={social.icon} className='social-icon' />
-                            </a>
-                        ))}
+                    <div className="col-12 col-md-4 mb-3 mb-md-0">
+                        <LinkFooter title="" links={GamesUrl} />
                     </div>
+
+
+                    <div className="col-12 col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+                        <img src="/logo-tg-footer.png" alt="Top Games!" className="img-fluid" />
+                    </div>
+
+                    <div className="col-12 col-md-4 text-center text-md-end">
+                        <span className="follow-us d-block fs-5 mb-2">FOLLOW US</span>
+                        <div className="social-icone d-flex justify-content-center justify-content-md-end gap-3">
+                            {socialUrl.map((social, index) => (
+                                <a
+                                    key={index}
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="social-icon-link text-light"
+                                    aria-label={social.name}
+                                >
+                                    <FontAwesomeIcon icon={social.icon} className='fs-4' />
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </footer>
     );
 }
