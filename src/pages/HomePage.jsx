@@ -65,7 +65,7 @@ function HomePage() {
 
     return (
 
-        <div className="container">
+        <div className="container mb-4">
             <WelcomePopup />
             <Search />
             <div className="home-container mt-3 mb-5 d-flex justify-content-center">
