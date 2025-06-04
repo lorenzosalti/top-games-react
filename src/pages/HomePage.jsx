@@ -42,6 +42,37 @@ function HomePage() {
         hasDiscount(game.discount_start, game.discount_finish)
     );
 
+    const [gamesPerSlide, setGamesPerSlide] = useState(3);
+
+    useEffect(() => {
+        const updateGamesPerSlide = () => {
+            let perSlide = 3;
+
+            if (window.innerWidth < 768) {
+                perSlide = 1;
+            } else if (window.innerWidth < 992) {
+                perSlide = 2;
+            } else {
+                perSlide = 3;
+            }
+
+            setGamesPerSlide(perSlide);
+        };
+
+        updateGamesPerSlide();
+        window.addEventListener('resize', updateGamesPerSlide);
+        return () => window.removeEventListener('resize', updateGamesPerSlide);
+    }, []);
+
+    function groupGames(gamesArray, perSlide) {
+        return gamesArray.reduce((acc, game, index) => {
+            if (index % perSlide === 0) {
+                acc.push(gamesArray.slice(index, index + perSlide));
+            }
+            return acc;
+        }, []);
+    }
+
 
 
     const { cartStorage, setCartStorage, reduceQuantityGameCart } = useContext(GlobalContext);
@@ -125,24 +156,13 @@ function HomePage() {
                 <div id="carouselExampleSingleCard" className="carousel slide" data-bs-ride="carousel">
 
                     <div className="carousel-inner">
-                        {games && games
-                            .filter(game => {
-                                const date = new Date('2023-01-01');
-                                const createDate = new Date(game.created_at);
-                                return createDate > date;
-                            })
-                            .reduce((acc, game, index, array) => {
-                                if (index % 3 === 0) {
-                                    acc.push(array.slice(index, index + 3));
-                                }
-                                return acc;
-                            }, [])
+                        {groupGames(games.filter(game => new Date(game.created_at) > new Date('2023-01-01')), gamesPerSlide)
                             .map((gameGroup, groupIndex) => (
                                 <div className={`carousel-item ${groupIndex === 0 ? 'active' : ''}`} key={groupIndex}>
                                     <div className="d-flex justify-content-center">
                                         <div className="row w-75 justify-content-center">
                                             {gameGroup.map((game, gameIndex) => (
-                                                <div className="col-md-4 mb-4" key={game.id}>
+                                                <div className={`col-12 col-sm-${12 / gamesPerSlide} mb-4`} key={game.id}>
                                                     <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <Link to={`/games/${game.slug}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
@@ -229,20 +249,16 @@ function HomePage() {
                 <h2 className="text-center text-white fs-1 mb-5">Prodotti in Promozione:</h2>
                 <div id="carouselExampleSingleCard2" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
-                        {games && games
-                            .filter(game => game.discount > 0)
-                            .reduce((acc, game, index, array) => {
-                                if (index % 3 === 0) {
-                                    acc.push(array.slice(index, index + 3));
-                                }
-                                return acc;
-                            }, [])
+                        {groupGames(
+                            games.filter(game => game.discount > 0),
+                            gamesPerSlide
+                        )
                             .map((gameGroup, groupIndex) => (
                                 <div className={`carousel-item ${groupIndex === 0 ? 'active' : ''}`} key={groupIndex}>
                                     <div className="d-flex justify-content-center">
                                         <div className="row w-75 justify-content-center">
                                             {gameGroup.map((game, gameIndex) => (
-                                                <div className="col-md-4 mb-4" key={game.id}>
+                                                <div className={`col-12 col-sm-${12 / gamesPerSlide} mb-4`} key={game.id}>
                                                     <div className="card shadow h-100 col-12 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <Link to={`/games/${game.slug}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
