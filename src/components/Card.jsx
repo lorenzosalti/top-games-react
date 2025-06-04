@@ -57,7 +57,7 @@ function Card({ data }) {
                 </figure>
                 <h5 className="card-title fw-bold pt-2">{title}</h5>
                 <div className='mt-auto d-flex flex-column justify-content-center align-items-center'>
-                    <p className="card-text"><strong>Console:</strong> {platform}</p>
+                    <p className="card-text"><i class="bi bi-controller"></i> <strong>Console:</strong> {platform}</p>
                     {discount > 0 ? (
                         <>
                             <p className="card-text mb-1 pb-3">

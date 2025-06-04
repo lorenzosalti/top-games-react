@@ -72,8 +72,8 @@ function DetailPage() {
                     <div className="d-flex flex-column p-3 text-center text-md-start text-detail-container">
                         <h5 className="card-title fw-bold pt-2 fs-3 fs-md-1">{game.title}</h5>
                         <p className="card-text">{game.description}</p>
-                        <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
-                        <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                        <p className="card-text"> <i class="bi bi-collection-fill"></i> <strong>Genere:</strong> {game.genres_list}</p>
+                        <p className="card-text"> <i class="bi bi-controller"></i> <strong>Console:</strong> {game.platform}</p>
                         <div>
                             {game.discount > 0 ? (
                                 <>
