@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlaystation } from '@fortawesome/free-brands-svg-icons';
 
 function PlayStation() {
     const [games, setGames] = useState([]);
@@ -21,8 +22,8 @@ function PlayStation() {
     return (
         <section className="container">
             <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
-                <div className="d-flex justify-content-center text-white mb-3">
-                    <h2>PlayStation 5</h2>
+                <div className="d-flex justify-content-center text-white mb-3 mt-3">
+                    <h2><FontAwesomeIcon icon={faPlaystation} /> PlayStation 5</h2>
                 </div>
                 {games.map(game => <Card data={game} key={game.id} />)}
             </div>
