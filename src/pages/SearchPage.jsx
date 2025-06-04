@@ -22,8 +22,9 @@ function SearchPage() {
     return (
         <>
             <section className="container">
-                <h2 className="text-center text-white">Catalogo Giochi</h2>
                 <Search />
+                <h2 className="text-center text-white">Catalogo Giochi</h2>
+
 
                 <div className="d-flex justify-content-center align-items-center my-3">
                     <label className="form-check-label text-white me-3 fw-bold" htmlFor="discountSwitch">

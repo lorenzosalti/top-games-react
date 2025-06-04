@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Search from "../components/Search";
 
 
 function Switch() {
@@ -22,6 +23,7 @@ function Switch() {
 
     return (
         <section className="container">
+            <Search />
             <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
                 <div className="d-flex justify-content-center text-white mb-3 mt-3">
                     <h2><i className="bi bi-nintendo-switch"></i> Nintendo Switch</h2>
