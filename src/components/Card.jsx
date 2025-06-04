@@ -55,7 +55,7 @@ function Card({ data }) {
                 <figure className="mt-2">
                     <Link to={`/games/${slug}`}> <img src={imagePath} className="card-img-top pb-3" alt={title} /> </Link>
                 </figure>
-                <h5 className="card-title fw-bold pt-2">{title}</h5>
+                <h5 className="card-title fw-bold pt-2 fs-2">{title}</h5>
                 <div className='mt-auto d-flex flex-column justify-content-center align-items-center'>
                     <p className="card-text"><i class="bi bi-controller"></i> <strong>Console:</strong> {platform}</p>
                     {discount > 0 ? (

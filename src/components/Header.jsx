@@ -70,22 +70,22 @@ export default function Header() {
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <NavLink to="/console/playstation" className="nav-link text-white zoom-effect fs-5">
+                                <NavLink to="/console/playstation" className="nav-link text-white zoom-effect fs-2 pe-3">
                                     <FontAwesomeIcon icon={faPlaystation} /> PlayStation 5
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/console/xbox" className="nav-link text-white zoom-effect fs-5">
+                                <NavLink to="/console/xbox" className="nav-link text-white zoom-effect fs-2 pe-3">
                                     <FontAwesomeIcon icon={faXbox} /> Xbox Series X
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/console/pc" className="nav-link text-white zoom-effect fs-5">
+                                <NavLink to="/console/pc" className="nav-link text-white zoom-effect fs-2 pe-3">
                                     <FontAwesomeIcon icon={faDesktop} /> PC
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/console/switch" className="nav-link text-white zoom-effect fs-5">
+                                <NavLink to="/console/switch" className="nav-link text-white zoom-effect fs-2 pe-3">
                                     <i className="bi bi-nintendo-switch"></i> Nintendo Switch
                                 </NavLink>
                             </li>

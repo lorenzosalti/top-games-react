@@ -27,7 +27,7 @@ function Xbox() {
             <Search />
             <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
                 <div className="d-flex justify-content-center text-white mb-3 mt-3">
-                    <h2><FontAwesomeIcon icon={faXbox} /> Xbox Series X</h2>
+                    <h2 className=" fs-1"><FontAwesomeIcon icon={faXbox} /> Xbox Series X</h2>
                 </div>
                 {games.map(game => <Card data={game} key={game.id} />)}
             </div>

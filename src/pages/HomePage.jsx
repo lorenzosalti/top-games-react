@@ -146,7 +146,7 @@ function HomePage() {
                                                     <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <Link to={`/games/${game.slug}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
-                                                            <h5 className="card-title text-center mb-3">{game.title}</h5>
+                                                            <h5 className="card-title text-center mb-3 fs-2">{game.title}</h5>
                                                             <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
                                                                 <p className="card-text"><i class="bi bi-controller"></i> <strong>Console:</strong> {game.platform}</p>
                                                                 {game.discount > 0 ?
@@ -246,7 +246,7 @@ function HomePage() {
                                                     <div className="card shadow h-100 col-12 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <Link to={`/games/${game.slug}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
-                                                            <h5 className="card-title text-center mb-3">{game.title}</h5>
+                                                            <h5 className="card-title text-center mb-3 fs-2">{game.title}</h5>
                                                             <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
                                                                 <p className="card-text"><strong>Console:</strong> {game.platform}</p>
                                                                 <p className="card-text mb-1 pb-3">
