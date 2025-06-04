@@ -34,47 +34,68 @@ export default function Header() {
         <header>
             <nav className="navbar fixed-top navbar-expand-lg bg-dark navbar-dark mb-5 py-3 shadow">
                 <div className="container-fluid me-5 ms-5">
-                    <Link to={'/'} className='navbar-brand text-white'>
+                    <Link to="/" className="navbar-brand text-white">
                         <img src="/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" />
-
                     </Link>
-
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-
-                        <NavLink className=" position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                            <span className='text-white fs-3'><FontAwesomeIcon icon={faCartShopping} /></span>
-                            {cartStorage.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                {totalGameCart}
-                                <span className="visually-hidden">Giochi nel carrello</span>
-                            </span> : ''}
-
-                        </NavLink>
-                    </button>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-
-                        <span className=''><NavLink to={'/wishlist'} className='nav-link zoom-effect text-white fs-3'><FontAwesomeIcon icon={faHeart} /></NavLink></span>
-                    </button>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse " id="navbarNavDropdown">
-                        <ul className="navbar-nav mx-auto ">
+                    <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <NavLink to={'/console/playstation'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faPlaystation} /> PlayStation 5</NavLink>
+                                <NavLink to="/console/playstation" className="nav-link text-white zoom-effect fs-5">
+                                    <FontAwesomeIcon icon={faPlaystation} /> PlayStation 5
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/xbox'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faXbox} /> Xbox Series X</NavLink>
+                                <NavLink to="/console/xbox" className="nav-link text-white zoom-effect fs-5">
+                                    <FontAwesomeIcon icon={faXbox} /> Xbox Series X
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/pc'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faDesktop} /> PC</NavLink>
+                                <NavLink to="/console/pc" className="nav-link text-white zoom-effect fs-5">
+                                    <FontAwesomeIcon icon={faDesktop} /> PC
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'> <i className="bi bi-nintendo-switch"></i> Nintendo Switch</NavLink>
+                                <NavLink to="/console/switch" className="nav-link text-white zoom-effect fs-5">
+                                    <i className="bi bi-nintendo-switch"></i> Nintendo Switch
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
+                    <div className="d-flex align-items-center gap-3">
+                        <NavLink
+                            className="position-relative text-white fs-4"
+                            type="button"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight"
+                            aria-controls="offcanvasRight"
+                        >
+                            <FontAwesomeIcon icon={faCartShopping} />
+                            {cartStorage.length ? (
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {totalGameCart}
+                                    <span className="visually-hidden">Giochi nel carrello</span>
+                                </span>
+                            ) : null}
+                        </NavLink>
+
+                        <NavLink to="/wishlist" className="text-white fs-4">
+                            <FontAwesomeIcon icon={faHeart} />
+                        </NavLink>
+                    </div>
                 </div>
             </nav>
+
             <div className="offcanvas offcanvas-end bg-dark" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div className="offcanvas-header">
                     <h5 className="offcanvas-title text-white" id="offcanvasRightLabel">Giochi nel carrello</h5>
