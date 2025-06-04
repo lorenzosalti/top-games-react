@@ -1,17 +1,9 @@
 import LinkFooter from './LinkFooter';
-// import footerIconFacebook from '../assets/footer-facebook.png';
-// import footerIconTwitter from '../assets/footer-twitter.png';
-// import footerIconYoutube from '../assets/footer-youtube.png';
-// import footerIconPinterest from '../assets/footer-pinterest.png';
-// import footerIconPeriscope from '../assets/footer-periscope.png';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faSquareXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faPinterest } from '@fortawesome/free-brands-svg-icons';
-
-
 
 
 const GamesUrl = [
@@ -22,7 +14,6 @@ const GamesUrl = [
     { name: 'Games', url: '/#' },
     { name: 'Riscatta una Gift Card', url: '/#' }
 ];
-
 
 
 // SocialURL
