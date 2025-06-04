@@ -302,12 +302,11 @@ p {
     }
 }
 
-/* Fissa l'altezza per prevenire "salti" */
+
 #carouselExampleSingleCard .carousel-inner,
 #carouselExampleSingleCard2 .carousel-inner {
-    min-height: 650px;
-    height: 650px;
-    /* puoi anche usare max-height se preferisci */
+    min-height: 750px;
+    height: 750px;
 }
 
 #carouselExampleSingleCard .carousel-item,
