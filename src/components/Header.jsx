@@ -2,6 +2,14 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Search from './Search';
 import { useContext, useEffect } from 'react';
 import GlobalContext from '../contexts/globalContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlaystation } from '@fortawesome/free-brands-svg-icons';
+import { faXbox } from '@fortawesome/free-brands-svg-icons';
+import { faDesktop } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 
 export default function Header() {
@@ -37,22 +45,22 @@ export default function Header() {
                     <div className="collapse navbar-collapse " id="navbarNavDropdown">
                         <ul className="navbar-nav mx-auto ">
                             <li className="nav-item">
-                                <NavLink to={'/console/playstation'} className='nav-link text-white zoom-effect fs-5'>PlayStation 5</NavLink>
+                                <NavLink to={'/console/playstation'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faPlaystation} /> PlayStation 5</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/xbox'} className='nav-link text-white zoom-effect fs-5'>Xbox Series X</NavLink>
+                                <NavLink to={'/console/xbox'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faXbox} /> Xbox Series X</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/pc'} className='nav-link text-white zoom-effect fs-5'>PC</NavLink>
+                                <NavLink to={'/console/pc'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faDesktop} /> PC</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'>Nintendo Switch</NavLink>
+                                <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'> <i class="bi bi-nintendo-switch"></i> Nintendo Switch</NavLink>
                             </li>
                         </ul>
                         <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <NavLink className="btn btn-primary position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                                    Carrello
+                            <li className="nav-item m-2">
+                                <NavLink className=" position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <span className='text-white fs-3'><FontAwesomeIcon icon={faCartShopping} /></span>
                                     {cartStorage.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                         {totalGameCart}
                                         <span className="visually-hidden">Giochi nel carrello</span>
@@ -61,7 +69,7 @@ export default function Header() {
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/wishlist'} className='nav-link text-white zoom-effect'>Wishlist</NavLink>
+                                <span className=''><NavLink to={'/wishlist'} className='nav-link zoom-effect text-white fs-3'><FontAwesomeIcon icon={faHeart} /></NavLink></span>
                             </li>
                         </ul>
                     </div>
