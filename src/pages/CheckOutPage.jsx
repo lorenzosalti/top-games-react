@@ -348,12 +348,12 @@ function Checkout() {
                                 <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <div className="modal-body">
-                                <p>Grazie per il tuo acquisto! Il tuo videogame preferito ti aspetta 🎉</p>
+                            <div className="modal-body  bg-dark text-white">
+                                <p>Grazie per il tuo acquisto! Il tuo ordine ti aspetta 🎉</p>
                             </div>
 
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-success" data-bs-dismiss="modal">Grazie!!</button>
+                            <div className="modal-footer bg-dark d-flex justify-content-center">
+                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Grazie!</button>
                             </div>
 
                         </div>
@@ -367,12 +367,12 @@ function Checkout() {
                                 <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <div className="modal-body">
+                            <div className="modal-body bg-dark text-white">
                                 <p>Controlla i dati inseriti e riprova. Non mollare! 💪</p>
                             </div>
 
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Chiudi e riprova</button>
+                            <div className="modal-footer bg-dark d-flex justify-content-center">
+                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Chiudi</button>
                             </div>
 
                         </div>
@@ -384,7 +384,6 @@ function Checkout() {
                 <div className="modal-dialog">
                     {netDiscount ? (
                         <div className="modal-content border border-success">
-
                             <div className="modal-header bg-success text-white">
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">
                                     ✅ Codice sconto applicato!
@@ -392,14 +391,12 @@ function Checkout() {
                                 <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-success" data-bs-dismiss="modal">Grazie!!</button>
+                            <div className="modal-footer bg-dark d-flex justify-content-center">
+                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Grazie!</button>
                             </div>
-
                         </div>
                     ) : (
                         <div className="modal-content border border-danger">
-
                             <div className="modal-header bg-danger text-white">
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">
                                     ❌ Codice sconto non valido
@@ -407,15 +404,14 @@ function Checkout() {
                                 <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Chiudi e riprova</button>
+                            <div className="modal-footer bg-dark d-flex justify-content-center">
+                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Chiudi</button>
                             </div>
-
                         </div>
                     )}
 
                 </div>
-            </div>
+            </div >
 
         </>
     );
