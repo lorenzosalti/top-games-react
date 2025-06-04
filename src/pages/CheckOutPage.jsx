@@ -201,10 +201,10 @@ function Checkout() {
                             </li>
                         </ul>
 
-                        <div className="list-group-item d-flex justify-content-between bg-dark text-white">
-                            <label htmlFor="discount-input" className="form-label">Inserire codice sconto</label>
-                            <input type="text" className="form-control" id="discount-input" onChange={handleDiscountData} />
-                            <button type="button" className="btn btn-warning text-black" data-bs-toggle="modal" data-bs-target="#discountModal" onClick={handleDiscount}>
+                        <div className="list-group-item d-flex justify-content-between align-items-center bg-dark text-white">
+                            <label htmlFor="discount-input" className="form-label me-2">Inserisci il tuo codice di sconto:</label>
+                            <input type="text" className="form-control w-25" id="discount-input" onChange={handleDiscountData} />
+                            <button type="button" className="btn btn-warning text-black ms-2" data-bs-toggle="modal" data-bs-target="#discountModal" onClick={handleDiscount}>
                                 Applica
                             </button>
                         </div>
