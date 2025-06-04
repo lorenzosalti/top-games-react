@@ -97,7 +97,7 @@ function HomePage() {
 
                             <div className="carousel-item h-50">
                                 <Link to={'http://localhost:5173/games/5'}>
-                                    <img src="src/assets/ghost-carosello5.png" className="d-block w-100 h-100" alt="ghost-of-tsushima" />
+                                    <img src="src/assets/ghost-carosello.png" className="d-block w-100 h-100" alt="ghost-of-tsushima" />
                                 </Link>
                             </div>
 
