@@ -18,7 +18,6 @@ export default function Header() {
         }, 100);
     };
 
-
     function deleteGameCart(game) {
         removeFromCart(game);
     }
@@ -28,7 +27,7 @@ export default function Header() {
             <nav className="navbar fixed-top navbar-expand-lg bg-dark mb-5 py-3 shadow">
                 <div className="container-fluid me-5 ms-5">
                     <Link to={'/'} className='navbar-brand text-white'>
-                        <img src="../public/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" />
+                        <img src="/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" />
 
                     </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,7 +108,7 @@ export default function Header() {
                     ))
                         : <div className="text-white">Nessun gioco nel carrello</div>}
                 </div>
-                {cartStorage.length ? <div className='d-flex flex-column align-items-center mb-4 me-4 mt-4'>
+                {cartStorage ? <div className='d-flex flex-column align-items-center mb-4 me-4 mt-4'>
                     <div className='mb-2 text-white fw-bold'>Prezzo totale: {grossPrice.toFixed(2)} €</div>
                     <button className="btn btn-warning text-black" onClick={handleCheckout} data-bs-dismiss="offcanvas">Procedi al Pagamento</button>
                 </div> : ''}

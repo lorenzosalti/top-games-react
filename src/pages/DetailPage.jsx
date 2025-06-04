@@ -28,8 +28,7 @@ function DetailPage() {
             .catch(err => console.error(err));
     }
     function addGameCart() {
-        // let arrayCart = localStorage.getItem('cart');
-        // console.log(JSON.parse(arrayCart));
+
         const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
 
         let updatedCart;
@@ -43,7 +42,6 @@ function DetailPage() {
         }
 
         setCartStorage(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
 
 
@@ -62,6 +60,8 @@ function DetailPage() {
         }
         return false;
     }
+
+    let arrayCart = sessionStorage.getItem('cart');
 
 
     return (
