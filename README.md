@@ -17,4 +17,4 @@ L'e-commerce è collegato a un database al quale andiamo a collegarci tramite de
 - [@Gianfranco Mendoza](https://github.com/mendozagianfranco)
 - [@Valerio Di Biagio](https://github.com/ValerioDiBiagio)
 - [@Lorenzo Salti](https://github.com/lorenzosalti)
-- [@]()
+- [@Deni0012](https://github.com/Deni0012)
