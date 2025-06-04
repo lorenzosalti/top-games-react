@@ -38,6 +38,22 @@ export default function Header() {
                         <img src="/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" />
 
                     </Link>
+
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
+                        <NavLink className=" position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <span className='text-white fs-3'><FontAwesomeIcon icon={faCartShopping} /></span>
+                            {cartStorage.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {totalGameCart}
+                                <span className="visually-hidden">Giochi nel carrello</span>
+                            </span> : ''}
+
+                        </NavLink>
+                    </button>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
+                        <span className=''><NavLink to={'/wishlist'} className='nav-link zoom-effect text-white fs-3'><FontAwesomeIcon icon={faHeart} /></NavLink></span>
+                    </button>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -54,21 +70,6 @@ export default function Header() {
                             </li>
                             <li className="nav-item">
                                 <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'> <i className="bi bi-nintendo-switch"></i> Nintendo Switch</NavLink>
-                            </li>
-                        </ul>
-                        <ul className="navbar-nav">
-                            <li className="nav-item m-2">
-                                <NavLink className=" position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                                    <span className='text-white fs-3'><FontAwesomeIcon icon={faCartShopping} /></span>
-                                    {cartStorage.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {totalGameCart}
-                                        <span className="visually-hidden">Giochi nel carrello</span>
-                                    </span> : ''}
-
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <span className=''><NavLink to={'/wishlist'} className='nav-link zoom-effect text-white fs-3'><FontAwesomeIcon icon={faHeart} /></NavLink></span>
                             </li>
                         </ul>
                     </div>
