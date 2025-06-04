@@ -153,7 +153,7 @@ export default function Header() {
                                             style={{ width: '70px' }}
                                         />
                                         <button
-                                            className="btn btn-warning text-black btn-sm"
+                                            className="btn btn-warning text-black btn-sm  fs-6"
                                             onClick={() => deleteGameCart(game)}
                                         >
                                             Elimina
@@ -167,7 +167,7 @@ export default function Header() {
                 </div>
                 {cartStorage ? <div className='d-flex flex-column align-items-center mb-4 me-4 mt-4'>
                     <div className='mb-2 text-white fw-bold'>Prezzo totale: {grossPrice.toFixed(2)} €</div>
-                    <button className="btn btn-warning text-black" onClick={handleCheckout} data-bs-dismiss="offcanvas">Procedi al Pagamento</button>
+                    <button className="btn btn-warning text-black fs-5" onClick={handleCheckout} data-bs-dismiss="offcanvas">Procedi al Pagamento</button>
                 </div> : ''}
             </div>
         </header>
