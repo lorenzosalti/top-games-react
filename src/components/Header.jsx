@@ -102,7 +102,7 @@ export default function Header() {
                         >
                             <FontAwesomeIcon icon={faCartShopping} />
                             {cartStorage.length > 0 && (
-                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <span className="position-absolute top-0 fs-6 start-100 translate-middle badge rounded-pill bg-warning text-black">
                                     {totalGameCart}
                                     <span className="visually-hidden">Giochi nel carrello</span>
                                 </span>
