@@ -148,7 +148,7 @@ function HomePage() {
                                                             <Link to={`/games/${game.slug}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
                                                             <div className="mt-auto d-flex flex-column justify-content-center align-items-center">
-                                                                <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                                                                <p className="card-text"><i class="bi bi-controller"></i> <strong>Console:</strong> {game.platform}</p>
                                                                 {game.discount > 0 ?
                                                                     <p className="card-tex m-2">
                                                                         <span className="mt-auto text-decoration-line-through text-white me-2">{game.price} €</span>
