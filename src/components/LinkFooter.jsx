@@ -2,8 +2,7 @@
 const LinkFooter = (props) => {
     return (
         <>
-            <h3 className="footer-title">{props.title}</h3>
-            <ul className="footer-url">
+            <ul className="footer-url col-4 py-4">
                 {props.links.map((link, index) => (
                     <li key={index} className="footer-link">
                         <a href={link.url} target="_blank" rel="noopener noreferrer" className="footer-link-url">
