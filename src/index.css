@@ -301,6 +301,19 @@ p {
     }
 }
 
+@media (max-width: 768px) {
+    .text-detail-container {
+        max-width: 100%;
+    }
+
+    .detail-container {
+        max-width: 100%;
+    }
+}
+
+input.btn-check:checked+label {
+    border: 3px solid white !important;
+}
 
 #carouselExampleSingleCard .carousel-inner,
 #carouselExampleSingleCard2 .carousel-inner {
@@ -311,8 +324,4 @@ p {
 #carouselExampleSingleCard .carousel-item,
 #carouselExampleSingleCard2 .carousel-item {
     min-height: 100%;
-}
-
-input.btn-check:checked+label {
-    border: 3px solid white !important;
 }
