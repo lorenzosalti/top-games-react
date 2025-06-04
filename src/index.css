@@ -1,6 +1,6 @@
 /* Corretto */
 #root {
-    background-image: url(../public/bg-image-7.jpg);
+    background-image: url(/bg-image-7.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,7 +34,7 @@ header {
 }
 
 .card-detail-bg {
-    background-image: url(../public/sfondo-card-details4.jpg);
+    background-image: url(/sfondo-card-details4.jpg);
     background-position: center top;
     background-size: cover;
     object-fit: contain;

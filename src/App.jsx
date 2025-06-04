@@ -164,7 +164,7 @@ function App() {
             <Route path='/games' element={<SearchPage />} />
           </Route>
           <Route element={<DefaultLayout />}>
-            <Route path='/games/:id' element={<DetailPage />} />
+            <Route path='/games/:slug' element={<DetailPage />} />
             <Route path='/console/playstation' element={<PlayStation />} />
             <Route path='/console/xbox' element={<Xbox />} />
             <Route path='/console/pc' element={<Pc />} />
