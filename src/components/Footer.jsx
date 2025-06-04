@@ -31,33 +31,32 @@ const socialUrl = [
 
 export default function Footer() {
     return (
-        <footer className='footer shadow'>
-            <div className='container-fluid bg-dark text-light py-4 mt-5'>
-                <div className="footer-link-container">
-                    <div>
+        <footer className='footer shadow bg-dark text-light'>
+            <div className='footer-container'>
+                <div className='container-fluid  py-4 mt-5'>
+                    <div className="footer-link-container">
+
                         <LinkFooter title="" links={GamesUrl} />
 
                     </div>
                 </div>
-            </div>
 
-            <div className="footer-bottom bg-dark">
-                <div className="footer-bottom-container">
-                    <button className="signup-button">SIGN-UP NOW!</button>
 
-                    <div className="social-container">
-                        <span className="follow-us">FOLLOW US</span>
-                        <div className="social-icone">
-                            {/* Collegamento di socialUrl */}
-                            {socialUrl.map((social, index) => (
-                                <a key={index} href={social.url} className="social-icon" aria-label={social.name}>
-                                    <img src={social.icon} alt={social.name} className="social-icon-img" />
-                                </a>
-                            ))}
-                        </div>
+
+
+                <div className="social-container bg-dark">
+                    <span className="follow-us">FOLLOW US</span>
+                    <div className="social-icone">
+                        {/* Collegamento di socialUrl */}
+                        {socialUrl.map((social, index) => (
+                            <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label={social.name}>
+                                <img src={social.icon} alt={social.name} className="social-icon-img" />
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
+
         </footer>
     );
 }

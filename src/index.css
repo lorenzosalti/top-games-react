@@ -70,24 +70,14 @@ img {
 }
 
 
-
-.container-footer {
+/* FOOTER */
+.footer-container {
     display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    position: relative;
+    justify-content: space-around;
     overflow: hidden;
     z-index: 1;
-}
-
-.footer-link-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    text-align: center;
-    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .image-logo-footer {
@@ -106,40 +96,13 @@ img {
     opacity: 0.9;
 }
 
-.footer-bottom {
-    background-color: #252525;
-    padding: 20px 0;
-    z-index: 99;
-}
-
-.footer-bottom-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.signup-button {
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #f9dc02;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.signup-button:hover {
-    background-color: rgba(2, 130, 249, 0.1);
-}
-
 .social-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 15px;
+    padding: 50px;
 }
 
 .follow-us {
@@ -166,6 +129,7 @@ img {
 
 .social-icon:hover {
     background-color: #f9dc02;
+    transition-duration: 300ms;
 }
 
 
@@ -220,6 +184,7 @@ img {
 
 .footer-url {
     list-style: none;
+    padding: 50px;
 }
 
 .footer-link {
