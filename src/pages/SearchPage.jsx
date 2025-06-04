@@ -117,7 +117,7 @@ function SearchPage() {
                     </div>
                 </div>
 
-                <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
+                <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center mt-3">
                     {filteredGames.map(game => <Card data={game} key={game.id} />)}
                 </div>
             </section>
