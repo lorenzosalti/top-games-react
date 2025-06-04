@@ -258,3 +258,47 @@ img {
 p {
     line-height: 90%;
 }
+
+/* Immagine nel carrello */
+.cart-image {
+    max-width: 100px;
+    height: auto;
+    margin-right: 10px;
+    display: block;
+}
+
+/* Colonna centrale (testo gioco) */
+.cart-text-col {
+    padding-left: 10px;
+}
+
+/* Azioni: input + bottone */
+.cart-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .cart-item-row {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cart-image {
+        max-width: 120px;
+        margin-right: 16px;
+    }
+
+    .cart-text-col {
+        padding-left: 16px;
+    }
+
+    .cart-actions {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+}
