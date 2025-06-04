@@ -67,7 +67,6 @@ img {
 
 
 .carousel-item {
-    height: 80vh;
     position: relative;
     overflow: hidden;
 }
