@@ -121,14 +121,14 @@ export default function Header() {
                     <h5 className="offcanvas-title text-white" id="offcanvasRightLabel">Giochi nel carrello</h5>
                     <button type="button" className="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div className="offcanvas-body d-flex flex-column">
+                {/* <div className="offcanvas-body d-flex flex-column">
                     {cartStorage.length ? cartStorage.map((game, index) => (
                         <div key={index} className="card mb-3 bg-dark" >
-                            <div className="row g-0 align-items-center bg-dark">
-                                <div className="col-md-4">
-                                    <img src={game.imagePath} className="img-fluid rounded-start" alt={game.title} />
+                            <div className="row g-0 align-items-center bg-dark ">
+                                <div className="col-4 col-md-4">
+                                    <img src={game.imagePath} className="img-fluid rounded-start cart-image" alt={game.title} />
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-8 col-md-6">
                                     <div className="card-body text-white">
                                         <h5 className="card-title">{game.title}</h5>
                                         <p className="card-text mb-1"><strong>Genere:<br /></strong> {game.genres_list}</p>
@@ -136,12 +136,12 @@ export default function Header() {
                                         <p className="card-text fw-bold">Prezzo: {game.discount ? (game.price - (game.price * game.discount / 100)).toFixed(2) : Number(game.price).toFixed(2)} €</p>
                                     </div>
                                 </div>
-                                <div className="col-md-2 text-end pe-4">
+                                <div className="col-12 col-md-2 mt-2 mt-md-0 text-end">
                                     <div className="d-flex flex-column align-items-center">
                                         <label htmlFor={`quantityInput${index}`} className="form-label">Quantità</label>
                                         <input
                                             type="number"
-                                            className="form-control mb-2"
+                                            className="form-control mb-1"
                                             id={`quantityInput${index}`}
                                             min="1"
                                             value={game.quantity || 1}
@@ -157,6 +157,50 @@ export default function Header() {
                         </div>
                     ))
                         : <div className="text-white">Nessun gioco nel carrello</div>}
+                </div> */}
+                <div className="offcanvas-body d-flex flex-column">
+                    {cartStorage.length ? cartStorage.map((game, index) => (
+                        <div key={index} className="card mb-3 bg-dark text-white">
+                            <div className="row g-0 cart-item-row p-2">
+                                <div className="col-4 col-sm-3">
+                                    <img
+                                        src={game.imagePath}
+                                        className="img-fluid rounded-start cart-image"
+                                        alt={game.title}
+                                    />
+                                </div>
+                                <div className="col-8 col-sm-6">
+                                    <div className="card-body py-0">
+                                        <h5 className="card-title fs-6">{game.title}</h5>
+                                        <p className="card-text mb-1"><strong>Genere:</strong> {game.genres_list}</p>
+                                        <p className="card-text mb-1"><strong>Console:</strong> {game.platform}</p>
+                                        <p className="card-text fw-bold mb-0">Prezzo: {game.discount ? (game.price - (game.price * game.discount / 100)).toFixed(2) : Number(game.price).toFixed(2)} €</p>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-column align-items-center">
+                                    <label htmlFor={`quantityInput${index}`} className="form-label mb-1 text-center">Quantità</label>
+                                    <div className="cart-actions">
+                                        <input
+                                            type="number"
+                                            className="form-control text-center"
+                                            id={`quantityInput${index}`}
+                                            min="1"
+                                            value={game.quantity || 1}
+                                            onChange={(e) => updateQuantity(game, e.target.value)}
+                                            style={{ width: '70px' }}
+                                        />
+                                        <button
+                                            className="btn btn-warning text-black btn-sm"
+                                            onClick={() => deleteGameCart(game)}
+                                        >
+                                            Elimina
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    )) : <div className="text-white">Nessun gioco nel carrello</div>}
                 </div>
                 {cartStorage ? <div className='d-flex flex-column align-items-center mb-4 me-4 mt-4'>
                     <div className='mb-2 text-white fw-bold'>Prezzo totale: {grossPrice.toFixed(2)} €</div>
