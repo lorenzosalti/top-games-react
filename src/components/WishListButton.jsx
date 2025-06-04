@@ -9,7 +9,7 @@ function WishlistButton({ gameId }) {
   const checked = isInWishlist(gameId);
 
   return (
-    <label className="d-flex align-items-center gap-2">
+    <label className="d-flex justify-content-center align-items-center gap-2">
       <input
         type="checkbox"
         className="btn-check"
@@ -24,7 +24,7 @@ function WishlistButton({ gameId }) {
       >
         <FontAwesomeIcon
           icon={checked ? fasHeart : farHeart}
-          className="btn fs-4 pe-5 ps-5"
+          className="btn fs-4  pe-5 ps-5"
           style={{ color: checked ? 'red' : 'black' }}
         />
       </span>

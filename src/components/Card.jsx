@@ -7,6 +7,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 
 function Card({ data }) {
@@ -70,35 +71,35 @@ function Card({ data }) {
                             </p>
                         </>
                     ) : (<div className='mb-3'>{price} €</div>)}
-                    <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                    <div className="d-flex flex-column justify-content-center justify-content-md-start mt-3">
                         {(() => {
                             const gameInCart = cartStorage.find(g => g.id === game.id);
                             const quantity = gameInCart ? gameInCart.quantity : 0;
 
-
                             if (quantity > 0) {
                                 return (
-                                    <div className="d-flex align-items-center">
+
+                                    <div className="d-flex align-items-center mb-3 w-100">
+
+
                                         <button
                                             onClick={() => reduceQuantityGameCart(game)}
                                             type="button"
-                                            className="btn btn-warning me-2"
+                                            className="btn btn-warning me-2 fs-6 p-1 flex-grow-1"
                                         >
                                             <FontAwesomeIcon icon={faMinus} />
                                         </button>
-
                                         <input
                                             type="text"
                                             readOnly
                                             value={quantity}
-                                            className="form-control text-center me-2"
+                                            className="form-control text-center fs-6"
                                             style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
                                         />
-
                                         <button
                                             onClick={() => addGameCart(game)}
                                             type="button"
-                                            className="btn btn-warning me-sm-3"
+                                            className="btn btn-warning ms-2 fs-6 p-1 flex-grow-1"
                                         >
                                             <FontAwesomeIcon icon={faPlus} />
                                         </button>
@@ -106,20 +107,20 @@ function Card({ data }) {
                                 );
                             } else {
                                 return (
+
                                     <button
                                         onClick={() => addGameCart(game)}
                                         type="button"
-                                        className="btn btn-warning me-sm-3 mb-2 mb-sm-0 fs-5"
+                                        className="btn btn-warning fs-5 mb-2 w-100"
                                     >
-                                        Aggiungi al carrello
+                                        <FontAwesomeIcon icon={faCartShopping} />
                                     </button>
                                 );
                             }
                         })()}
-                        <WishListButton gameId={id} />
+
+                        <WishListButton gameId={game.id} className="w-100" />
                     </div>
-
-
                 </div>
             </div>
         </div>
