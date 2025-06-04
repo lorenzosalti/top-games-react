@@ -368,7 +368,7 @@ function Checkout() {
                             </div>
 
                             <div className="modal-body bg-dark text-white">
-                                <p>Controlla i dati inseriti e riprova. Non mollare! 💪</p>
+                                <p>Controlla i dati inseriti e riprova.</p>
                             </div>
 
                             <div className="modal-footer bg-dark d-flex justify-content-center">
