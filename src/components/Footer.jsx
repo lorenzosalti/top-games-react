@@ -37,7 +37,7 @@ export default function Footer() {
                 </div>
 
                 <div className="social-container bg-dark col-4">
-                    <span className="follow-us">FOLLOW US</span>
+                    <span className="follow-us  fs-4">FOLLOW US</span>
                     <div className="social-icone">
                         {/* Collegamento di socialUrl */}
                         {socialUrl.map((social, index) => (

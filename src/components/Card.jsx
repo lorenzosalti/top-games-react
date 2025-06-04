@@ -109,7 +109,7 @@ function Card({ data }) {
                                     <button
                                         onClick={() => addGameCart(game)}
                                         type="button"
-                                        className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
+                                        className="btn btn-warning me-sm-3 mb-2 mb-sm-0 fs-5"
                                     >
                                         Aggiungi al carrello
                                     </button>
