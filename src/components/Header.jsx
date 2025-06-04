@@ -31,34 +31,47 @@ export default function Header() {
     }
 
     return (
-        <header>
-            <nav className="navbar fixed-top navbar-expand-lg bg-dark navbar-dark mb-5 py-3 shadow">
-                <div className="container-fluid me-5 ms-5">
-                    <Link to={'/'} className='navbar-brand text-white'>
-                        <img src="/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" />
+        <header >
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-2">
+                <div className="container-fluid">
+                    <Link className="navbar-brand" to="/"><img src="/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" /></Link>
 
-                    </Link>
-
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-
-                        <NavLink className=" position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                            <span className='text-white fs-3'><FontAwesomeIcon icon={faCartShopping} /></span>
-                            {cartStorage.length ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                {totalGameCart}
-                                <span className="visually-hidden">Giochi nel carrello</span>
-                            </span> : ''}
-
-                        </NavLink>
-                    </button>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-
-                        <span className=''><NavLink to={'/wishlist'} className='nav-link zoom-effect text-white fs-3'><FontAwesomeIcon icon={faHeart} /></NavLink></span>
-                    </button>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse " id="navbarNavDropdown">
-                        <ul className="navbar-nav mx-auto ">
+
+                    <div className="d-flex d-lg-none justify-content-center my-3">
+                        <NavLink
+                            className="position-relative text-white fs-3 mx-3"
+                            to="#"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight"
+                            aria-controls="offcanvasRight"
+                        >
+                            <FontAwesomeIcon icon={faCartShopping} />
+                            {cartStorage.length > 0 && (
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {totalGameCart}
+                                    <span className="visually-hidden">Giochi nel carrello</span>
+                                </span>
+                            )}
+                        </NavLink>
+
+                        <NavLink to="/wishlist" className="nav-link text-white fs-3 mx-3">
+                            <FontAwesomeIcon icon={faHeart} />
+                        </NavLink>
+                    </div>
+
+                    <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
                                 <NavLink to={'/console/playstation'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faPlaystation} /> PlayStation 5</NavLink>
                             </li>
@@ -72,6 +85,28 @@ export default function Header() {
                                 <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'> <i className="bi bi-nintendo-switch"></i> Nintendo Switch</NavLink>
                             </li>
                         </ul>
+
+                        <div className="d-none d-lg-flex align-items-center">
+                            <NavLink
+                                className="position-relative text-white fs-3 mx-3"
+                                to="#"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight"
+                                aria-controls="offcanvasRight"
+                            >
+                                <FontAwesomeIcon icon={faCartShopping} />
+                                {cartStorage.length > 0 && (
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {totalGameCart}
+                                        <span className="visually-hidden">Giochi nel carrello</span>
+                                    </span>
+                                )}
+                            </NavLink>
+
+                            <NavLink to="/wishlist" className="nav-link text-white fs-3 mx-3">
+                                <FontAwesomeIcon icon={faHeart} />
+                            </NavLink>
+                        </div>
                     </div>
                 </div>
             </nav>
