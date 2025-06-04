@@ -24,7 +24,7 @@ function WishlistButton({ gameId }) {
       >
         <FontAwesomeIcon
           icon={checked ? fasHeart : farHeart}
-          className="btn fs-4"
+          className="btn fs-4 pe-5 ps-5"
           style={{ color: checked ? 'red' : 'black' }}
         />
       </span>

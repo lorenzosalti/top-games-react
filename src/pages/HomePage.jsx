@@ -177,35 +177,32 @@ function HomePage() {
                                                                     </p>
                                                                     : <span className="m-2">{game.price} €</span>}
                                                             </div>
-                                                            <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                                                            <div className="d-flex flex-column justify-content-center justify-content-md-start mt-3">
                                                                 {(() => {
                                                                     const gameInCart = cartStorage.find(g => g.id === game.id);
                                                                     const quantity = gameInCart ? gameInCart.quantity : 0;
 
-
                                                                     if (quantity > 0) {
                                                                         return (
-                                                                            <div className="d-flex align-items-center">
+                                                                            <div className="d-flex align-items-center mb-3 w-100">
                                                                                 <button
                                                                                     onClick={() => reduceQuantityGameCart(game)}
                                                                                     type="button"
-                                                                                    className="btn btn-warning me-2"
+                                                                                    className="btn btn-warning me-2 fs-4 p-2 flex-grow-1"
                                                                                 >
                                                                                     <FontAwesomeIcon icon={faMinus} />
                                                                                 </button>
-
                                                                                 <input
                                                                                     type="text"
                                                                                     readOnly
                                                                                     value={quantity}
-                                                                                    className="form-control text-center me-2"
-                                                                                    style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                                                                                    className="form-control text-center fs-4"
+                                                                                    style={{ width: '80px', backgroundColor: '#fff', color: '#000' }}
                                                                                 />
-
                                                                                 <button
                                                                                     onClick={() => addGameCart(game)}
                                                                                     type="button"
-                                                                                    className="btn btn-warning me-sm-3"
+                                                                                    className="btn btn-warning ms-2 fs-4 p-2 flex-grow-1"
                                                                                 >
                                                                                     <FontAwesomeIcon icon={faPlus} />
                                                                                 </button>
@@ -216,14 +213,14 @@ function HomePage() {
                                                                             <button
                                                                                 onClick={() => addGameCart(game)}
                                                                                 type="button"
-                                                                                className="btn btn-warning fs-4 me-sm-3 mb-4 p-1 pe-3 ps-3 mb-sm-0"
+                                                                                className="btn btn-warning fs-3 mb-3 w-100 pe-5 ps-5"
                                                                             >
                                                                                 <FontAwesomeIcon icon={faCartShopping} />
                                                                             </button>
                                                                         );
                                                                     }
                                                                 })()}
-                                                                <WishListButton gameId={game.id} />
+                                                                <WishListButton gameId={game.id} className="w-100" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -272,35 +269,33 @@ function HomePage() {
                                                                 <span className="card-text mb-2 rounded position-absolute discount bg-warning text-dark fw-bold p-2">
                                                                     - {game.discount}%
                                                                 </span>
-                                                                <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                                                                <div className="d-flex flex-column justify-content-center justify-content-md-start mt-3">
                                                                     {(() => {
                                                                         const gameInCart = cartStorage.find(g => g.id === game.id);
                                                                         const quantity = gameInCart ? gameInCart.quantity : 0;
 
-
                                                                         if (quantity > 0) {
                                                                             return (
-                                                                                <div className="d-flex align-items-center">
+
+                                                                                <div className="d-flex align-items-center mb-3">
                                                                                     <button
                                                                                         onClick={() => reduceQuantityGameCart(game)}
                                                                                         type="button"
-                                                                                        className="btn btn-warning me-2"
+                                                                                        className="btn btn-warning me-2 fs-4 p-2"
                                                                                     >
                                                                                         <FontAwesomeIcon icon={faMinus} />
                                                                                     </button>
-
                                                                                     <input
                                                                                         type="text"
                                                                                         readOnly
                                                                                         value={quantity}
-                                                                                        className="form-control text-center me-2"
-                                                                                        style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                                                                                        className="form-control text-center fs-4"
+                                                                                        style={{ width: '80px', backgroundColor: '#fff', color: '#000' }}
                                                                                     />
-
                                                                                     <button
                                                                                         onClick={() => addGameCart(game)}
                                                                                         type="button"
-                                                                                        className="btn btn-warning me-sm-3"
+                                                                                        className="btn btn-warning ms-2 fs-4 p-2"
                                                                                     >
                                                                                         <FontAwesomeIcon icon={faPlus} />
                                                                                     </button>
@@ -308,10 +303,11 @@ function HomePage() {
                                                                             );
                                                                         } else {
                                                                             return (
+
                                                                                 <button
                                                                                     onClick={() => addGameCart(game)}
                                                                                     type="button"
-                                                                                    className="btn btn-warning fs-4 me-sm-3 mb-4 p-1 pe-3 ps-3 mb-sm-0"
+                                                                                    className="btn btn-warning fs-3 mb-3"
                                                                                 >
                                                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                                                 </button>
