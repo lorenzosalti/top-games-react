@@ -15,6 +15,10 @@ main {
     flex: 1;
 }
 
+header {
+    padding-top: 100px;
+}
+
 
 
 

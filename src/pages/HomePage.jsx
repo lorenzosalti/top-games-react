@@ -242,7 +242,7 @@ function HomePage() {
                                         <div className="row w-75 justify-content-center">
                                             {gameGroup.map((game, gameIndex) => (
                                                 <div className="col-md-4 mb-4" key={game.id}>
-                                                    <div className="card shadow col-12 h-100 text-white p-3 bg-dark position-relative">
+                                                    <div className="card shadow h-100 col-12 text-white p-3 bg-dark position-relative">
                                                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                                                             <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
                                                             <h5 className="card-title text-center mb-3">{game.title}</h5>
