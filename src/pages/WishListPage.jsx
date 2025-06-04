@@ -52,7 +52,7 @@ function WishListPage() {
 
   return (
     <>
-      <div className="container" style={{ minHeight: "500px" }}>
+      <div className="container" style={{ minHeight: "550px" }}>
         <div className="d-flex justify-content-center text-white m-3">
           <h2>La tua wishlist</h2>
         </div>
