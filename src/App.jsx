@@ -13,6 +13,7 @@ import Xbox from './pages/XboxPage';
 import Pc from './pages/PcPage';
 import Switch from './pages/SwitchPage';
 import Checkout from './pages/CheckOutPage';
+import Page404 from './pages/Page404';
 
 
 function App() {
@@ -176,7 +177,7 @@ function App() {
 
             <Route path='/order/:id' element={<div>Detail Order</div>} />
             <Route path='/mailing-list' element={<div>Mailing-list</div>} />
-            <Route path='*' element={<div>Error Page dont exist</div>} />
+            <Route path='*' element={<Page404 />} />
           </Route >
         </Routes>
       </GlobalContext.Provider>
