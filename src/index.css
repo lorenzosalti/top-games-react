@@ -89,76 +89,37 @@ img {
 }
 
 
-
-.container-footer {
+/* FOOTER */
+.footer-container {
     display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    position: relative;
+    justify-content: space-around;
     overflow: hidden;
     z-index: 1;
-}
-
-.footer-link-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    text-align: center;
-    justify-content: center;
-}
-
-.image-logo-footer {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-}
-
-.image-logo-footer img {
-    max-height: 100%;
-    width: auto;
-    opacity: 0.9;
-}
-
-.footer-bottom {
-    background-color: #252525;
-    padding: 20px 0;
-    z-index: 99;
-}
-
-.footer-bottom-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0 auto !important
 }
 
-.signup-button {
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #f9dc02;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 14px;
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
 
-.signup-button:hover {
-    background-color: rgba(2, 130, 249, 0.1);
+.footer-logo img {
+    opacity: 0.5;
+    max-width: 75%;
+    min-width: 30%;
 }
 
 .social-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 15px;
+    padding: 50px;
+    flex-grow: 1;
 }
 
 .follow-us {
@@ -178,13 +139,12 @@ img {
     align-items: center;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    background-color: #303030;
     color: #fff;
 }
 
 .social-icon:hover {
-    background-color: #f9dc02;
+    color: #f9dc02;
+    transition-duration: 300ms;
 }
 
 
@@ -229,16 +189,11 @@ img {
     min-width: 150px;
 }
 
-.footer-title {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
 .footer-url {
     list-style: none;
+    margin: 0;
+    padding: 10px 50px;
+    text-align: center;
 }
 
 .footer-link {
@@ -246,7 +201,7 @@ img {
 }
 
 .footer-link-url {
-    color: #959595;
+    color: #fff;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
