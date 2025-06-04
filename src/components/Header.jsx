@@ -32,7 +32,7 @@ export default function Header() {
 
     return (
         <header >
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-2">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/"><img src="/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" /></Link>
                     <button
