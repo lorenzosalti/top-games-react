@@ -53,7 +53,7 @@ export default function Header() {
                                 <NavLink to={'/console/pc'} className='nav-link text-white zoom-effect fs-5'> <FontAwesomeIcon icon={faDesktop} /> PC</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'> <i class="bi bi-nintendo-switch"></i> Nintendo Switch</NavLink>
+                                <NavLink to={'/console/switch'} className='nav-link text-white zoom-effect fs-5'> <i className="bi bi-nintendo-switch"></i> Nintendo Switch</NavLink>
                             </li>
                         </ul>
                         <ul className="navbar-nav">
