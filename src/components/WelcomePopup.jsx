@@ -39,11 +39,11 @@ export default function WelcomePopup() {
 
     return (
         <div className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-75 z-3">
-            <div className="bg-white p-4 rounded shadow text-center" style={{ maxWidth: "400px" }}>
+            <div className="bg-dark text-white p-4 rounded shadow text-center" style={{ maxWidth: "400px" }}>
                 {!sent ? (
                     <>
                         <h5>&#127918; Benvenuto!</h5>
-                        <p>Inserisci la tua email per ricevere una sorpresa</p>
+                        <p>Inserisci la tua email per ricevere una sorpresa!</p>
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="email"
@@ -54,14 +54,21 @@ export default function WelcomePopup() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
-                            <button type="submit" className="btn btn-primary">Invia</button>
+                            <div className="d-flex justify-content-around mt-3">
+                                <button type="submit" className="btn btn-warning w-45">Invia</button>
+                                <button type="button" className="btn btn-secondary w-45" onClick={() => setShow(false)}>Chiudi</button>
+                            </div>
                         </form>
                         {error && <p className="text-danger mt-2">&#9888;&#65039;{error}</p>}
                     </>
                 ) : (
-                    <p className="text-success">&#9989; Email inviata! Controlla la tua casella  &#128521;</p>
+                    <>
+                        <p className="text-success">&#9989; Email inviata! Controlla la tua casella &#128521;</p>
+                        <div className="d-flex justify-content-center mt-3">
+                            <button className="btn btn-secondary w-50" onClick={() => setShow(false)}>Chiudi</button>
+                        </div>
+                    </>
                 )}
-                <button className="btn btn-secondary mt-3" onClick={() => setShow(false)}>Chiudi</button>
             </div>
         </div>
     );
