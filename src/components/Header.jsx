@@ -94,7 +94,7 @@ export default function Header() {
                     </div>
                     <div className="d-none d-lg-flex align-items-center">
                         <NavLink
-                            className="position-relative text-white fs-3 mx-3"
+                            className="position-relative text-white fs-4 mx-3"
                             to="#"
                             data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasRight"
@@ -109,7 +109,7 @@ export default function Header() {
                             )}
                         </NavLink>
 
-                        <NavLink to="/wishlist" className="nav-link text-white fs-3 mx-3">
+                        <NavLink to="/wishlist" className="nav-link text-white fs-4 mx-3">
                             <FontAwesomeIcon icon={faHeart} />
                         </NavLink>
                     </div>
