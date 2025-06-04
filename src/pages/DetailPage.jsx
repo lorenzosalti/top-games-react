@@ -6,6 +6,7 @@ import WishListButton from '../components/WishListButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 
 function DetailPage() {
@@ -88,51 +89,52 @@ function DetailPage() {
                             ) : (<div>{game.price} €</div>)}
 
                             <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
-                                {(() => {
-                                    const gameInCart = cartStorage.find(g => g.id === game.id);
-                                    const quantity = gameInCart ? gameInCart.quantity : 0;
+                                <div className="d-flex align-items-center justify-content-center ">
+                                    {(() => {
+                                        const gameInCart = cartStorage.find(g => g.id === game.id);
+                                        const quantity = gameInCart ? gameInCart.quantity : 0;
 
+                                        if (quantity > 0) {
+                                            return (
+                                                <>
+                                                    <button
+                                                        onClick={() => reduceQuantityGameCart(game)}
+                                                        type="button"
+                                                        className="btn btn-warning me-2 mb-2"
+                                                    >
+                                                        <FontAwesomeIcon icon={faMinus} />
+                                                    </button>
 
-                                    if (quantity > 0) {
-                                        return (
-                                            <div className="d-flex align-items-center">
-                                                <button
-                                                    onClick={() => reduceQuantityGameCart(game)}
-                                                    type="button"
-                                                    className="btn btn-warning me-2"
-                                                >
-                                                    <FontAwesomeIcon icon={faMinus} />
-                                                </button>
+                                                    <input
+                                                        type="text"
+                                                        readOnly
+                                                        value={quantity}
+                                                        className="form-control text-center me-2 mb-2"
+                                                        style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                                                    />
 
-                                                <input
-                                                    type="text"
-                                                    readOnly
-                                                    value={quantity}
-                                                    className="form-control text-center me-2"
-                                                    style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
-                                                />
-
+                                                    <button
+                                                        onClick={() => addGameCart(game)}
+                                                        type="button"
+                                                        className="btn btn-warning me-sm-3 mb-2"
+                                                    >
+                                                        <FontAwesomeIcon icon={faPlus} />
+                                                    </button>
+                                                </>
+                                            );
+                                        } else {
+                                            return (
                                                 <button
                                                     onClick={() => addGameCart(game)}
                                                     type="button"
-                                                    className="btn btn-warning me-sm-3"
+                                                    className="btn btn-warning me-sm-3 mb-2 mb-sm-0 px-5 fs-4 py-1"
                                                 >
-                                                    <FontAwesomeIcon icon={faPlus} />
+                                                    <FontAwesomeIcon icon={faCartShopping} />
                                                 </button>
-                                            </div>
-                                        );
-                                    } else {
-                                        return (
-                                            <button
-                                                onClick={() => addGameCart(game)}
-                                                type="button"
-                                                className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
-                                            >
-                                                Aggiungi al carrello
-                                            </button>
-                                        );
-                                    }
-                                })()}
+                                            );
+                                        }
+                                    })()}
+                                </div>
                                 <WishListButton gameId={game.id} />
                             </div>
                         </div>

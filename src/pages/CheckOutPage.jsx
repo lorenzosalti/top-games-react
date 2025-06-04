@@ -212,10 +212,10 @@ function Checkout() {
                                         </li>
                                     </ul>
 
-                                    <div className="d-flex align-items-center justify-content-between bg-dark text-white p-3 border rounded">
-                                        <label htmlFor="discount-input" className="form-label mb-0 me-2">Codice sconto:</label>
-                                        <input type="text" className="form-control me-2 fs-5" id="discount-input" style={{ flex: 1, maxWidth: '150px' }} onChange={handleDiscountData} />
-                                        <button type="button" className="btn btn-warning text-black fs-4" data-bs-toggle="modal" data-bs-target="#discountModal" onClick={handleDiscount}>
+                                    <div className="d-flex align-items-center justify-content-between bg-dark text-white p-3 border rounded row">
+                                        <label htmlFor="discount-input" className="form-label mb-0 me-2 col-12 col-md-3">Codice sconto:</label>
+                                        <input type="text" className="form-control me-2 fs-5 col-6 col-md-6" id="discount-input" style={{ flex: 1 }} onChange={handleDiscountData} />
+                                        <button type="button" className="btn btn-warning text-black fs-4 col-6 col-md-3" data-bs-toggle="modal" data-bs-target="#discountModal" onClick={handleDiscount}>
                                             Applica
                                         </button>
                                     </div>

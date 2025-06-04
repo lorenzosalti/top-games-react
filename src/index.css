@@ -301,7 +301,7 @@ p {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .text-detail-container {
         max-width: 100%;
     }
@@ -309,6 +309,7 @@ p {
     .detail-container {
         max-width: 100%;
     }
+
 }
 
 input.btn-check:checked+label {
