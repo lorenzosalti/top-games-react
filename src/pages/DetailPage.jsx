@@ -88,8 +88,8 @@ function DetailPage() {
                                 </>
                             ) : (<div>{game.price} €</div>)}
 
-                            <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
-                                <div className="d-flex align-items-center justify-content-center ">
+                            <div className="d-flex flex-column flex-lg-row justify-content-center justify-content-md-start mt-3 align-items-md-start">
+                                <div className="d-flex align-items-center justify-content-center m-sm-2">
                                     {(() => {
                                         const gameInCart = cartStorage.find(g => g.id === game.id);
                                         const quantity = gameInCart ? gameInCart.quantity : 0;
@@ -100,7 +100,7 @@ function DetailPage() {
                                                     <button
                                                         onClick={() => reduceQuantityGameCart(game)}
                                                         type="button"
-                                                        className="btn btn-warning me-2 mb-2"
+                                                        className="btn btn-warning  mb-2 fs-5"
                                                     >
                                                         <FontAwesomeIcon icon={faMinus} />
                                                     </button>
@@ -109,14 +109,14 @@ function DetailPage() {
                                                         type="text"
                                                         readOnly
                                                         value={quantity}
-                                                        className="form-control text-center me-2 mb-2"
-                                                        style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                                                        className="form-control text-center mx-2 mb-2"
+                                                        style={{ width: '41px', backgroundColor: '#fff', color: '#000' }}
                                                     />
 
                                                     <button
                                                         onClick={() => addGameCart(game)}
                                                         type="button"
-                                                        className="btn btn-warning me-sm-3 mb-2"
+                                                        className="btn btn-warning  mb-2 fs-5"
                                                     >
                                                         <FontAwesomeIcon icon={faPlus} />
                                                     </button>
@@ -127,7 +127,7 @@ function DetailPage() {
                                                 <button
                                                     onClick={() => addGameCart(game)}
                                                     type="button"
-                                                    className="btn btn-warning me-sm-3 mb-2 mb-sm-0 px-5 fs-4 py-1"
+                                                    className="btn btn-warning mb-2 fs-4 py-1 detail-cart-btn"
                                                 >
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </button>
@@ -135,7 +135,9 @@ function DetailPage() {
                                         }
                                     })()}
                                 </div>
-                                <WishListButton gameId={game.id} />
+                                <div className="p-2">
+                                    <WishListButton gameId={game.id} />
+                                </div>
                             </div>
                         </div>
                     </div>

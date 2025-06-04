@@ -280,6 +280,10 @@ p {
     margin-top: 0.5rem;
 }
 
+.detail-cart-btn {
+    padding: 0 60px !important
+}
+
 @media (min-width: 768px) {
     .cart-item-row {
         align-items: center;
