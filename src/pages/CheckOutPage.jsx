@@ -160,12 +160,20 @@ function Checkout() {
     }
 
     function getNetPrice(data) {
+        const currentDate = new Date();
         const discount = data.find(d => d.discount_code === discountData);
+
         if (discount) {
-            setNetDiscount(parseFloat(grossPrice * discount.discount_value / 100));
-        } else {
-            setNetDiscount('');
-        }
+
+            const discountStart = new Date(discount.discount_start);
+            const discountFinish = new Date(discount.discount_finish);
+
+            if (discountStart < currentDate && currentDate < discountFinish) {
+                setNetDiscount(parseFloat(grossPrice * discount.discount_value / 100));
+            } else setNetDiscount('')
+
+        } else setNetDiscount('')
+
     }
 
 
