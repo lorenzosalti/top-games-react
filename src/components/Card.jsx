@@ -11,7 +11,7 @@ import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
 function Card({ data }) {
 
-    const { id, title, imagePath, price, discount, platform } = data;
+    const { id, slug, title, imagePath, price, discount, platform } = data;
 
     const { cartStorage, setCartStorage, reduceQuantityGameCart } = useContext(GlobalContext);
 
@@ -29,8 +29,6 @@ function Card({ data }) {
             .catch(err => console.error(err));
     }
     function addGameCart() {
-        // let arrayCart = localStorage.getItem('cart');
-        // console.log(JSON.parse(arrayCart));
         const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
 
         let updatedCart;
@@ -55,11 +53,11 @@ function Card({ data }) {
         <div className="card bg-dark col-lg-3 col-md-4 text-white shadow">
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <figure className="mt-2">
-                    <Link to={`/games/${id}`}> <img src={imagePath} className="card-img-top pb-3" alt={title} /> </Link>
+                    <Link to={`/games/${slug}`}> <img src={imagePath} className="card-img-top pb-3" alt={title} /> </Link>
                 </figure>
                 <h5 className="card-title fw-bold pt-2">{title}</h5>
                 <div className='mt-auto d-flex flex-column justify-content-center align-items-center'>
-                    <p className="card-text"><strong>Console:</strong> {platform}</p>
+                    <p className="card-text"><i class="bi bi-controller"></i> <strong>Console:</strong> {platform}</p>
                     {discount > 0 ? (
                         <>
                             <p className="card-text mb-1 pb-3">

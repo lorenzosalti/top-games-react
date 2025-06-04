@@ -12,21 +12,12 @@ function DetailPage() {
 
     const { cartStorage, setCartStorage, reduceQuantityGameCart } = useContext(GlobalContext);
 
-    const { id } = useParams();
+    const { slug } = useParams();
 
     const [game, setGame] = useState({});
 
     const gamesUrl = 'http://localhost:3000/games';
 
-    function getData() {
-
-        axios.get(`${gamesUrl}/${id}`)
-            .then(res => {
-                // console.log(res.data);
-                setGame(res.data);
-            })
-            .catch(err => console.error(err));
-    }
     function addGameCart() {
 
         const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
@@ -45,10 +36,19 @@ function DetailPage() {
     }
 
 
-    useEffect(
-        getData,
-        [id]);
+    useEffect(() => {
+        axios.get(gamesUrl)
+            .then(res => {
+                const found = res.data.find(g => g.slug === slug);
+                if (found) {
+                    setGame(found);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+            });
 
+    }, [slug]);
     // discount
 
     function hasDiscount(discount_start, discount_finish) {
@@ -61,22 +61,19 @@ function DetailPage() {
         return false;
     }
 
-    let arrayCart = sessionStorage.getItem('cart');
-
-
     return (
 
         <div className="container w-100 w-md-75 w-lg-50 mt-5">
             <div className="card shadow mb-5 text-white card-detail-bg">
                 <div className="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-start detail-container">
-                    <figure className="m-3 me-md-4">
+                    <figure className="m-3 me-md-4 mt-4">
                         <img src={game.imagePath} className="img-fluid rounded card-img-top" alt={game.title} style={{ maxWidth: '250px' }} />
                     </figure>
                     <div className="d-flex flex-column p-3 text-center text-md-start text-detail-container">
                         <h5 className="card-title fw-bold pt-2 fs-3 fs-md-1">{game.title}</h5>
                         <p className="card-text">{game.description}</p>
-                        <p className="card-text"><strong>Genere:</strong> {game.genres_list}</p>
-                        <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                        <p className="card-text"> <i class="bi bi-collection-fill"></i> <strong>Genere:</strong> {game.genres_list}</p>
+                        <p className="card-text"> <i class="bi bi-controller"></i> <strong>Console:</strong> {game.platform}</p>
                         <div>
                             {game.discount > 0 ? (
                                 <>
