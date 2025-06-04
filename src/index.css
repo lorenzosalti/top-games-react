@@ -312,3 +312,7 @@ p {
 #carouselExampleSingleCard2 .carousel-item {
     min-height: 100%;
 }
+
+input.btn-check:checked+label {
+    border: 3px solid white !important;
+}
