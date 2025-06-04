@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
 
 
 function WishListPage() {
-
   const { wishListGames, setWishListGames, cartStorage, reduceQuantityGameCart, setCartStorage } = useContext(GlobalContext);
 
   // necessaria perchè il games in contesto globale potrebbe essere filtrato, ma è sempre necessario fare un confronto tra TUTTI i giochi
@@ -33,7 +33,6 @@ function WishListPage() {
     return games.filter(game => wishListGames.includes(Number(game.id)));
   }, [games, wishListGames]);
 
-
   function addGameCart(game) {
     const existingGameIndex = cartStorage.findIndex(g => g.id === game.id);
 
@@ -42,7 +41,6 @@ function WishListPage() {
     if (existingGameIndex !== -1) {
       updatedCart = [...cartStorage];
       updatedCart[existingGameIndex].quantity += 1;
-
     } else {
       updatedCart = [...cartStorage, { ...game, quantity: 1 }];
     }
@@ -54,84 +52,88 @@ function WishListPage() {
     <>
       <div className="container">
         <div className="d-flex justify-content-center text-white m-3">
-          <h2>La tua wishlist</h2>
+          <h2>La tua wishlist:</h2>
         </div>
 
+        {gamesInWishlist.length === 0 ? (
+          <div className="d-flex justify-content-center align-items-center text-white my-5" style={{ minHeight: '200px' }}>
+            <div className="text-center text-warning fs-1"><FontAwesomeIcon icon={faFaceFrown} />
+              <h3 className="text-center text-white">La tua wishlist è vuota!</h3></div>
+          </div>
+        ) : (
+          <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
+            {gamesInWishlist.map(game =>
+              <div className="card shadow bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
+                <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                  <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
+                  <h5 className="card-title fw-bold pt-2">{game.title}</h5>
+                  <p className="card-text"><strong>Console:</strong> {game.platform}</p>
+                  {game.discount > 0 ? (
+                    <>
+                      <p className="card-text mb-1 pb-3">
+                        <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
+                        <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
+                        <span className="card-text mb-2 rounded position-absolute bg-warning discount text-dark fw-bold p-2 ms-3">
+                          - {game.discount}%
+                        </span>
+                      </p>
+                    </>
+                  ) : (<div className='mb-3'>{game.price} €</div>)}
+                  <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
+                    {(() => {
+                      const gameInCart = cartStorage.find(g => g.id === game.id);
+                      const quantity = gameInCart ? gameInCart.quantity : 0;
 
-        <div className="row row-gap-3 mb-5 column-gap-2 d-flex justify-content-center">
-          {gamesInWishlist.map(game =>
-            <div className="card shadow bg-dark col-lg-3 col-md-4 text-white" key={game.id}>
-              <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                <Link to={`/games/${game.id}`}> <img src={game.imagePath} className="card-img-top pb-3" alt={game.title} /> </Link>
-                <h5 className="card-title fw-bold pt-2">{game.title}</h5>
-                <p className="card-text"><strong>Console:</strong> {game.platform}</p>
-                {game.discount > 0 ? (
-                  <>
-                    <p className="card-text mb-1 pb-3">
-                      <span className="text-decoration-line-through text-danger me-2">{game.price} €</span>
-                      <span className="text-success">{(game.price - (game.price * game.discount / 100)).toFixed(2)} €</span>
-                      <span className="card-text mb-2 rounded position-absolute bg-warning discount text-dark fw-bold p-2 ms-3">
-                        - {game.discount}%
-                      </span>
-                    </p>
-                  </>
-                ) : (<div className='mb-3'>{game.price} €</div>)}
-                <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-3">
-                  {(() => {
-                    const gameInCart = cartStorage.find(g => g.id === game.id);
-                    const quantity = gameInCart ? gameInCart.quantity : 0;
+                      if (quantity > 0) {
+                        return (
+                          <div className="d-flex align-items-center">
+                            <button
+                              onClick={() => reduceQuantityGameCart(game)}
+                              type="button"
+                              className="btn btn-warning me-2"
+                            >
+                              <FontAwesomeIcon icon={faMinus} />
+                            </button>
 
+                            <input
+                              type="text"
+                              readOnly
+                              value={quantity}
+                              className="form-control text-center me-2"
+                              style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
+                            />
 
-                    if (quantity > 0) {
-                      return (
-                        <div className="d-flex align-items-center">
-                          <button
-                            onClick={() => reduceQuantityGameCart(game)}
-                            type="button"
-                            className="btn btn-warning me-2"
-                          >
-                            <FontAwesomeIcon icon={faMinus} />
-                          </button>
-
-                          <input
-                            type="text"
-                            readOnly
-                            value={quantity}
-                            className="form-control text-center me-2"
-                            style={{ width: '60px', backgroundColor: '#fff', color: '#000' }}
-                          />
-
+                            <button
+                              onClick={() => addGameCart(game)}
+                              type="button"
+                              className="btn btn-warning me-sm-3"
+                            >
+                              <FontAwesomeIcon icon={faPlus} />
+                            </button>
+                          </div>
+                        );
+                      } else {
+                        return (
                           <button
                             onClick={() => addGameCart(game)}
                             type="button"
-                            className="btn btn-warning me-sm-3"
+                            className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
                           >
-                            <FontAwesomeIcon icon={faPlus} />
+                            Aggiungi al carrello
                           </button>
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <button
-                          onClick={() => addGameCart(game)}
-                          type="button"
-                          className="btn btn-warning me-sm-3 mb-2 mb-sm-0"
-                        >
-                          Aggiungi al carrello
-                        </button>
-                      );
-                    }
-                  })()}
-                  <WishlistButton gameId={game.id} />
+                        );
+                      }
+                    })()}
+                    <WishlistButton gameId={game.id} />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
-
 }
 
 export default WishListPage;
