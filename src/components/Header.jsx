@@ -32,10 +32,9 @@ export default function Header() {
 
     return (
         <header >
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-2">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/"><img src="/tg-logo2.png" className="d-block w-100 h-100" alt="logo-tg" /></Link>
-
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -47,8 +46,29 @@ export default function Header() {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse " id="navbarNavDropdown">
-                        <ul className="navbar-nav mx-auto ">
+                    <div className="d-flex d-lg-none justify-content-center my-3">
+                        <NavLink
+                            className="position-relative text-white fs-3 mx-3"
+                            to="#"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight"
+                            aria-controls="offcanvasRight"
+                        >
+                            <FontAwesomeIcon icon={faCartShopping} />
+                            {cartStorage.length > 0 && (
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {totalGameCart}
+                                    <span className="visually-hidden">Giochi nel carrello</span>
+                                </span>
+                            )}
+                        </NavLink>
+
+                        <NavLink to="/wishlist" className="nav-link text-white fs-3 mx-3">
+                            <FontAwesomeIcon icon={faHeart} />
+                        </NavLink>
+                    </div>
+                    <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
                                 <NavLink to="/console/playstation" className="nav-link text-white zoom-effect fs-5">
                                     <FontAwesomeIcon icon={faPlaystation} /> PlayStation 5
@@ -71,46 +91,25 @@ export default function Header() {
                             </li>
                         </ul>
 
-                        <div className="d-none d-lg-flex align-items-center">
-                            <NavLink
-                                className="position-relative text-white fs-3 mx-3"
-                                to="#"
-                                data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasRight"
-                                aria-controls="offcanvasRight"
-                            >
-                                <FontAwesomeIcon icon={faCartShopping} />
-                                {cartStorage.length > 0 && (
-                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {totalGameCart}
-                                        <span className="visually-hidden">Giochi nel carrello</span>
-                                    </span>
-                                )}
-                            </NavLink>
-
-                            <NavLink to="/wishlist" className="nav-link text-white fs-3 mx-3">
-                                <FontAwesomeIcon icon={faHeart} />
-                            </NavLink>
-                        </div>
                     </div>
-                    <div className="d-flex align-items-center gap-3">
+                    <div className="d-none d-lg-flex align-items-center">
                         <NavLink
-                            className="position-relative text-white fs-4"
-                            type="button"
+                            className="position-relative text-white fs-3 mx-3"
+                            to="#"
                             data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasRight"
                             aria-controls="offcanvasRight"
                         >
                             <FontAwesomeIcon icon={faCartShopping} />
-                            {cartStorage.length ? (
+                            {cartStorage.length > 0 && (
                                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     {totalGameCart}
                                     <span className="visually-hidden">Giochi nel carrello</span>
                                 </span>
-                            ) : null}
+                            )}
                         </NavLink>
 
-                        <NavLink to="/wishlist" className="text-white fs-4">
+                        <NavLink to="/wishlist" className="nav-link text-white fs-3 mx-3">
                             <FontAwesomeIcon icon={faHeart} />
                         </NavLink>
                     </div>
