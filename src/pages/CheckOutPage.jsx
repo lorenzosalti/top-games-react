@@ -137,6 +137,7 @@ function Checkout() {
             })
             .then((res) => {
                 console.log('Cliente inserito:', res.data);
+                setValidated(true)
                 setFormData(inizionalData);
                 setUserData(customersData);
                 setCartStorage([]);
@@ -347,7 +348,7 @@ function Checkout() {
                                 )}
                             </div>
 
-                            <button type="submit" className="btn btn-warning text-black w-100  fs-4">
+                            <button type="submit" className="btn btn-warning text-black w-100  fs-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Conferma
                             </button>
                         </form>
