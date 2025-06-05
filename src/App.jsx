@@ -112,10 +112,6 @@ function App() {
     sessionStorage.setItem('cart', JSON.stringify(cartStorage));
   }, [cartStorage]);
 
-  useEffect(() => {
-    sessionStorage.setItem('cart', JSON.stringify(cartStorage));
-  }, [cartStorage]);
-
   // funzione chiamata dal pulsante per fare un toggle della presenza del gioco nella wishlist
   function toggleWishlist(id) {
     setWishListGames((prev) =>
