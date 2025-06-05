@@ -118,7 +118,7 @@ export default function Header() {
 
             <div className="offcanvas offcanvas-end bg-dark" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div className="offcanvas-header">
-                    <h5 className="offcanvas-title text-white" id="offcanvasRightLabel">Giochi nel carrello</h5>
+                    <h5 className="offcanvas-title text-white fs-3" id="offcanvasRightLabel">Giochi nel carrello</h5>
                     <button type="button" className="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body d-flex flex-column">

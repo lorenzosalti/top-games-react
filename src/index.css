@@ -44,6 +44,11 @@ header {
 }
 
 
+.form-check-input:checked {
+    opacity: 0.5;
+}
+
+
 img {
     max-width: 100%;
     min-width: 100%;
@@ -224,8 +229,19 @@ img {
     transition: transform 0.3s ease;
 }
 
-.zoom-effect:hover {
+.navbar-nav .nav-item .zoom-effect:hover {
+    color: yellow !important;
     transform: scale(1.08);
+}
+
+.fa-cart-shopping:hover {
+    transform: scale(1.15);
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-heart:hover {
+    transform: scale(1.15);
+    transition: transform 0.3s ease-in-out;
 }
 
 .navbar.shadow {
