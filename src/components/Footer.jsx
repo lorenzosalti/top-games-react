@@ -40,16 +40,16 @@ export default function Footer() {
                         <img src="/logo-tg-footer.png" alt="Top Games!" className="img-fluid" />
                     </div>
 
-                    <div className="col-12 col-md-4 text-center text-md-end">
+                    <div className="col-12 col-md-4 text-center">
                         <span className="follow-us d-block fs-5 mb-2">FOLLOW US</span>
-                        <div className="social-icone d-flex justify-content-center justify-content-md-end gap-3">
+                        <div className="social-icone d-flex justify-content-center gap-3">
                             {socialUrl.map((social, index) => (
                                 <a
                                     key={index}
                                     href={social.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="social-icon-link text-light"
+                                    className="social-icon"
                                     aria-label={social.name}
                                 >
                                     <FontAwesomeIcon icon={social.icon} className='fs-4' />
