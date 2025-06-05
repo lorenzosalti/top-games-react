@@ -33,7 +33,7 @@ function SearchPage() {
 
                     <div className="form-check form-switch">
                         <input
-                            className="form-check-input bg-warning border-warning"
+                            className={`form-check-input bg-warning border-warning ${!showOnlyDiscounted ? 'opacity-50' : ''}`}
                             type="checkbox"
                             id="discountSwitch"
                             checked={showOnlyDiscounted}
