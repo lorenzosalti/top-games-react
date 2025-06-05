@@ -43,6 +43,14 @@ header {
     object-fit: contain;
 }
 
+.btn-purple {
+    background-color: purple;
+    padding: 8px;
+    border-radius: 7px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
 
 img {
     max-width: 100%;

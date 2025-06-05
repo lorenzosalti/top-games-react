@@ -100,7 +100,7 @@ function SearchPage() {
                                 onChange={(e) => setOrderByDirection(e.target.value)}
                                 checked={orderByDirection === "ASC"}
                             />
-                            <label className="btn text-black bg-primary border-3 ms-3 fs-5 m-1" htmlFor="radio-asc">Ordine crescente</label>
+                            <label className="btn-purple border-3 ms-3 fs-5 m-1" htmlFor="radio-asc">Ordine crescente</label>
 
                             <input
                                 type="radio"
@@ -112,7 +112,7 @@ function SearchPage() {
                                 onChange={(e) => setOrderByDirection(e.target.value)}
                                 checked={orderByDirection === "DESC"}
                             />
-                            <label className="btn bg-primary text-black border-3 ms-3 fs-5 m-1" htmlFor="radio-desc">Ordine decrescente</label>
+                            <label className="btn-purple border-3 ms-3 fs-5 m-1" htmlFor="radio-desc">Ordine decrescente</label>
                         </form>
                     </div>
                 </div>
